@@ -315,6 +315,103 @@ Let $\left(y_i\right)_i$ be an arbitrary sequence in $Y$, and $y$ be an arbitrar
 
 
 
+\begin{exercise}{2.35}
+	Suppose $X$ is a topological space, and for every $p\in X$ there exists a continuous function $f:X\rightarrow \mathbb{R}$ such that $f^{-1}\left(0\right)=\left\{p\right\}$. Show that $X$ is Hausdorff.
+\end{exercise}
+\begin{proof}
+Let $p,q\in X$ be distinct, and let $f$ be the guaranteed continuous function corresponding to the point $p$ so that $f^{-1}\left(0\right)=\left\{p\right\}$. Then certainly $f\left(p\right)=0$ and $f\left(q\right)\neq 0$, and so by properties of the real numbers (Hausdorff) we have two open neighborhoods of $f\left(p\right)=0$ and $f\left(q\right)$, say $U$ and $V$ respectively, such that $U\cap V = \varnothing $ . Then by continuity of $f$, $f^{-1}\left(U\right)$ and $f^{-1}\left(V\right)$ are both open open neighborhoods of $p$ and $q$ in $X$, respectively. Note that if $z \in f^{-1}\left(U\right)\cap f^{-1}\left(V\right)$, then $f\left(z\right)\in U\cap V$, but $U\cap V = \varnothing $; hence, $f^{-1}\left(U\right)\cap f^{-1}\left(V\right) = \varnothing $. Thus, we have $p$ and $q$ separated by two open sets in $X$, so $X$ is Hausdorff.
+\end{proof}
+
+
+
+
+
+
+
+
+\begin{exercise}{2.38}
+	Show that the only Hausdorff topology on a finite set is the discrete topology.
+\end{exercise}
+\begin{proof}
+Let $X$ be a finite set with Hausdorff topology $\mathcal{T}$. Let $x\in X$ be arbitrary. Then by the Hausdorff axiom, for each $y\in X\setminus\left\{x\right\}$ there is some $U_y$ and $V_y$ open in $X$ such that $x\in U_y$ and $y\in V_y$ with $U_y \cap V_y =\varnothing $. Then note that $X\setminus \left\{x\right\} = \cup_{y \neq x} V_y $ which is a (finite) union of open sets, so that $\left\{x\right\}$ is closed in $X$. That is, the singleton subsets of $X$ are closed.
+
+Next, let $V\in X$ be an arbitrary subset. Then $X\setminus V$ is finite (since $X$ finite) and we can write $X\setminus V = \cup_{y\notin V} \left\{y\right\}$, a (finite) union of closed sets. Thus, $V$ is open. Since $V$ is arbitrary, we conclude that every subset of $X$ is open, and thus $\mathcal{T}$ is the discrete topology.
+\end{proof}
+
+
+
+
+
+\begin{exercise}{2.40}
+	Suppose $X$ is a topological space, and $\mathcal{B}$ is a basis for its topology. Show that a subset $U\subseteq X$ is open if and only if it satisfies the following condition: \[ \text{for each} \; p\in U, \; \text{there exists}\; B\in \mathcal{B}\; \text{such that} \; p\in B\subseteq U\]
+\end{exercise}
+{\color{red}This is called the basis criterion for openness of $U$ with respect to $\mathcal{B}$. It is something of an alternate characterization of open sets.}\\
+\begin{proof}
+First, assume that $U\subseteq X$ is open. Then by the definition of a basis $\mathcal{B}$ for a topology on $X$, $U = \cup_{\alpha \in A} B_{\alpha}$ where $A$ is some indexing set for the basis elements $B_{\alpha}\in \mathcal{B}$. Then let $p\in U$. Then we have $p \in B_{\alpha}\subseteq U$ for some $\alpha$, and so the basis criterion is satisfied.
+
+Next, assume the basis criterion is satisfied for $U\subseteq X$. Then for each $x \in U$, let $U_x$ be the basis element guaranteed to exist, so that $x \in U_x \subseteq U$. Then $U = \cup_{x\in U}U_x$, and so $U$ is a union of basis elements. Thus, $U$ is open by definition of open sets with some basis.
+\end{proof}
+
+
+
+
+
+\begin{exercise}{2.42}
+	Show that each of the following collections $\mathcal{B}_i$ is a basis for the Euclidean topology on $\mathbb{R}^n$.
+	\begin{itemize}
+		\item $\mathcal{B}_1 = \left\{ C_s\left(x\right) \, | \, x\in\mathbb{R}^n \; \text{and} \; s>0 \right\}$, where $C_s\left(x\right)$ is the \textbf{open cube of side length $s$ centered at $x$}: \[ C_s\left(x\right) = \left\{ y=\left(y_1,\ldots,y_n\right)\, | \, \left|x_i-y_i\right|<s/2, \; i=1,\ldots,n\right\}.\]
+		\item $\mathcal{B}_2 = \left\{B_r\left(x\right) \, | \, r \; \text{is rational and} \; x \; \text{has rational coordinates}\right\}$.
+	\end{itemize}
+\end{exercise}
+\begin{proof}
+	Both of these sets are clearly bases for the Euclidean topology by the properties of the real numbers. By the basis criterion for the Euclidean topology on $\mathbb{R}^n$, there is an open ball about any point inside any open set $U\subseteq \mathbb{R}^n$. Thus, we only need to show that an element of $\mathcal{B}_1$ and an element of $\mathcal{B}_2$ lie inside any standard open ball in $\mathbb{R}^n$.
+	\begin{itemize}
+		\item Let $x \in U$ where $U$ is an open subset of $\mathbb{R}^n$. Then there is an open ball $B_r\left(x\right)$ such that $x\in B_r\left(x\right)\subseteq U$, by the Euclidean metric topology on $\mathbb{R}^n$. Then by considering the case where $n=2$, we can posit the general conclusion that we have the open cube $C_{s}\left(x\right) \subset B_r\left(x\right)$ where $s = \frac{2}{\sqrt{n}} r$. To prove this, let $y \in C_s\left(x\right)$. Then by definition of the open cube, we have $\left|x_i-y_i\right| < \frac{s}{2} = \frac{1}{\sqrt{n}}r$. Then we also have $\left|x-y\right|^2 = \sum_{i=1}^n \left|x_i-y_i\right|^2 = \frac{r^2}{n}\sum_{i=1}^n 1 = r^2$ so that $y \in B_r\left(x\right)$. Hence, $C_s\left(x\right)\subseteq B_r\left(x\right)\subseteq U$. Certainly $C_s\left(x\right)$ is an open set, and so by the basis criterion we have $\mathcal{B}_1$ a basis for the Euclidean topology on $\mathbb{R}^n$.
+
+		\item We proceed similarly here and use the denseness of the rational numbers in the reals.
+
+	\end{itemize}
+
+
+\end{proof}
+
+
+
+
+
+
+
+
+\begin{exercise}{2.45}
+	Complete the proof of the preceding proposition by showing that every basis satisfies (i) and (ii).
+\end{exercise}
+\begin{proof}
+Let $\mathcal{B}$ be a basis for some topology on $X$.
+\begin{itemize}
+	\item In any topology on $X$, $X$ itself is open by the topology axioms. Then for any $x\in X$ there is some basis element $B_x$ such that $x\in B_x \subseteq X$, by the basis criterion of openness of $X$. Then $x\in \cup_{x \in X}B_x \subseteq \cup_{B\in \mathcal{B}} B$ so that $X \subseteq \cup_{B\in \mathcal{B}} B$. Conversely, $x \in \cup_{B\in \mathcal{B}}$ implies $x\in X$ since each $B\in \mathcal{B}$ is a subset of $X$; hence, $\cup_{B\in \mathcal{B}} B \subseteq X$. Thus, we have $X = \cup_{B\in \mathcal{B}} B$.
+	\item Let $B_1,B_2 \in \mathcal{B}$ with $B_1 \cap B_2 \neq \varnothing$. Then this intersection is open, since $B_1$ and $B_2$ are open by definition of basis. Then if $x \in B_1 \cap B_2$, by the basis criterion of $B_1 \cap B_2$, there is some basis element $B_3$ such that $x \in B_3 \subseteq B_1\cap B_2$.
+\end{itemize}
+\end{proof}
+
+
+
+
+
+\begin{exercise}{2.51}
+	Prove part (b) of the preceding theorem.
+\end{exercise}
+This part says that for $X$ second countable, $X$ contains a dense countable subset.\\
+
+\begin{proof}
+Let $X$ be a second countable space. Then by definition, there is a countable basis $\mathcal{B}=\left\{B_i\right\}_{i}$ for the topology on $X$. Since we are trying to construct a countable subset and we are given a countable basis, our first guess is to try to use the basis to construct such a subset. Let $x_i \in B_i$ be arbitrary for every $B_i \in \mathcal{B}$ and let $D=\left\{x_i\right\}_i$ be the (countable) collection of these.
+
+We want to show that $D$ is dense in $X$, that is, that $\overline{D}=X$. Let $x\in X$ arbitrary. If $x \in D$, then $x\in \overline{D}$. If $x\notin D$, then let $U$ be some open set containing $x$. Then since $\mathcal{B}$ is a basis for the topology on $X$, there is some element $B_i\in \mathcal{B}$ such that $B_i\subset U$. But then we have $x_i \in U$. Thus, for any open neighborhood of $x$ we have an element of $D$ also contained in this open neighborhood, and so $x\in \overline{D}$ by definition of closure. Thus, $D$ is a countable dense subset of $X$.
+\end{proof}
+
+
+
+
+
 
 
 
@@ -388,6 +485,28 @@ Conversely, let $\left(X,\mathcal{T}_X\right)$ be a countable discrete space. Th
 \end{proof}
 
 
+\begin{problem}{2.4}
+	Let $X$ be a topological space and let $\mathcal{A}$ be a collection of subsets of $X$. Prove the following containments.
+	\begin{itemize}
+		\item $\overline{\cap_{A\in\mathcal{A}}A} \subseteq \cap_{A\in\mathcal{A}} \overline{A}$.
+		\item $\overline{\cup_{A\in\mathcal{A}}A} \supseteq \cup_{A\in\mathcal{A}} \overline{A}$.
+		\item $\text{Int}\, \left(\cap_{A\in\mathcal{A}}A\right) \subseteq \cap_{A\in\mathcal{A}}\text{Int}\,A$.
+		\item $\text{Int}\, \left( \cup_{A\in\mathcal{A}}A \right) \supseteq \cup_{A\in\mathcal{A}} \text{Int}\, A$.
+	\end{itemize}
+\end{problem}
+\begin{proof}
+	Let $X$ be a topological space and $\mathcal{A}$ a collection of subsets of $X$.
+	\begin{itemize}
+		\item Let $x \in \overline{\cap_{A\in \mathcal{A}}A}$. Then for any open neighborhood $U$ of $x$, there is some $y \in U$ such that $y \in \cap_{A\in \mathcal{A}}A$. Thus, $y\in A$ for all $A \in \mathcal{A}$. Hence, $x\in \overline{A}$ for all $A\in \mathcal{A}$, and so $x\in \cap_{A\in \mathcal{A}}\overline{A}$. Thus, $\overline{\cap_{A\in \mathcal{A}}A} \subseteq \cap_{A\in \mathcal{A}}\overline{A}$
+
+		\item Let $x\in \cup_{A\in\mathcal{A}}\overline{A}$. Then for any open neighborhood $U$ of $x$, there is some $y\in U$ such that $y \in A$ for some $A\in \mathcal{A}$. Then $y\in \cup_{A\in \mathcal{A}}A$, thus every open neighborhood of $x$ contains some $y \in \cup_{A\in \mathcal{A}}$, so $x\in \overline{\cup_{A\in \mathcal{A}}A}$. Thus, $\overline{\cup_{A\in \mathcal{A}}A} \supseteq \cup_{A\in\mathcal{A}}\overline{A}$.
+
+		\item Let $x \in \text{Int}\, \left(\cap_{A\in \mathcal{A}}A\right)$. Then there is some open neighborhood $U$ of $x$ with $x \in U \subseteq \cap_{A\in \mathcal{A}}A$.
+
+	\end{itemize}
+\end{proof}
+
+
 
 
 
@@ -458,14 +577,14 @@ Conversely, assume that $f\left(\mathcal{B}\right)$ is a basis for the topology 
 \begin{problem}{2-12}
 Suppose $X$ is a set, and $\mathcal{A}\subseteq \mathcal{P}\left(X\right)$ is any collection of subsets of $X$. Let $\mathcal{T}\subseteq \mathcal{P}\left(X\right)$ be the collection of subsets consisting of $X$, $\varnothing$, and all unions of finite intersections of elements of $\mathcal{A}$.
 \begin{itemize}
-	\item Show that $\mathcal{T}$ is a topology. (It is called the \textbf{topology generated by $\mathcal{A}$}, and $\mathcal{A}$ is called a \textbf{subbasis for $\mathcal{T}$}.) 
+	\item Show that $\mathcal{T}$ is a topology. (It is called the \textbf{topology generated by $\mathcal{A}$}, and $\mathcal{A}$ is called a \textbf{subbasis for $\mathcal{T}$}.)
 	\item Show that $\mathcal{T}$ is the coarsest topology for which all the sets in $\mathcal{A}$ are open.
 	\item Let $Y$ be any topological space. Show that a map $f:X\rightarrow Y$ is continuous if and only if $f^{-1}\left(U\right)$ is open in $Y$ for every $U\in \mathcal{A}$.
 \end{itemize}
 \end{problem}
 \begin{proof}
 \begin{itemize}
-	\item By definition, $X,\varnothing \in \mathcal{T}$. Let $\left\{U_i\right\}_i$ be an arbitrary subset of $\mathcal{T}$, and let $U = \cup_i U_i$. If any of the $U_i$ are $X$, then $U=X \in \mathcal{T}$; if all $U_i$ are $\varnothing$, then $U = \varnothing \in \mathcal{T}$. Otherwise, at least one of the $U_i$ is a union of finite intersections of elements of $\mathcal{A}$. Then $U$ itself is a union of (at most) finite intersections of elements of $\mathcal{A}$, and so $U \in \mathcal{T}$. Next, let $\left\{U_i\right\}_{i=1}^n$ be an arbitrary finite subset of $\mathcal{T}$, and let $U = \cap_{i=1}^n U_i$. If any one of the $U_i=\varnothing$, then $U = \varnothing \in \mathcal{T}$; if all of the $U_i = X$, then $U=X\in \mathcal{T}$. Otherwise, 
+	\item By definition, $X,\varnothing \in \mathcal{T}$. Let $\left\{U_i\right\}_i$ be an arbitrary subset of $\mathcal{T}$, and let $U = \cup_i U_i$. If any of the $U_i$ are $X$, then $U=X \in \mathcal{T}$; if all $U_i$ are $\varnothing$, then $U = \varnothing \in \mathcal{T}$. Otherwise, at least one of the $U_i$ is a union of finite intersections of elements of $\mathcal{A}$. Then $U$ itself is a union of (at most) finite intersections of elements of $\mathcal{A}$, and so $U \in \mathcal{T}$. Next, let $\left\{U_i\right\}_{i=1}^n$ be an arbitrary finite subset of $\mathcal{T}$, and let $U = \cap_{i=1}^n U_i$. If any one of the $U_i=\varnothing$, then $U = \varnothing \in \mathcal{T}$; if all of the $U_i = X$, then $U=X\in \mathcal{T}$. Otherwise,
 \end{itemize}
 \end{proof}
 
@@ -488,7 +607,7 @@ $$ \left(-\infty,a\right) = \left\{x\in X\, | \, x<a\right\}.$$
 \begin{itemize}
 	\item Given $a<b$, we can write $\left(a,b\right) = \left(-\infty,b\right)\cap\left(a,\infty\right)$, so this is in the topology generated by our subbasis, as it is a finite intersection of the subbasis elements. Similarly, $U = \left(-\infty,a\right)\cup\left(b,\infty\right)$ is open in our topology, so $X\setminus U = \left[a,b\right]$ is closed.
 	\item Let $x,y\in X$, distinct. Since $X$ is totally ordered, we assume without loss of generality that $x < y$. If there is some $z\in X$ such that $x < z < y$, then we have $x \in \left(-\infty,z\right)$ and $y \in \left(z,\infty\right)$, both sets open and separating $x$ and $y$. Otherwise, if there is no such $z$, then notice that $y \in \left(x,\infty\right)$ and $x \in \left(-\infty,y\right)$, and these are disjoint since there is no $z$ in both (by the first part of this sentence), and so $x$ and $y$ are separated by disjoint open sets. In any case, $X$ is Hausdorff.
-	\item Let $a,b\in X$ with $a< b$. Let $x \in \overline{\left(a,b\right)}$, then any open neighborhood of $x$ contains a point of $\left(a,b\right)$. 
+	\item Let $a,b\in X$ with $a< b$. Let $x \in \overline{\left(a,b\right)}$, then any open neighborhood of $x$ contains a point of $\left(a,b\right)$.
 \end{itemize}
 \end{proof}
 
@@ -512,7 +631,7 @@ Let $X$ be first countable, $A\subseteq X$, and $x\in X$.
 \begin{itemize}
 	\item First, assume $x$ is a limit of a sequence of points in $A$. Then every neighborhood of $x$ contains infinitely many of the points of the sequence (truly, each neighborhood omits at most finitely many of the sequence points). Since the sequence points are from $A$, then any neighborhood of $x$ contains infinitely many points of $A$, and so $x\in \overline{A}$. Conversely, if $x\in \overline{A}$, then every neighborhood of $x$ contains some point of $A$. By first countability, there is a countable neighborhood basis at $x$. Let this countable basis be $\left\{B_i\right\}_{i \in \mathbb{N}}$, where the ordering is arbitrary. Then let $x_1$ be the point of $A$ guaranteed by closure to exist in $B_1$, $x_2$ be the point of $A$ guaranteed to exist in $B_1\cap B_2$, $x_3$ be the point of $A$ guaranteed to exist in $B_1\cap B_2 \cap B_3$, and so on; in general, $x_n $ is the point of $A$ guaranteed to exist in $\cap_{i=1}^n B_i$, and continuing in this fashion constructs a sequence which converges to $x$.
 	\item Let $x \in \text{Int}\,A$. Then let $\left\{x_i\right\}_i$ be a sequence converging to $x$. That is, for any open neighborhood $U$ of $x$, there is some $N\in \mathbb{N}$ such that $i>N \implies x_i \in U$. Then ]
-	\item Let 
+	\item Let
 	\item Let $A$ be open in $X$. Then $A=\text{Int}\, A$. Let $\left\{x_i\right\}_i$ be a sequence in $X$ converging to some point $x \in A$. Then $x\in \text{Int}\,A$. Then from the second part of this proof, the sequence $\left\{x_i\right\}_i$ converging to $x \in \text{Int}\, A$ is eventually in $A$. Conversely, let every sequence in $X$ converging to a point of $A$ eventually end up in $A$. Let $x \in A$, and let $\left\{x_i\right\}_i$ be some sequence in $X$ converging to $x$. By hypothesis, this sequence is eventually in $A$. Then by the second part of this proof, $x\in \text{Int}\,A$, and so $A=\text{Int}\,A$. That is, $A$ is open.
 \end{itemize}
 \end{proof}
@@ -649,7 +768,7 @@ Let $S$ be a subset of topological space $\left(X,\mathcal{T}\right)$. Then $$\m
 
 Next, let $\left\{U_i\right\}_i \subset \mathcal{T}_S$, arbitrary. Then for each $U_i$ there is some $V_i\in \mathcal{T}$ such that $U_i = S\cap V_i$. Then $$ \cup_i U_i = \cup_i \left(S\cap V_i\right) = S \cap \left( \cup_i V_i\right) $$ and $\cup_i V_i \in \mathcal{T}$ since $\mathcal{T}$ is a topology, hence $\cup_i U_i \in \mathcal{T}_S$.
 
-Last, let $\left\{U_i\right\}_{i=1}^n$ be some finite subset of $\mathcal{T}$. Then as before, there are $V_i \in \mathcal{T}$ with $U_i = S\cap V_i$. Then 
+Last, let $\left\{U_i\right\}_{i=1}^n$ be some finite subset of $\mathcal{T}$. Then as before, there are $V_i \in \mathcal{T}$ with $U_i = S\cap V_i$. Then
 $$ \cap_{i=1}^n U_i = \cap_{i=1}^n \left(S\cap V_i\right) = S\cap \left(\cap_{i=1}^n V_i\right) $$ and $\cap_{i=1}^n V_i \in \mathcal{T}$ since $\mathcal{T}$ is a topology. Thus, $\cap_{i=1}^n U_i \mathcal{T}_S$.
 
 Hence, the subspace topology $\mathcal{T}_S$ is a true topology on $S\subseteq X$.
@@ -736,14 +855,14 @@ Suppose $X$ is a topological space and $U\subseteq S \subseteq X$.
 Let $U\subseteq S \subseteq X$, $X$ a topological space. {\color{red} Assume $S$ has the subspace topology, as usual.}
 \begin{itemize}
 	\item The closure of $U$ in $S$ is the closure of $U$ as a subset of the topological space $S$. Let $x$ be in this closure. Let $V_x$ be some arbitrary open neighborhood of $x$ in $X$. Then $U_x = S\cap V_x$ is an open neighborhood of $x$ in $S$, and so there is some $y \in U$ contained in this open neighborhood $U_x$, since $x$ is in the closure of $U$. In particular, $y \in V_x$, our initial arbitrary open subset of $X$ about $x$. Thus, $x \in \overline{U}$, the closure of $U$ in $X$. Since the closure of $U$ in $S$ is a closed subset of $S$, and $x$ is in this closure, we have $x\in S$. Thus, $x\in \overline{U}\cap S$.
-	
+
 	Conversely, let $x\in \overline{U}\cap S$. Then $x\in S$ and every open neighborhood of $x$ in $X$ contains some point of $U$. Let $U_x$ be some arbitrary open neighborhood of $x$ in $S$; that is, $U_x = S\cap V_x$ for $V_x$ open in $S$. Then $V_x$ contains some $y\in U$ since $x \in \overline{U}$. Then we have $y \in U\cap V_x \subseteq S\cap V_x = U_x$ where $U_x$ was our arbitrary open neighborhood of $x$ in $S$. Hence, $x$ is in the closure of $U$ in $S$.
-	
+
 	By double inclusion, the conclusion follows.
-	
-	\item Let $x \in \text{Int}\, U\cap S$. Then $x\in S$ and $x\in \text{Int}\, U$.  We want to show that there is some open neighborhood of $x$ in $S$ contained entirely in $U$, i.e., $x$ is in the interior of $U$ in $S$. Since $x \in \text{Int}\, U$, there is some open neighborhood $U_x$ of $x$ in $X$ such that $x\in U_x \subset U$. Then $x \in S\cap U_x \subset S\cap U = U $, so that there is an open neighborhood of $x$, namely $S\cap U_x$, contained entirely within $U$. Hence, $\text{Int}\, U \cap S$ is contained in the interior of $U$ in $S$. 
-	
-	We expect that the converse will have issues if $U$ is a closed subset of $S$. For example, let $X=S=\mathbb{R}^2$ and $U$ be the closed unit disk. Then $\text{Int}\, U \cap S $ is the open unit disk. However, the closed unit disk itself is the interior of $U$ in $S$, since we can intersect small balls with the boundary of $S$ and obtain neighborhoods about any ``boundary'' point on the disk, in $U$. 
+
+	\item Let $x \in \text{Int}\, U\cap S$. Then $x\in S$ and $x\in \text{Int}\, U$.  We want to show that there is some open neighborhood of $x$ in $S$ contained entirely in $U$, i.e., $x$ is in the interior of $U$ in $S$. Since $x \in \text{Int}\, U$, there is some open neighborhood $U_x$ of $x$ in $X$ such that $x\in U_x \subset U$. Then $x \in S\cap U_x \subset S\cap U = U $, so that there is an open neighborhood of $x$, namely $S\cap U_x$, contained entirely within $U$. Hence, $\text{Int}\, U \cap S$ is contained in the interior of $U$ in $S$.
+
+	We expect that the converse will have issues if $U$ is a closed subset of $S$. For example, let $X=S=\mathbb{R}^2$ and $U$ be the closed unit disk. Then $\text{Int}\, U \cap S $ is the open unit disk. However, the closed unit disk itself is the interior of $U$ in $S$, since we can intersect small balls with the boundary of $S$ and obtain neighborhoods about any ``boundary'' point on the disk, in $U$.
 \end{itemize}
 \end{proof}
 
@@ -763,8 +882,8 @@ The remaining parts of Proposition~3.11 are:
 \begin{proof}
 Let $S$ be a subspace of the topological space $X$.
 \begin{itemize}
-	\item Let $\left(p_i\right)$ be a sequence of points in $S$, $p\in S$, and assume $p_i\rightarrow p$ in $S$. Let $V$ be some open neighborhood of $p$ in $X$. Then $U = S\cap V$ is an open neighborhood of $p$ in $S$. Thus, there is some $N\in \mathbb{N}$ such that $n>N \implies p_i \in U = S\cap V$. Thus, in particular, $n>N \implies p_i \in V$, and so $p_i \rightarrow p$ in $X$. 
-	
+	\item Let $\left(p_i\right)$ be a sequence of points in $S$, $p\in S$, and assume $p_i\rightarrow p$ in $S$. Let $V$ be some open neighborhood of $p$ in $X$. Then $U = S\cap V$ is an open neighborhood of $p$ in $S$. Thus, there is some $N\in \mathbb{N}$ such that $n>N \implies p_i \in U = S\cap V$. Thus, in particular, $n>N \implies p_i \in V$, and so $p_i \rightarrow p$ in $X$.
+
 	Conversely, let $p_i \rightarrow p$ in $X$. Let $U$ be an arbitrary open neighborhood of $p$ in $S$. Then $U=S\cap V$, $V$ open in $X$. Then $V$ is an open neighborhood of $x$ in $X$, and so there is some $N\in \mathbb{N}$ such that $n>N\implies p_i \in V$. {\color{red} Since each $p_i\in S$}, we have $ n> N \implies p_i \in S\cap V = U$, and so $p_i\rightarrow p$ in $S$.
 	\item Assume $X$ is Hausdorff. Then let $x,y \in S$, arbitrary. Since $S\subseteq X$, there are open neighborhoods $U,V$ of $x,y$, respectively, with $U\cap V=\varnothing$. Then $S\cap U$, $S\cap V$ are open neighborhoods of $x,y$, respectively, in $S$, and they are disjoint. Hence, subspace $S$ is also Hausdorff.
 	\item Assume $X$ is first countable. Let $x\in S$. Then $x \in X$, and so there is some countable neighborhood basis $\left\{B_i\right\}_{i\in \mathbb{N}}$ at $x$ in $X$. Then $\left\{S\cap B_i\right\}_{i\in\mathbb{N}}$ is a countable set of open neighborhoods of $x$ in $S$. To show that this is a neighborhood basis at $x$ in $S$, let $U$ be some arbitrary open set in $S$ containing $x$. Then $U = S\cap V$, $V$ open in $X$, and so there is some $B_j \subset V$ for $j\in \mathbb{N}$. Then $S\cap B_j \subset S\cap V = U$ and $S\cap B_j \in \left\{B_i\right\}_{i\in \mathbb{N}}$. Hence, this is a countable neighborhood basis at $x$ in $S$, and so $S$ is first countable.
@@ -802,7 +921,7 @@ Proposition~3.18 states:
 \begin{proof}
 First, a homeomorphism is by definition a continuous bijection with continuous inverse, so it is, in particular, injective, continuous, and is a homeomorphism when the range is restricted to its image. Thus, a homeomorphism is a topological embedding.
 
-Conversely, let $f:X\rightarrow Y$ be a surjective topological embedding. Then by definition of topological embedding, $f$ is a homeomorphism onto its image, which in the case of $f$ surjective is all $Y$. Hence, $f$ is a homemorphism from $X$ to $Y$. 
+Conversely, let $f:X\rightarrow Y$ be a surjective topological embedding. Then by definition of topological embedding, $f$ is a homeomorphism onto its image, which in the case of $f$ surjective is all $Y$. Hence, $f$ is a homemorphism from $X$ to $Y$.
 \end{proof}
 
 
@@ -866,7 +985,7 @@ Proposition~3.31 states:\\
 	\item If each $X_i$ is Hausdorff, so is $X_1 \times \cdots \times X_n$.
 	\item If each $X_i$ is first countable, so is $X_1 \times \cdots \times X_n$.
 	\item If each $X_i$ is second countable, so is $X_1 \times \cdots \times X_n$.
-\end{itemize}} 
+\end{itemize}}
 {\color{red} Take special care with the fourth statement. Recall that the product topology is generated by the basis $\left\{U_1 \times \cdots \times U_n \, | \, U_i \; \text{open in} \; X_i\right\}$. That is, the open sets in the product are unions of these basis elements. The statement in this Proposition says that if we have a basis for each of the factor spaces, then the products of these respective basis elements also form a basis for the product topology. Thus, we have two bases for this topology: one in terms of open sets in the factor spaces and one in terms of the bases of the factor spaces.}\\
 
 \begin{proof}
@@ -874,17 +993,17 @@ Proposition~3.31 states:\\
 	\item Let $U$ be open in the product topology on $X_1 \times X_2 \times X_3$, and let $x\in U$. Then by definition of the basis of the product topology on $X_1 \times X_2 \times X_3$, we have open sets $U_i \subseteq X_i$ such that $x \in U_1 \times  U_2 \times  U_3 \subset U$.
 
 	\item Let $i \in \left\{1,\ldots,n\right\}$ arbitrary and $x_j \in X_j$ for $j \neq i$ be arbitrary and fixed. Then define the map $f:X_i \rightarrow X_1 \times \cdots \times X_n$ as $f\left(x\right) = \left(x_1,\ldots,x_{i-1},x,x_{i+1},\ldots,x_n\right)$. Let $f\left(x\right) = f\left(y\right)$. Then $\left(x_1,\ldots,x_{i-1},x,x_{i+1},\ldots,x_n\right)=\left(x_1,\ldots,x_{i-1},y,x_{i+1},\ldots,x_n\right)$, and so $x=y$; hence, $f$ is injective. Let $U$ be an open subset of $X_1 \times \cdots \times X_n$. {\color{red} help}
-	
+
 	\item Consider the canonical projection $\pi_i: X_1 \times \cdots \times X_n \rightarrow X_i$ given, as usual, as $\pi_i \left(x_1,x_2,\ldots,x_n\right) = x_i$. Let $U \subseteq X_1\times \cdots \times X_n$ be some open set. Then let $y \in \pi_i\left(U\right)$. Then there is some $x \in U$ such that $\pi_i\left(x\right) = y$, and that $x$ is of the form $x = \left(x_1,x_2,\ldots, x_{i-1},y,x_{i+1},\ldots,x_n\right)$. Since $U$ is open, $x$ has a neighborhood of the form $U_1 \times \cdots \times U_n \subset U$ where each $U_j \subset X_j$ is open. Thus, we have in particular an open neighborhood $U_i$ of $y$ such that $y \in U_i \subset \pi_i\left(U\right)$. Hence, we have for arbitrary $y \in \pi_i\left(U\right)$ an open neighborhood of $y$ contained in $\pi_i\left(U\right)$; in other words, $\pi_i\left(U\right)$ is open. Since $U$ was an arbitrary open set, we conclude that each canonical projection $\pi_i$ is an open map.
-	\item Let $\mathcal{B}_i$ be a basis for the topology of $X_i$, and define $\mathcal{B} = \left\{B_1 \times \cdots \times B_n \, | \, B_i \in \mathcal{B}_i\right\}$. Let $U$ be an arbitrary open set of $X_1\times \cdots \times X_n$, and let $p \in U$. Then since $U$ open, by definition of the product topology there are open sets $U_i \subseteq X_i$ for each $i$ so that $p \in U_1 \times \cdots \times U_n \subset U$ (by the definition of the product topology as generated by such a basis). Then for each component of $y$, $y_i$, we have $y_i \in U_i$, an open set, so there is some basis element $B_i \in \mathcal{B}_i$ so that $y_i \in B_i \subset U_i$. Then we have $y \in B_1 \times \cdots \times B_n \subset U_1 \times \cdots \times U_n \subset U$, and this product of the $B_i$ is in $\mathcal{B}$. Hence, by the basis criterion, $\mathcal{B}$ is a basis for the product topology. 
+	\item Let $\mathcal{B}_i$ be a basis for the topology of $X_i$, and define $\mathcal{B} = \left\{B_1 \times \cdots \times B_n \, | \, B_i \in \mathcal{B}_i\right\}$. Let $U$ be an arbitrary open set of $X_1\times \cdots \times X_n$, and let $p \in U$. Then since $U$ open, by definition of the product topology there are open sets $U_i \subseteq X_i$ for each $i$ so that $p \in U_1 \times \cdots \times U_n \subset U$ (by the definition of the product topology as generated by such a basis). Then for each component of $y$, $y_i$, we have $y_i \in U_i$, an open set, so there is some basis element $B_i \in \mathcal{B}_i$ so that $y_i \in B_i \subset U_i$. Then we have $y \in B_1 \times \cdots \times B_n \subset U_1 \times \cdots \times U_n \subset U$, and this product of the $B_i$ is in $\mathcal{B}$. Hence, by the basis criterion, $\mathcal{B}$ is a basis for the product topology.
 	\item Let $S_i$ be a subspace of $X_i$ for each $i$. Let $\mathcal{T}_S$ be the subspace topology on $S = S_1 \times \cdots \times S_n \subseteq X_1 \times \cdots \times X_n = X$, and let $\mathcal{T}_{\times}$ be the product topology on $S$. We want to show that these contain the same elements (open sets).
-	
+
 	First, let $U \in \mathcal{T}_{S}$ and let $x \in U$. Then $U = S\cap V$ for some $V$ open in $X$, by the subspace topology on $S$. Then since $V$ open in the product topology on $X$, there are open sets $V_i\subset X_i$ such that $x \in V_1 \times \cdots \times V_n \subset V$ by the basis of the product topology on $X$. Thus $x \in S\cap \left(V_1 \times \cdots \times V_n\right) = \left(S_1 \cap V_1\right)\times \cdots \times \left(S_n \cap V_n\right) \subset S\cap V = U$. But each $S_i\cap V_i$ is open in $S_i$, by definition of the subspace topology on $S_i$. Thus $\left(S_1\cap V_1\right)\times \cdots \times \left(S_n\cap V_n\right) $ is in the basis for $\mathcal{T}_{\times}$, and so $U\in \mathcal{T}_{\times}$. Hence, $\mathcal{T}_S \subseteq \mathcal{T}_{\times}$.
-	
+
 	Conversely, let $U\in \mathcal{T}_{\times}$ and $x\in U$. Then there is some neighborhood $U_1 \times \cdots \times U_n$ of $x$, where each $U_i$ open in $S_i$, so that $x \in U_1 \times \cdots \times U_n \subset U$, by the definition of the basis of the product topology. Since $U_i \subset S_i$ are open in the subspaces $S_i $ of $X_i$, we have $U_i = S_i \cap V_i$ for some open subsets $V_i \subseteq X_i$. Then we have $x \in U_1 \times \cdots \times U_n = \left(S_1\cap V_1\right)\times \cdots \times \left(S_n\cap V_n\right) = S\cap \left(V_1 \times \cdots \times V_n\right) \subset U$. But $\left(V_1 \times \cdots \times V_n\right)$ is open in $X$ since it is a basis element for the product topology on $X$. Thus, $x$ is contained in a set open in the subspace topology on $S$ which is itself contained entirely within $U$. Thus, $U \in \mathcal{T}_S$, and so $\mathcal{T}_{\times} \subseteq \mathcal{T}_S$.
-	
+
 By double inclusion, we have shown that $\mathcal{T}_{\times} = \mathcal{T}_S$.
-	
+
 	\item Assume each $X_i$ is Hausdorff and let $x,y$ be distinct points in $X_1 \times \cdots \times X_n$. Then $x_i \neq y_i$ for the components of $x$ and $y$ in some $X_i$. Then since $X_i$ Hausdorff, there are open sets $U_i$ and $V_i$ containing $x_i$ and $y_i$, respectively, such that $U_i \cap V_i = \varnothing$. Then note that the set $X_1 \times \cdots \times U_i \times \cdots \times X_n$ and $X_1 \times \cdots \times V_i \times \cdots \times X_n$ are open in the product space, are certainly disjoint, and are open neighborhoods of $x$ and $y$, respectively. Thus, the  product space itself is Hausdorff.
 	\item Assume that each $X_i$ is first countable and let $x$ be an arbitrary point in $X=X_1\times \cdots \times X_n$. Then for each component $x_i$ of $x$, we have a countable neighborhood basis $\mathcal{B}_i$ of $x_i$ in $X_i$. Let $\mathcal{B} = \left\{ B_1\times \cdots \times B_n \, | \, B_i \in \mathcal{B}_i \right\}$. This set $\mathcal{B}$ is countable as a Cartesian product of countable sets. We want to show that $\mathcal{B}$ is a countable neighborhood basis for $x \in X$. Certainly we have $x \in B_1 \times \cdots \times B_n$ for every $B_1 \times \cdots \times B_n \in \mathcal{B}$. Let $U$ be an arbitrary open neighborhood of $x$. Then by definition of the product topology on $X$, we have $U_i $ open in each $X_i$ such that $x \in U_1 \times \cdots \times U_n \subset U$. Since each $U_i$ open in $X_i$, there is a basis element $B_i \in \mathcal{B}_i$ such that $x \in B_i \subset U_i$. Then $x \in B_1 \times \cdots \times B_n \subset U_1 \times \cdots \times U_n \subset U$. Since $B_1 \times \cdots \times B_n \in \mathcal{B}$, we conclude that $\mathcal{B}$ is a basis neighborhood for the product topology on $X$ at $x$. Thus, $X=X_1\times\cdots \times X_n$ is first countable.
 	\item Assume that each $X_i$ is second countable. Then for each $X_i$ there is a countable basis $\mathcal{B}_i$. We know from the fourth part of this Proposition that the set $\mathcal{B}=\left\{ B_1 \times \cdots \times B_n \, | \, B_i \in \mathcal{B}_i \; \text{for all}\; i =1,2\ldots,n \right\}$ is a basis for $X_1 \times \cdots \times X_n$. The set $\mathcal{B}$ is certainly countable, as it is the Cartesian product of a finite set of countable sets. Thus it is a countable basis, and so the product of (a finite number of) second countable spaces is second countable.
@@ -920,9 +1039,9 @@ Let $\left(X_{\alpha}, \mathcal{T}_{\alpha}\right)_{\alpha \in A}$ be an indexed
 
 First, note that $\varnothing \in \mathcal{T}$ since $\varnothing \cap X_{\alpha}^* = \varnothing \in \mathcal{T}_{\alpha}$ for each $\alpha \in A$. Next, $\sqcup_{\alpha \in A}X_{\alpha} \in \mathcal{T}$ since $\left(\sqcup_{\alpha \in A} X_{\alpha} \right) \cap  X_{\beta}^* = X_{\beta} \in \mathcal{T}_{\beta} $ for every $\beta \in A$.
 
-Next, let $\left\{U_i\right\}$ be an arbitrary subset of $\mathcal{T}$. Then $\left(\cup_i U_i\right)\cap X^*_{\alpha} = \cup_i \left(U_i \cap X^*_\alpha \right) $. Then $U_i \cap X_{\alpha}^* \in \mathcal{T}_{\alpha}$ by definition of $\mathcal{T}$. Then this union is a union of elements of $\mathcal{T}_{\alpha}$, and so this $\left(\cup_i U_i\right)\cap X_{\alpha}^* \in \mathcal{T}_{\alpha}$ for every $\alpha \in A$. Thus, by definition, we have $\cup_i U_i \in \mathcal{T}$. 
+Next, let $\left\{U_i\right\}$ be an arbitrary subset of $\mathcal{T}$. Then $\left(\cup_i U_i\right)\cap X^*_{\alpha} = \cup_i \left(U_i \cap X^*_\alpha \right) $. Then $U_i \cap X_{\alpha}^* \in \mathcal{T}_{\alpha}$ by definition of $\mathcal{T}$. Then this union is a union of elements of $\mathcal{T}_{\alpha}$, and so this $\left(\cup_i U_i\right)\cap X_{\alpha}^* \in \mathcal{T}_{\alpha}$ for every $\alpha \in A$. Thus, by definition, we have $\cup_i U_i \in \mathcal{T}$.
 
-Lastly, let $\left\{U_i\right\}_{i=1}^n$ be a finite subset of $\mathcal{T}$. Then $\left(\cap_{i=1}^n U_i\right)\cap X_{\alpha}^* = \cap_{i=1}^n \left(U_i \cap X_{\alpha}^*\right)$, and each $U_i \cap X_{\alpha}^* \in \mathcal{T}_{\alpha}$ by definition of $\mathcal{T}$. Then this is a finite intersection of elements of $\mathcal{T}_{\alpha}$, so $\left(\cap_{i=1}^n U_i\right)\cap X_{\alpha}^* \in \mathcal{T}_{\alpha}$ for every $\alpha \in A$. Hence, by definition, $\cap_{i=1}^n U_i \in \mathcal{T}$. 
+Lastly, let $\left\{U_i\right\}_{i=1}^n$ be a finite subset of $\mathcal{T}$. Then $\left(\cap_{i=1}^n U_i\right)\cap X_{\alpha}^* = \cap_{i=1}^n \left(U_i \cap X_{\alpha}^*\right)$, and each $U_i \cap X_{\alpha}^* \in \mathcal{T}_{\alpha}$ by definition of $\mathcal{T}$. Then this is a finite intersection of elements of $\mathcal{T}_{\alpha}$, so $\left(\cap_{i=1}^n U_i\right)\cap X_{\alpha}^* \in \mathcal{T}_{\alpha}$ for every $\alpha \in A$. Hence, by definition, $\cap_{i=1}^n U_i \in \mathcal{T}$.
 
 Thus, we have shown that this disjoint union topology is indeed a topology on the disjoint union of topological spaces.
 \end{proof}
@@ -968,12 +1087,12 @@ Suppose $\left(X_{\alpha}\right)_{\alpha \in A}$ is an indexed family of nonempt
 Let $X$ be any space and $Y$ be a discrete space. Show that the Cartesian product $X\times Y$ is equal to the disjoint union $\sqcup_{y\in Y} X$, and the product topology is the same as the disjoint union topology.
 \end{exercise}
 \begin{proof}
-Recall that the Cartesian product of $X$ and $Y$ is $$X\times Y = \left\{ \left(x,y\right) \, | \, x\in X, y\in Y\right\}.$$ The disjoint union $\sqcup_{y\in Y} X$ is defined as $$ \sqcup_{y\in Y} X  = \left\{ \left(x,y\right) \, | \, y\in Y, x\in X\right\} $$ (that is, the indexed families are $X_{\alpha} = X$ for every $\alpha = y \in Y$). By inspection, these are certainly the same sets. 
+Recall that the Cartesian product of $X$ and $Y$ is $$X\times Y = \left\{ \left(x,y\right) \, | \, x\in X, y\in Y\right\}.$$ The disjoint union $\sqcup_{y\in Y} X$ is defined as $$ \sqcup_{y\in Y} X  = \left\{ \left(x,y\right) \, | \, y\in Y, x\in X\right\} $$ (that is, the indexed families are $X_{\alpha} = X$ for every $\alpha = y \in Y$). By inspection, these are certainly the same sets.
 
 Let the product topology on $X\times Y$ be $\mathcal{T}_{\times}$, and let the disjoint union topology be $\mathcal{T}$. Let $U \in \mathcal{T}_{\times}$ and let $\left(x,y\right) \in U$. Then by definition of the basis of the product topology, there are open neighborhoods $U_x, U_y$ of $x,y$, respectively, such that $\left(x,y\right) \in U_x \times U_y \subset U$. Then note that $\left\{y\right\}$ open in $Y$ since $Y$ is a discrete space, and we have $
 \left(x,y\right) \in U_x \times \left\{y\right\} \subseteq U_x \times U_y \subset U$. Note that the intersection of $U_x \times \left\{y\right\}$ with $X_{\alpha}=X$ is just $U_x$, which is open in $X_{\alpha}=X$. Thus, $U_x \times \left\{y\right\}$ is open in the disjoint union topology $\mathcal{T}$, and so $U \in \mathcal{T}$ since for an arbitrary point in $U$ we have found an open neighborhood of the point contained entirely within $U$. Hence, $\mathcal{T}_{\times} \subseteq \mathcal{T}$.
 
-Conversely, let $U \in \mathcal{T}$. Then the intersection of $U$ with 
+Conversely, let $U \in \mathcal{T}$. Then the intersection of $U$ with
 \end{proof}
 
 
@@ -1025,7 +1144,7 @@ Next assume that $U=q^{-1}\left(q\left(U\right)\right)$. Then let $x\in U$. Assu
 
 Next, assume that the fourth statement holds. Let $x$ be an arbitrary element of $U$. Then $q\left(x\right)$ is in $Y$, and the set $U_x = q^{-1}\left(q\left(x\right)\right) $ is a subset of $X$. By the fourth statement, we actually have $U_x \subseteq U$. But $U_x$ is the fiber of $q$ under $q\left(x\right)$. We can repeat this process for every $x\in X$ and obtain a corresponding fiber $U_x \subset U$. Then $\cup_{x\in X} U_x = U$, and we have expressed $U$ as a union of fibers. The third statement is proven.
 
-Lastly, assume that $U$ is a union of fibers: $U = \cup_{y \in B} q^{-1}\left(y\right)$ for $B$ an arbitrary subset of $Y$. Then $U = q^{-1}\left(B\right)$, and so $U$ is saturated with respect to $q$. 
+Lastly, assume that $U$ is a union of fibers: $U = \cup_{y \in B} q^{-1}\left(y\right)$ for $B$ an arbitrary subset of $Y$. Then $U = q^{-1}\left(B\right)$, and so $U$ is saturated with respect to $q$.
 
 \end{proof}
 
@@ -1044,7 +1163,7 @@ Theorem~3.41 is the Characteristic Property of Disjoint Union Spaces:\\
 \textit{Suppose that $\left(X_{\alpha}\right)_{\alpha \in A}$ is an indexed family of topological spaces, and $Y$ is any topological space. A map $f:\sqcup_{\alpha \in A} X_{\alpha}\rightarrow Y$ is continuous if and only if its restriction to each $X_{\alpha}$ is continuous. The disjoint union topology is the unique topology on $\sqcup_{\alpha \in A} X_{\alpha}$ with this property.}\\
 
 \begin{proof}
-Let the hypotheses of the statement hold and let there exist some map $f:\sqcup_{\alpha \in A} X_{\alpha}\rightarrow Y$. Assume that the restriction of $f$ to each $X_{\alpha}$ is continuous. In particular, for any $\alpha \in A$, this restriction is $f|_{X_{\alpha}^*}: X_{\alpha}^* \rightarrow Y$ where $X_{\alpha}^* = \left\{\left(x,\alpha\right)\, | \, x\in X_{\alpha}\right\}$. Let $U$ be an arbitrary open subset of $Y$. Then 
+Let the hypotheses of the statement hold and let there exist some map $f:\sqcup_{\alpha \in A} X_{\alpha}\rightarrow Y$. Assume that the restriction of $f$ to each $X_{\alpha}$ is continuous. In particular, for any $\alpha \in A$, this restriction is $f|_{X_{\alpha}^*}: X_{\alpha}^* \rightarrow Y$ where $X_{\alpha}^* = \left\{\left(x,\alpha\right)\, | \, x\in X_{\alpha}\right\}$. Let $U$ be an arbitrary open subset of $Y$. Then
 \begin{equation*}\begin{split}
 f^{-1}\left(U\right) & = \left\{ \left(x,\alpha\right) \in \sqcup_{\alpha \in A} X_{\alpha} \, | \, f\left(\left(x,\alpha\right)\right) \in U\right\} \\
 & = \cup_{\alpha \in A} \left\{ \left(x,\alpha\right) \in X_{\alpha}^* \, | \, f\left(\left(x,\alpha\right)\right) \in U \right\} \\
@@ -1052,11 +1171,11 @@ f^{-1}\left(U\right) & = \left\{ \left(x,\alpha\right) \in \sqcup_{\alpha \in A}
 \end{split}\end{equation*}
 and since all of the preimages in this union are open in the disjoint union by our hypothesis, the preimage $f^{-1}\left(U\right)$ is open in the disjoint union. Thus, $f$ is continuous.
 
-Conversely, let $f$ be continuous. Then let $U$ be an arbitrary open subset of $Y$. Then 
+Conversely, let $f$ be continuous. Then let $U$ be an arbitrary open subset of $Y$. Then
 \begin{equation*}\begin{split}
 f|_{X_{\alpha}^*}^{-1}\left(U\right) & = \left\{ \left(x,\alpha\right) \in X_{\alpha}^* \, | \, f\left(\left(x,\alpha\right)\right) \in U \right\} \\
 & = X_{\alpha}^* \cap f^{-1}\left(U\right) \\
-\end{split}\end{equation*} 
+\end{split}\end{equation*}
 Then $X_{\alpha}^*$ is open in the disjoint union topology by definition of this topology, and $f^{-1}\left(U\right)$ is also open since we assumed $f$ continuous. Then $f|_{X_{\alpha}}^{-1}\left(U\right)$ is open and so the restrictions of $f$ to each $X_{\alpha}$ are continuous.
 
 Finally, we wish to show uniqueness of the disjoint union topology with respect to this property.
@@ -1103,7 +1222,7 @@ Assume that $X$ is disconnected, that is, $X=U\cup V$ for nonempty open disjoint
 
 
 \
-To see that it is continuous, let $W$ be an open subset of the disjoint product space. That is, $W$ is open when intersected with $X_1$ and $X_2$. Then 
+To see that it is continuous, let $W$ be an open subset of the disjoint product space. That is, $W$ is open when intersected with $X_1$ and $X_2$. Then
 \begin{equation*}\begin{split}
 \varphi^{-1}\left(W\right) & = \left\{ x\in X \, | \, \varphi\left(x\right) \in W\right\} \\
 & = \left\{ x\in U\cup V \, | \, \left(x,0\right)\in U^*\cap W \; \text{or} \; \left(x,1\right)\in V^*\cap W \right\} \\
