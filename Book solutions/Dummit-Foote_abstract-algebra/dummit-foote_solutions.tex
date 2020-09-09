@@ -10,6 +10,7 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \usepackage{xcolor}
+\usepackage{mdframed}
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -35,6 +36,20 @@
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 \newenvironment{corollary}[2][Corollary]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{theorem}%
+  {\begin{mdframed}[backgroundcolor=black!10,
+  	linewidth=0pt,]\begin{mythm}}%
+  {\end{mythm}\end{mdframed}}
+
+\surroundwithmdframed[linewidth=3pt,
+   topline=false,
+   rightline=false,
+   bottomline=false,
+   leftmargin=\parindent,
+   skipabove=\medskipamount,
+   skipbelow=\medskipamount,
+]{proof}
 
 
 
@@ -1151,8 +1166,8 @@ This is a basic induction proof. The base case, $n=1$ is trivial. Assume that $\
     \end{split}
 \end{equation*}
 and so the hypothesis is proven by the principle of mathematical induction.
-\end{proof} \\
-We can now more easily prove the problem statement.\\
+\end{proof}
+We can now more easily prove the problem statement.
 \begin{proof}
 Let $x,g\in G$ and let $\left|x\right| = n$. Then $n$ is the smallest positive integer such that $x^n=1$. Notice that
 \begin{equation*}
@@ -1391,7 +1406,7 @@ Prove that any finite group $G$ of even order contains an element of order $2$. 
 \end{problem}
 \begin{proof}
 Let $G$ have finite even order. Then assume by way of contradiction that no element has order $2$, i.e., for every element $g\in G$ we have $g\neq g^{-1}$. Then we can partition $G$ into equivalence classes where each element of $G$ is equivalent to its inverse. Then each class corresponding to non-identity $g\in G$ is of the form $\left[g\right] = \left\{g,g^{-1}\right\}$, a two-element subset. These are bona fide equivalence classes since group inverses are unique. For the identity element $1\in G$, we have $\left[1\right] = \left\{1\right\}$, a singleton set. Then the total number of elements in $G$ is twice the number of non-identity equivalence classes (since these are two-element subsets) plus 1 (for the identity class); thus, there is an odd number of elements in $G$, and this is a contradiction. Thus, there must be some element of order $2$ in $G$.
-\end{proof}\\
+\end{proof}
 The next proof is more in line with the hint suggested in the problem statement.\\
 \begin{proof}
 Let $t\left(G\right) = \left\{ g\in G \, | \, g\neq g^{-1}\right\}$. By the symmetry of this construction, note that $g\in t\left(G\right) \implies g^{-1}\in G$, and that these are two unique elements of $t\left(G\right)$. Also, the pairs $\left\{g,g^{-1}\right\}$ partition $t\left(G\right)$ since inverses are unique in groups. Thus, elements of $t\left(G\right)$ come in pairs and so $\left|t\left(G\right)\right|=n$ is even. Then the elements of $G$ which have order $2$ are $G-t\left(G\right)$, and $\left|G-t\left(G\right)\right|=m$ is even since removing an even number of elements from a set of an even number of elements results in an even number remaining. Clearly $G-t\left(G\right) \neq \varnothing $ since $1$ is included. Hence, there is a nonzero even number of elements. There thus must be some other $g\in G-t\left(G\right)$, i.e., a nonidentity $g\in G$ with $g^2=1$.
