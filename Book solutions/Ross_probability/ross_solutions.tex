@@ -1,0 +1,379 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,scrextend}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\renewcommand{\qed}{\hfill$\blacksquare$}
+\let\newproof\proof
+\renewenvironment{proof}{\begin{addmargin}[1em]{0em}\begin{newproof}}{\end{newproof}\end{addmargin}\qed}
+% \newcommand{\expl}[1]{\text{\hfill[#1]}$}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+
+
+\begin{document}
+
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+
+\lhead{Ross ``Probability 9e'' Solutions}
+\chead{Stan Tuznik}
+\rhead{\today}
+
+% \maketitle
+
+
+\section*{Chapter 1. Combinatorial Analysis}
+
+\begin{problem}{1.1}
+\begin{enumerate}[label=(\alph*)]
+	\item How many different $7$-place license plates are possible if the first $2$ places are for letters and the other $5$ for numbers?
+	\item Repeat part (a) under the assumption that no letter or number can be repeated in a single license plate.
+\end{enumerate}
+\end{problem}
+
+
+
+\begin{problem}{1.2}
+How many outcome sequences are possible when a die is rolled four times, where we say, for instance, that the outcome is 3, 4, 3, 1 if the first roll landed on 3, the second on 4, the third on 3, and the fourth on 1?
+\end{problem}
+
+
+\begin{problem}{1.3}
+Twenty workers are to be assigned to 20 different jobs, one to each job. How many different assignments are possible?
+\end{problem}
+
+
+\begin{problem}{1.4}
+John, Jim, Jay, and Jack have formed a band consisting of $4$ instruments. If each of the boys can play all 4 instruments, how many different arrangements are possible? What if John and Jim can play all 4 instruments, but Jay and Jack can each play only piano and drums?
+\end{problem}
+
+
+\begin{problem}{1.5}
+For years, telephone area codes in the United States and Canada consisted of a sequence of three digits. The first digit was an integer between 2 and 9, the second digit was either 0 or 1, and the third digit was any integer from 1 to 9. How many area codes were possible? How many area codes starting with a 4 were possible?
+\end{problem}
+
+\begin{problem}{1.6}
+A well-known nursery rhyme starts as follows:
+\begin{quote}
+``As I was going to St. Ivers \\
+I met a man with 7 wives. \\
+Each wife had 7 sacks. \\
+Each sack had 7 cats. \\
+Each cat had 7 kittens...''\\
+\end{quote}
+How many kittens did the traveler meet?
+\end{problem}
+
+
+\begin{problem}{1.7}
+\begin{enumerate}[label=(\alph*)]
+	\item In how many ways can 3 boys and 3 girls sit in a row?
+	\item In how many ways can 3 boys and 3 girls sit in a row if the boys and the girls are each to sit together?
+	\item In how many ways if only the boys must sit together?
+	\item In how many ways if no two people of the same sex are allowed to sit together?
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem}{1.8}
+How many different letter arrangements can be made from the letters
+\begin{enumerate}[label=(\alph*)]
+	\item Fluke?
+	\item Propose?
+	\item Mississippi?
+	\item Arrange?
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem}{1.9}
+A child has 12 blocks, of which 6 are black, 4 are red, 1 is white, and 1 is blue. If the child puts the blocks in a line, how many arrangements are possible?
+\end{problem}
+
+
+\begin{problem}{1.10}
+In how many ways can 8 people be seated in a row if
+\begin{enumerate}[label=(\alph*)]
+	\item there are no restrictions on the seating arrangement?
+	\item persons $A$ and $B$ must sit next to each other?
+	\item there are 4 men and 4 women and no 2 men or 2 women can sit next to each other?
+	\item there are 5 men and they must sit next to one another?
+	\item there are 4 married couples and each couple must sit together?
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem}{1.11}
+In how many ways can 3 novels, 2 mathematics books, and 1 chemistry book be arranged on a bookshelf if
+\begin{enumerate}[label=(\alph*)]
+	\item the books can be arranged in any order?
+	\item the mathematics books must be together and the novels must be together?
+	\item the novels must be together, but the other books can be arranged in any order?
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem}{1.12}
+Five separate awards (best scholarship, best leadership qualities, and so on) are to be presented to selected students from a class of 30. How many different outcomes are possible if
+\begin{enumerate}[label=(\alph*)]
+	\item a student can receive any number of aways?
+	\item each student can receive at most 1 award?
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{1.13}
+Consider a group of 20 people. If everyone shakes hands with everyone else, how many handshakes take place?
+\end{problem}
+
+
+\begin{problem}{1.14}
+How many 5-card poker hands are there?
+\end{problem}
+
+
+\begin{problem}{1.15}
+A dance class consists of 22 students, of which 10 are women and 12 are men. If 5 men and 5 women are to be chosen and then paired off, how many results are possible?
+\end{problem}
+
+
+\begin{problem}{1.16}
+A student has to sell 2 books from a collection of 6 math, 7 science, and 4 economics books. How many choices are possible if
+\begin{enumerate}[label=(\alph*)]
+	\item both books are to be on the same subject?
+	\item the books are to be on different subjects?
+\end{enumerate}
+\end{problem}
+
+
+
+
+
+\begin{problem}{ 1.17 }
+Seven different gifts are to be distributed among 10 children. How many distinct results are possible if no child is to receive more than one gift?
+\end{problem}
+
+
+\begin{problem}{1.18}
+A committee of 7, consisting of 2 Republicans, 2 Democrats, and 3 Independents, is to be chosen from a group of 5 Republicans, 6 Democrats, and 4 Independents. How many committees are possible?
+\end{problem}
+
+
+
+\begin{problem}{  1.19 }
+From a group of 8 women and 6 men, a committee consisting of 3 men and 3 women is to be formed. How many different committees are possible if
+\begin{enumerate}[label=(\alph*)]
+	\item 2 of the men refuse to serve together?
+	\item 2 of the women refuse to serve together?
+	\item 1 man and 1 woman refuse to serve together?
+\end{enumerate}
+\end{problem}
+
+
+
+
+\begin{problem}{  1.20 }
+A person has 8 friends, of whom 5 will be invited to a party.
+\begin{enumerate}[label=(\alph*)]
+	\item How many choices are there if 2 of the friends are feuding and will not attend together?
+	\item How many choices if 2 of the friends will only attend together?
+\end{enumerate}
+\end{problem}
+
+
+
+\begin{problem}{  1.21 }
+Consider the grid of points shown at the top of the next column. Suppose that, starting at the point labeled $A$, you can go one step up or one step to the right at each move. This procedure is continued until the point labeled $B$ is reached. How many different paths from $A$ to $B$ are possible?\\
+\textit{Hint}: Note that to reach $B$ from $A$, you must take 4 steps to the right and 3 steps upward.
+\end{problem}
+
+
+\begin{problem}{  1.22 }
+In Problem 21, how many different paths are there from $A$ to $B$ that go through the point circled in the following lattice?
+\end{problem}
+
+
+\begin{problem}{1.23   }
+A psychology laboratory conducting dream research contains 3 rooms, with 2 beds in each room. If 3 sets of identical twins are to be assigned to these 6 beds so that each set of twins sleeps in different beds in the same room, how many assignments are possible?
+\end{problem}
+
+
+
+\begin{problem}{  1.24 }
+Expand $\left(3x^2 + y\right)^5$.
+\end{problem}
+
+
+
+\begin{problem}{ 1.25  }
+The game of bridge is played by 4 players, each of whom is dealt 13 cards. How many bridge deals are possible?
+\end{problem}
+
+\begin{problem}{  1.26 }
+Expand $\left(x_1 + 2x_2 + 3x_3\right)^4$.
+\end{problem}
+
+
+\begin{problem}{  1.27 }
+If 12 people are to be divided into 3 committees of respective sizes 3, 4, and 5, how many divisions are possible?
+\end{problem}
+
+
+
+\begin{problem}{  1.28 }
+If 8 new teachers are to be divided among 4 schools, how many divisions are possible? What if each school must receive 2 teachers?
+\end{problem}
+
+
+
+\begin{problem}{  1.29 }
+Ten weight lifters are competing in a team weightlifting contest. Of the lifters, 3 are from the United States, 4 are from Russia, 2 are from China, and 1 is from Canada. If the scoring takes account of the countries that the lifters represent, but not their individual identities, how many different outcomes are possible from the point of view of scores? How many different outcomes correspond to results in which the United States has 1 competitor in the top three and 2 in the bottom three?
+\end{problem}
+
+
+
+\begin{problem}{  1.30 }
+Delegates from 10 countries, including Russian, France, England, and the United States, are to be seated in a row. How many different seating arrangements are possible if the French and English delegates are to be seated next to each other and the Russian and U.S. delegates are not to be next to each other?
+\end{problem}
+
+
+
+\begin{problem}{ *1.31  }
+If 8 identical blackboards are to be divided among 4 schools, how many divisions are possible? How many if each school must receive at least 1 blackboard?
+\end{problem}
+
+
+\begin{problem}{ *1.32  }
+An elevator starts at the basement with 8 people (not including the elevator operator) and discharges them all by the time it reaches the top floor, number 6. In how many ways could the operator have perceived the people leaving the elevator if all people look alike to him? What if the 8 people consisted of 5 men and 3 women and the operator could tell a man from a woman?
+\end{problem}
+
+
+\begin{problem}{ *1.33}
+We have \$ $20,000$ that must be invested among 4 possible opportunities. Each investment must be integral in units of \$1000, and there are minimal investments that need to be made if one is to invest in these opportunities. The minimal investments are \$2000, \$2000, \$3000, and \$4000. How many different investment strategies are available if
+\begin{enumerate}[label=(\alph*)]
+	\item an investment must be made in each opportunity?
+	\item investments must be made in at least 3 of the 4 opportunities?
+\end{enumerate}
+\end{problem}
+
+
+
+\begin{problem}{ *1.34 }
+Suppose that 10 fish are caught at a lake that contains 5 distinct types of fish.
+\begin{enumerate}[label=(\alph*)]
+	\item How many different outcomes are possible, where an outcome specifies the numbers of caught fish of each of the 5 types?
+	\item How many outcomes are possible when 3 of the 10 fish caught are trout?
+	\item How many when at least 2 of the 10 are trout?
+\end{enumerate}
+\end{problem}
+
+
+
+
+
+
+
+
+\newpage
+\begin{problem}{1.T.1}
+Prove the generalized version of the basic counting principle.
+\end{problem}
+
+
+\begin{problem}{1.T.2}
+Two experiments are to be performed. The first can result in any one of $m$ possible outcomes. If the first experiment results in outcome $i$, then the second experiment can result in any of $n_i$ possible outcomes, $i = 1,2,...,m$. What is the number of possible outcomes of the two experiments?
+\end{problem}
+
+
+\begin{problem}{  1.T.3 }
+In how many ways can $r$ objects be selected from a set of $n$ objects if the order of selection is considered relevant?
+\end{problem}
+
+
+\begin{problem}{ 1.T.4 }
+There are ${n \choose r}$ different linear arrangements of $n$ balls of which $r$ are black and $n-r$ are white. Give a combinatorial explanation of this fact.
+\end{problem}
+
+
+\begin{problem}{  1.T.5 }
+Determine the number of vectors $\left(x_1,\ldots,x_n\right)$, such that each $x_i$ is either 0 or 1 and \[ \sum_{i=1}^n x_i \geq k\]
+\end{problem}
+
+
+\begin{problem}{  1.T.6 }
+How many vectors $x_1,\ldots,x_k$ are there for which each $x_i$ is a positive integer such that $1\leq x_i \leq n$ and $x_1 < x_2 < \cdots < x_k$?
+\end{problem}
+
+
+
+\begin{problem}{   1.T.7}
+Give an analytic proof of Equation (4.1).
+\end{problem}
+
+
+
+
+\begin{problem}{  1.T.8 }
+Prove that
+\begin{equation}
+\begin{split}
+{n+m \choose r} = & {n\choose 0}{m \choose r} + {n \choose 1}{m\choose r-1} \\ 
+& + \cdots + {n \choose r}{m \choose 0}
+\end{split}
+\end{equation}
+\textit{Hint}: Consider a group of $n$ men and $m$ women. How many groups of size $r$ are possible?
+\end{problem}
+
+
+\begin{problem}{ 1.T.9  }
+Use Theoretical Exercise 8 to prove that \[ { 2n \choose n} = \sum_{k=1}^n { n\choose k}^2 \]
+\end{problem}
+
+\begin{problem}{  1.T.10}
+From a group of $n$ people, suppose that we want to choose a committee of $k$, $k\leq n$, one of whom is to be designated as chairperson.
+\begin{enumerate}[label=(\alph*)]
+	\item By focusing on the choice of the committee and then on the choice of the chair, argue that there are ${ n \choose k} k$ possible choices.
+	\item By focusing first on the choice of the nonchair committee members and then on the choice of the chair, argue that there are ${n \choose k-1}\left(n-k+1\right)$ possible choices.
+	\item By focusing first on the choice of the chair and then on the choice of the other committee members, argue that there are $n{ n-1 \choose k-1}$ possible choices.
+\end{enumerate}
+\end{problem}
+
+
+
+
+
+
+% --------------------------------------------------------------
+%     You don't have to mess with anything below this line.
+% --------------------------------------------------------------
+
+\end{document}

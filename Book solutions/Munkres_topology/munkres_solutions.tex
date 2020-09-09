@@ -1,0 +1,485 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,scrextend}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\renewcommand{\qed}{\hfill$\blacksquare$}
+\let\newproof\proof
+\renewenvironment{proof}{\begin{addmargin}[1em]{0em}\begin{newproof}}{\end{newproof}\end{addmargin}\qed}
+% \newcommand{\expl}[1]{\text{\hfill[#1]}$}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+
+
+\begin{document}
+
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+
+\lhead{Munkres ``Topology'' Solutions}
+\chead{Stan Tuznik}
+\rhead{\today}
+
+% \maketitle
+
+
+\section*{Chapter 1. Set Theory and Logic}
+
+\subsection*{1.1 Fundamental Concepts}
+
+
+\begin{problem}{1.1.1}
+Check the distributive laws for $\cup$ and $\cap$ and DeMorgan's laws.
+\end{problem}
+
+\begin{proof}
+The laws in question are
+\begin{equation*}
+	\begin{split}
+		A \cap \left(B\cup C\right) & = \left(A\cap B\right)\cup \left(A\cap C\right) \\
+		A \cup \left(B\cap C\right) & = \left(A \cup B\right) \cap \left(A\cup C\right) \\
+		A \setminus \left(B\cup C\right) & = \left(A\setminus B\right)\cap \left(A\setminus C\right)\\
+		A \setminus \left(B\cap C\right) & = \left(A\setminus B\right)\cup \left(A\setminus C\right) \\
+	\end{split}
+\end{equation*}
+We can show that any one of these equations is true by considering a point in the set on the left-hand side of the equals sign and showing that it is also in the set on the right-hand side of the equals sign. Then we proceed in the other direction. 
+
+For the first equation, let $x\in A\cap \left(B\cup C\right)$. Then $x\in A$ and $x\in B\cup C$. If $x\in B$, then $x\in A\cap B$. Otherwise, if $x\in C$, then $x \in A\cap C$. In either case, then, we have $x \in \left(A\cap B\right)\cup \left(A\cap C\right)$. Conversely, let $x\in \left(A\cap B\right)\cup \left(A\cap C\right)$. Then $x \in A\cap B$ or $x \in A\cap C$. In either case, $x\in A$. Then we either have $x \in B$ or $x\in C$. Thus, $ x \in A\cap \left(B\cup C\right)$. By double inclusion, we have shown that the first law holds.
+
+The proof of the second law is very similar, and so we omit it.
+
+For the first of DeMorgan's laws, we first let $x \in A\setminus \left(B\cup C\right)$. Then $x\in A$ but $x\notin B\cup C$. Then $x\notin B$ and $x\notin C$. Then $x\in A\setminus B$ and $x\in A\setminus C$, and so the first direction holds. The converse is also easy to show.
+
+For the second of DeMorgan's laws, let $x\in A\setminus \left(B\cap C\right)$. Then $x\in A$ and $x\notin B\cap C$. Then either $x\notin B$ or $x\notin C$. So either $x\in A\setminus B$ or $x\in A\setminus C$, and so $x \in \left(A\setminus B\right)\cup\left(A\setminus C\right)$. The converse is easily shown to hold as well.
+\end{proof}
+
+\begin{problem}{1.1.3}
+\begin{enumerate}[label=(\alph*)] 
+	\item Write the contrapositive and converse of the following statement: ``If $x<0$, then $x^2 -x >0$,'' and determine which (if any) of the three statements are true.
+	\item Do the same for the statement ``If $x>0$, then $x^2-x>0$.''
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item The contrapositive is ``If $x^2-x\leq 0$, then $x \leq 0$.'' The converse is ``If $x^2-x>0$, then $x>0$.'' The contrapositive is certainly false, as $x=1/2$ gives $x^2-x = 1/4-1/2 = -1/4$ but $x > 0$. Similarly, the converse is false, since $x = -2$ satisfies $x^2-x>0$ but $x<0$. The original statement itself is false, since $x=-1/2$ is a counterexample.
+	\item The contrapositive is ``If $x^2-x \leq 0$, then $x \leq 0$.'' The converse is ``If $x^2-x >0$, then $x>0$. The original statement is false, since $x=1/2$ is a counterexample. The contrapositive is false, since $x=1/2$ is a counterexample. Lastly, $x=-3$ is a counterexample for the converse.
+\end{enumerate}
+\end{proof}
+
+\begin{problem}{1.1.4}
+Let $A$ and $B$ be sets of real numbers. Write the negation of each of the following statements.
+\begin{enumerate}[label=(\alph*)]
+	\item For every $a\in A$, it is true that $a^2 \in B$.
+	\item For at least one $a\in A$, it is true that $a^2 \in B$.
+	\item For every $a\in A$, it is true that $a^2 \notin B$.
+	\item For at least one $a\notin A$, it is true that $a^2 \in B$.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item There is some $a\in A$ with $a^2 \notin B$.
+	\item For all $a\in A$, $a^2 \notin B$.
+	\item There is some $a\in A$ with $a^2 \in B$.
+	\item For all $a\notin A$, we have $a^2 \notin B$.
+\end{enumerate}
+\end{proof}
+
+
+
+\begin{problem}{1.1.5}
+Let $\mathcal{A}$ be a nonempty collection of sets. Determine the truth of each of the following statements and of their converses:
+\begin{enumerate}[label=(\alph*)]
+	\item $x\in \cup_{A\in \mathcal{A}} A \implies x\in A$ for at least one $A\in \mathcal{A}$.
+	\item $x \in \cup_{A\in \mathcal{A}} A \implies x\in A$ for every $A \in \mathcal{A}$.
+	\item $x \in \cap_{A\in \mathcal{A}} A \implies x\in A$ for at least one $A \in \mathcal{A}$.
+	\item $x \in \cap_{A\in \mathcal{A}} A \implies x \in A$ for every $A \in \mathcal{A}$.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item This implication is true by the very definition of the union of sets. The converse is also true, also by the same definition.
+	\item This implication is not true, since it would be the definition of intersection. The converse is certainly true.
+	\item The implication is true, but the converse is not, since it is only in the converse if it is in every $A\in \mathcal{A}$.
+	\item The statement is true and is the definition of intersection. The converse is also true and is the definition of intersection.
+\end{enumerate}
+\end{proof}
+
+
+\begin{problem}{1.1.6}
+Write the contrapositive of each of the statements of Exercise 5.
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item For every
+\end{enumerate}
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection*{1.2 Functions}
+
+\begin{problem}{1.2.1}
+Let $f:A\rightarrow B$. Let $A_0 \subset A$ and $B_0 \subset B$.
+\begin{enumerate}[label=(\alph*)]
+	\item Show that $A_0 \subset f^{-1}\left(f\left(A_0\right)\right)$ and that equality holds is $f$ is injective.
+	\item Show that $f\left(f^{-1}\left(B_0\right)\right) \subset B_0$ and that equality holds if $f$ is surjective.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item Let $x\in A_0 \subset A$. Then $f\left(x\right) \in f\left(A_0\right)$ and so $x \in f^{-1}\left(f\left(A_0\right)\right)$. Hence, $A_0 \subset f^{-1}\left(f\left(A_0\right)\right)$. If $f$ injective, then let $x \in f^{-1}\left(f\left(A_0\right)\right)$. Since $x \in f^{-1}\left(f\left(A_0\right)\right)$, we know $f\left(x\right) \in f\left(A_0\right)$. But then $f\left(x\right) = f\left(x_0\right)$ for some $x_0 \in A_0$, by definition of $f\left(A_0\right)$. But then by injectivity we have $x = x_0 \in A_0$. Thus, we have $f^{-1}\left(f\left(A_0\right)\right) \subset A_0$ if $f$ injective, and so by double inclusion we have that equality holds.
+	\item Let $y \in f\left(f^{-1}\left(B_0\right)\right)$. Then there is some $x\in f^{-1}\left(B_0\right)$ such that $f\left(x\right)=y$. But then since $x\in f^{-1}\left(B_0\right)$, we have $f\left(x\right) \in B_0$ and since $f\left(x\right)=y$, we have $y \in B_0$. Hence, $f\left(f^{-1}\left(B_0\right)\right) \subset B_0$. If $f$ surjective, let $y \in B_0$. Then there is some $x \in f^{-1}\left(B_0\right)$ with $f\left(x\right)=y$. But then $y \in f\left(f^{-1}\left(B_0\right)\right)$, and so $B_0 \subset f\left(f^{-1}\left(B_0\right)\right)$ when $f$ surjective. Equality holds in this case by double inclusion.
+\end{enumerate}
+\end{proof}
+
+
+\begin{problem}{1.2.2}
+Let $f:A\rightarrow B$ and let $A_i \subset A$ and $B_i \subset B$ for $i=0$ and $i=1$. Show that $f^{-1}$ preserves {\color{red}(i.e., distributes over)} inclusions, unions, intersections, and differences of sets:
+\begin{enumerate}[label=(\alph*)]
+	\item $B_0 \subset B_1 \implies f^{-1}\left( B_0 \right) \subset f^{-1} \left(B_1\right)$.
+	\item $f^{-1}\left(B_0 \cup B_1\right) = f^{-1}\left(B_0\right)\cup f^{-1}\left(B_1\right)$.
+	\item $f^{-1}\left(B_0\cap B_1\right) = f^{-1}\left(B_0\right) \cap f^{-1}\left(B_1\right)$.
+	\item $f^{-1}\left(B_0-B_1\right) = f^{-1}\left(B_0\right) - f^{-1}\left(B_1\right)$.
+\end{enumerate}
+Show that $f$ preserves inclusions and unions only:
+\begin{enumerate}[label=(\alph*)]
+	\setcounter{enumi}{4}
+	\item $A_0 \subset A_1 \implies f\left(A_0\right) \subset f\left(A_1\right)$.
+	\item $f\left(A_0 \cup A_1\right) = f\left(A_0\right) \cup f\left(A_1\right)$.
+	\item $f\left(A_0 \cap A_1\right) \subset f\left(A_0\right)\cap f\left(A_1\right)$; show that equality holds if $f$ is injective.
+	\item $f\left(A_0 - A_1\right) \supset f\left(A_0\right)-f\left(A_1\right)$; show that equality holds if $f$ is injective.
+\end{enumerate}
+\end{problem}
+
+\begin{proof}
+Let $f$, $A_i$, and $B_i$ be given as in the problem hypotheses.
+\begin{enumerate}[label=(\alph*)]
+	\item Let $B_0 \subset B_1$. Then let $x \in f^{-1}\left(B_0\right)$. That is, $f\left(x\right) \in B_0 \subset B_1$, so $f\left(x\right) \in B_1$. Hence, $x \in f^{-1}\left(B_1\right)$. Thus, $f^{-1}\left(B_0\right) \subset f^{-1}\left(B_1\right)$.
+	\item Let $x\in f^{-1}\left(B_0 \cup B_1\right)$. That is, $f\left(x\right) \in B_0 \cup B_1$. Then $f\left(x\right) \in B_0$ or $f\left(x\right) \in B_1$. In other words, $x\in f^{-1}\left(B_0\right)$ or $x \in f^{-1}\left(B_1\right)$, respectively. Hence, $x \in f^{-1}\left(B_0\right)\cup f^{-1}\left(B_1\right)$. Conversely, if $x \in  f^{-1}\left(B_0\right)\cup f^{-1}\left(B_1\right)$, then $x \in f^{-1}\left(B_0\right)$ or $x\in f^{-1}\left(B_1\right)$. In other words, $f\left(x\right) \in B_0$ or $f\left(x\right) \in B_1$, respectively. Then $f\left(x\right) \in B_0 \cup B_1$, and so $x \in f^{-1}\left(B_0 \cup B_1\right)$. By double inclusion, the equality holds.
+	\item The proof of this statement is very similar to that of part (b).
+	\item Let $x \in f^{-1}\left(B_0 - B_1 \right)$. That is, $f\left(x\right) \in B_0 - B_1$, so $f\left(x\right) \in B_0$ but $f\left(x\right) \notin B_1$. So $x \in f^{-1}\left(B_0\right)$ but $x \notin f^{-1}\left(B_1\right)$, so that $x \in f^{-1}\left(B_0\right) - f^{-1}\left(B_1\right)$. The proof of the converse is similar and straightforward.
+	\item Let $A_0 \subset A_1$ and let $y \in f\left(A_0\right)$. Then there is an $x \in A_0$ with $f\left(x\right) = y$. But then $x \in A_1$, so $y \in f\left(A_1\right)$. Thus, $f\left(A_0\right) \subset f\left(A_1\right)$.
+	\item Let $y \in f\left(A_0 \cup A_1\right)$. Then there is an $x \in A_0 \cup A_1$ with $f\left(x\right) = y$. If $ x \in A_0$, then $y \in f\left(A_0\right)$. Otherwise, if $x \in A_1$, then $y\in f\left(A_1\right)$. In any case, then, $y \in f\left(A_0\right)\cup f\left(A_1\right)$. The converse is just as straightforward.
+	\item The proof of the set inclusion is just as straightforward as in (f). If $f$ injective, then let $y \in f\left(A_0\right)\cap f\left(A_1\right)$. Then $y \in f\left(A_0\right)$ and $y \in f\left(A_1\right)$. Then there are $x_0 \in A_0$ and $x_1 \in A_1$ such that $f\left(x_0\right) = y$ and $f\left(x_1\right)=y$. By transitivity, then, $f\left(x_0\right) = f\left(x_1\right)$, and by injectivity we have $x_0 = x_1$. Then $x_0 \in A_0 \cap A_1$, and so $y \in f^{-1}\left(A_0 \cap A_1\right)$. Hence, by double inclusion, inequality holds if $f$ injective.
+	\item Let $y \in f\left(A_0\right) - f\left(A_1\right)$. Then $y \in f\left(A_0\right)$ and $y \notin f\left(A_1\right)$. Thus there is some $x \in A_0$ such that $f\left(x\right)=y$, but $f\left(z\right)\neq y$ for all $z \in A_1$. Thus, we must have $x \notin A_1$. Then $x \in A_0 - A_1$, and so $y \in f\left(A_0 -A_1\right)$. Thus, $f\left(A_0\right)-f\left(A_1\right) \subset f\left(A_0 - A_1\right)$. Assume $f$ injective, and let $y\in f\left(A_0 -A_1\right)$. Then there is some $x \in A_0 - A_1$ with $f\left(x\right)=y$. Thus $x \in A_0$ but $x\notin A_1$. Hence $y \in f\left(A_0\right)$. We may have $y \in f\left(A_1\right)$ even though $x\notin A_1$; for instance, assume that there is a $z\in A_1$ with $f\left(z\right)=y$. But then we have $f\left(z\right) = y = f\left(x\right)$, so we have $z = x$ by injectivity of $f$. But then $z=x \in A_0$ and $z=x \notin A_1$. $\bot$  Thus, no such $z$ can exist, and so $y \notin f\left(A_1\right)$. Hence, $y \in f\left(A_0\right)-f\left(A_1\right)$, and so double inclusion holds if $f$ injective.
+\end{enumerate}
+\end{proof}
+
+
+\begin{problem}{1.2.4}
+Let $f:A\rightarrow B$ and $g:B\rightarrow C$.
+\begin{enumerate}[label=(\alph*)]
+	\item If $C_0 \subset C$, show that $\left(g\circ f\right)^{-1}\left(C_0\right) = f^{-1}\left(g^{-1}\left(C_0\right)\right)$.
+	\item If $f$ and $g$ are injective, show that $g \circ f$ is injective.
+	\item If $g \circ f$ is injective, what can you say about injectivity of $f$ and $g$?
+	\item If $f$ and $g$ are surjective, show that $g\circ f$ is surjective.
+	\item If $g\circ f$ is surjective, what can you say about the surjectivity of $f$ and $g$?
+	\item Summarize your answers to (b)-(e) in the form of a theorem.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item Let $C_0 \subset C$ and let $x \in \left(g \circ f\right)^{-1} \left(C_0\right)$. That is, $\left(g \circ f\right)\left(x\right) \in C_0$. By definition of composition of functions, $\left(g \circ f\right)\left(x\right) = g\left(f\left(x\right)\right) \in C_0$. Letting $y = f\left(x\right) \in B$, we have $g\left(y\right) \in C_0$, and so $y = f\left(x\right) \in g^{-1}\left(C_0\right)$. But then $x \in f^{-1}\left( g^{-1}\left(C_0\right)\right)$, hence $\left(g\circ f\right)^{-1}\left(C_0\right) \subset f^{-1}\left(g^{-1}\left(C_0\right)\right)$.
+	
+	Conversely, let $x\in f^{-1}\left(g^{-1}\left(C_0\right)\right)$. Then $f\left(x\right) \in g^{-1}\left(C_0\right)$, and thus $g\left(f\left(x\right)\right) \in C_0$. But $g\left(f\left(x\right)\right) = \left(g\circ f\right)\left(x\right) \in C_0$, so the other direction holds. By double inclusion, the equality is proven.
+	
+	\item Let $f$ and $g$ be injective and assume $g\circ f\left(x\right) = g \circ f \left(z\right)$ for some $x,z \in A$. Then by definition of function composition we have $g \left(f \left(x\right)\right) = g\left(f\left(z\right)\right)$ and by injectivity of $g$ we have $f\left(x\right) = f\left(z\right)$. Next, by injectivity of $f$ we have $x = z$, and so $g\circ f $ is injective.
+	
+	\item Let $g\circ f$ be injective. 
+	
+	\item Let $f$ and $g$ be surjective and let $y \in C$. Then since $g$ is surjective, there is a $z \in B$ with $g\left(z\right) = y$. Then since $z \in B$ and $f$ surjective, there is some $x \in A$ with $f\left(x\right) = z$. But then $y = g\left(z\right) = g\left(f\left(x\right)\right) = g \circ f \left(x\right)$ and so $g\circ f$ is surjective.
+	
+	\item Let $g\circ f$ be surjective.
+	
+	\item \begin{theorem}{}
+	Hello.
+	\end{theorem}
+\end{enumerate}
+\end{proof}
+
+
+
+\begin{problem}{1.2.5}
+In general, let us denote the \textbf{identity function} for a set $C$ by $i_C$. That is, define $i_C: C \rightarrow C$ to be the function given by the rule $i_C\left(x\right) = x$ for all $x \in C$. Given $f:A\rightarrow B$, we say that a function $g: B\rightarrow A$ is a \textbf{left inverse} for $f$ if $g\circ f = i_A$; and we say that $h:B\rightarrow A$ is a \textbf{right inverse} for $f$ if $f\circ h=i_B$.
+\begin{enumerate}[label=(\alph*)]
+	\item Show that if $f$ has a left inverse, $f$ is injective; and if $f$ has a right inverse, $f$ is surjective.
+	\item Give an example of a function that has a left inverse but no right inverse.
+	\item Give an example of a function that has a right inverse but no left inverse.
+	\item Can a function have more than one left inverse? More than one right inverse?
+	\item Show that if $f$ has both a left inverse $g$ and a right inverse $h$, then $f$ is bijective and $g=h=f^{-1}$.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item Let $f$ have a left inverse $g$. Then assume $f\left(x\right) = f\left(y\right)$ for some $x,y \in A$. Then by definition of inverse, we have $ g\circ f\left(x\right) = i_A\left(x\right) = x$. Further, by our hypothesis we have $g\circ f\left(x\right) = g\circ f\left(z\right) = i_A\left(z\right) = z$, so that $x = z$. Thus, $f$ is injective.
+	
+	Next, assume that $f$ has a right inverse $h$. Let $y \in B$. Then $h:B\rightarrow A$, so $h\left(y\right) \in A$. Now, note that since $f:A\rightarrow B$, we have $f\left(h\left(y\right)\right) \in B$. But by $h$ being a right inverse for $f$, we have $f\left(h\left(y\right)\right) = f\circ h \left(y\right) = i_B\left(y\right) = y$. Thus, $h\left(y\right)\in A$ is the element of $A$ which $f$ maps to $y \in B$; hence, $f$ is surjective.
+	
+	\item h
+	
+	\item
+	
+	\item Assume $f$ has two left inverses: $g_0$ and $g_1$. Then for $y \in f\left(A\right)$, the domain of any inverse of $f$, we have some $x\in A$ with $f\left(x\right) =y$. Then $g_0\left(y\right) = g_0\left(f\left(x\right)\right) = g_0 \circ f \left(x\right) = i_A\left(x\right)=x$ and $g_1\left(y\right) = g_1\left(f\left(x\right)\right) = g_1 \circ f\left(x\right) = i_A\left(x\right)=x$ so that $g_0\left(y\right) = g_1\left(y\right)$ for all $y \in f\left(A\right)$. Thus, $g_0 = g_1$ since it takes the same values on their domain. 
+	Similar logic applies for right inverses, showing that both left and right inverses are unique.
+	
+	\item If $f$ has a left inverse $g$ and a right inverse $h$, then $f$ is bijective by parts (a) and (b) of this problem. We wish to show that $g = h$ by showing that the two functions take the same values on their entire domains; the domain of both $g$ and $h$ is the set $B$, since $f$ is a bijection from $A$ to $B$. Hence, let $y \in B$. Then by surjectivity of $f$ there is an $x \in A$ with $f\left(x\right) = y$. But then $g\left(y\right) = g\left(f\left(x\right)\right) = g\circ f \left(x\right) = i_A\left(x\right) = x$ by definition of $g$ as left inverse of $f$. But then $y = f\left(x\right) = f\left(g\left(y\right)\right)$. Next, consider $f\left(h\left(y\right)\right) = f\circ h \left(y\right) = i_B\left(y\right) = y$.  Thus, we have $f\left(h\left(y\right)\right) = y = f\left(g\left(y\right)\right)$, and so by injectivity of $f$ we have $h\left(y\right) = g\left(y\right)$. Since $y \in B$ arbitrary, we know that we must have $h = g$ and define $f^{-1} = h = g$.
+\end{enumerate}
+\end{proof}
+
+
+
+\begin{problem}{1.2.6}
+Let $f:\mathbb{R}\rightarrow \mathbb{R}$ be the function $f\left(x\right) = x^3 - x$. By restricting the domain and range of $f$ appropriately, obtain from $f$ a bijective function $g$. Draw the graphs of $g$ and $g^{-1}$. (There are several possible choices for $g$.)
+\end{problem}
+
+
+\subsection*{1.3 Relations}
+
+\begin{problem}{1.3.1}
+Define two points $\left(x_0,y_0\right)$ and $\left(x_1,y_1\right)$ of the plane to be equivalent if $y_0 - x_0^2 = y_1 - x_1^2$. Check that this is an equivalence relation and describe the equivalence classes.
+\end{problem}
+\begin{proof}
+The relation is obviously reflexive, symmetric, and transitive merely by nature of the ordinary equality of the real numbers used in the defining equation of the relation. Thus, it is certainly an equivalence relation. The equivalence classes are of the form
+\[ \left[ \left(x_0,y_0\right)\right] = \left\{ \left(x,y\right) \in \mathbb{R}^2 \, | \, y_0 - x_0^2 = y-x^2 \right\} \] Fix $\left(x_0,y_0\right)$ and let $y_0 - x_0^2 = r$. Then we can write \[ \left[ \left(x_0,y_0\right) \right] = \left\{ \left(x,y\right) \in \mathbb{R}^2 \, | \, y= x^2 + r \right\} \]
+That is, this equivalence class is the set of points which all lie on the sample parabola $y=x^2 + r$ in the $\left(x,y\right)-$plane. Hence, the equivalence classes are all parabolas of the form $y = x^2 + k$ for $k \in \mathbb{R}$.
+\end{proof}
+
+
+\begin{problem}{1.3.2}
+Let $C$ be a relation on a set $A$. If $A_0 \subset A$, define the \textbf{restriction} of $C$ to $A_0$ to be the relation $C\cap \left(A_0 \times A_0\right)$. Show that the restriction of an equivalence relation is an equivalence relation.
+\end{problem}
+\begin{proof}
+Let $C$ be an equivalence relation on a set $A$ with some subset $A_0 \subset A$. Let $\tilde{C} = C\cap \left(A_0 \times A_0\right)$ be the restriction of $C$ to $A_0$. Let $x \in A_0$. Then $x \in A$ and so $\left(x,x\right) \in C$ since $C$ is reflexive as an equivalence relation. But $\left(x,x\right) \in A_0 \times A_0$ since $x \in A_0$; hence, $x \in \tilde{C}$, as it is the intersection of these two sets containing $x$. Hence, $\tilde{C}$ is reflexive. Next, let $\left(x,y\right) \in \tilde{C}$. Then $\left(x,y\right) \in C$ and so $\left(y,x\right) \in C$ since $C$ is an equivalence relation. Also, $\left(y,x\right) \in A_0 \times A_0$ since $x,y \in A_0$. Thus, $\left(y,x\right) \in \tilde{C}$ and so $\tilde{C}$ is symmetric.
+
+Lastly, assume $\left(x,y\right), \left(y,z\right) \in \tilde{C}$. Then $x,y,z \in A_0$, so $\left(x,z\right) \in A_0\times A_0$. Also, we have $\left(x,z\right) \in C$ since $\left(x,y\right), \left(y,z\right) \in C$ by transitivity of equivalence relation $C$. Thus, $\left(x,z\right) \in \tilde{C}$ so $\tilde{C}$ is transitive. Finally, we have shown that the restriction of $C$ to a subset $A_0 \subset A$ is also an equivalence relation.
+\end{proof}
+
+
+\begin{problem}{1.3.3}
+Here is a ``proof'' that every relation $C$ that is both symmetric and transitive is also reflexive: ``Since $C$ is symmetric, $aCb$ implies $bCa$. Since $C$ is transitive, $aCb$ and $bCa$ together imply $aCa$, as desired.'' Find the flaw in this argument.
+\end{problem}
+\begin{proof}
+This proof would only work if for every $a$ there was some $b$ with $aCb$; on the contrary, it may be the case that there is some $a$ with no such $b$. In this case, we cannot say that a symmetric and transitive relation is reflexive.
+\end{proof}
+
+
+\begin{problem}{1.3.4}
+Let $f:A\rightarrow B$ be a surjective function. Let us define a relation on $A$ by setting $a_0 \sim a_1$ if \[ f\left(a_0\right) = f\left(a_1\right). \]
+\begin{enumerate}[label=(\alph*)]
+	\item Show that this is an equivalence relation.
+	\item Let $A^*$ be the set of equivalence classes. Show there is a bijective correspondence of $A^*$ with $B$.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item Clearly we have $f\left(a\right) = f\left(a\right)$ for every $a\in A$, so $\sim$ is reflexive. Let $x \sim y$. Then $f\left(x\right) = f\left(y\right)$. By symmetry of usual equality, we have $f\left(y\right) = f\left(x\right)$ and so $y\sim x$. Thus, $\sim$ is transitive. Lastly, let $x\sim y$ and $y\sim z$. Then $f\left(x\right) = f\left(y\right)$ and $f\left(y\right) = f\left(z\right)$, and by transitivity of usual equality, we have $f\left(x\right) = f\left(z\right)$, and so $x\sim z$, i.e., $\sim$ is transitive. Thus, $\sim$ is an equivalence relation.
+	
+	\item Let $A^*$ be the set of equivalence classes. Let $g$ be the function which sends the equivalence class $\left[ a\right] \in A^*$, where $a \in A$ is a representative element of the equivalence class, to the real value $f\left(a\right)$; that is, $g\left(\left[a\right]\right) = f\left(a\right)$. This is well-defined, since for any $x \in \left[a\right]$, $f\left(x\right) = f\left(a\right)$. We wish to show that $g$ is a bijection.
+	
+	First, let $\left[a\right], \left[b\right] \in A^*$ and assume $g\left(\left[a\right]\right) = g\left(\left[b\right]\right)$. Then $f\left(a\right) = f\left(b\right)$ and so $a$ and $b$ are in the same equivalence class, i.e., $\left[a\right]=\left[b\right]$. Thus, $g$ is injective. Next, assume that $ y \in B$. Then since $f$ is a surjective function, there is some $x \in A$ with $f\left(x\right) = y$. Then $g\left(\left[x\right]\right) = y$ and $g$ is surjective. Thus, $g$ is a bijection.
+\end{enumerate}
+\end{proof}
+
+
+
+\begin{problem}{1.3.5}
+Let $S$ and $S'$ be the following subsets of the plane:
+\begin{equation*}
+\begin{split} 
+S &= \left\{ \left(x,y\right) \, | \, y = x+1 ~ \text{and} ~ 0 < x <2 \right\}, \\
+S' & = \left\{ \left(x,y\right) \, | \, y-x ~\text{is an integer}\right\}.
+\end{split}
+\end{equation*}
+\begin{enumerate}[label=(\alph*)]
+	\item Show that $S'$ is an equivalence relation on the real line and $S' \supset S$. Describe the equivalence classes of $S'$.
+	\item Show that given any collection of equivalence relations on a set $A$, their intersection is an equivalence relation on $A$.
+	\item Describe the equivalence relation $T$ on the real line that is the intersection of all equivalence relations on the real line that contains $S$. Describe the equivalence classes of $T$.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item First, let $\left(x,y\right) \in S$, i.e., $y = x +1$ and $0 < x <2$. Then we have $y-x = 1$ and so $y-x$ is an integer (namely $1$). Thus, $\left(x,y\right) \in S'$, and so $S \subset S'$.
+	
+	To show that $S'$ is an equivalence relation, first note that $\left(x,x\right) \in S'$ since $x-x=0 \in \mathbb{Z}$, so $S'$ is reflexive. Next, let $\left(x,y\right) \in S'$. Then $x-y \in \mathbb{Z}$. But then $y-x = -\left(x-y\right) \in \mathbb{Z}$, so $\left(y,x\right) \in S'$, so $S'$ is symmetric. Lastly, let $\left(x,y\right), \left(y,z\right) \in S'$. Then $x-y$ and $y-z$ are integers. But then $x-z = x + \left(-y + y\right) - z = \left(x-y\right) + \left(y-z\right) \in \mathbb{Z}$ since it is the sum of two integers. Thus, $\left(x,z\right) \in S'$, and so $S'$ is transitive. Thus, $S'$ is an equivalence relation on the real number line. The equivalence classes of $S'$ are the subsets of $\mathbb{R}$ of the form \[ \left[x\right] = \left\{ \ldots, x-3, x-2, x-1, x, x+1, x+2, x+3, \ldots \right\} \] They are grids of points which are spaces 1 unit apart. 
+	
+	\item Let $S_i$ be an equivalence relation on a set $A$ for any $i\in I$ where $I$ is some indexing set, and define $S = \cap_{i \in I} S_i$. Let $x \in A$. Then $\left(x,x\right) \in S_i$ for each $i\in I$ since each $S_i$ is an equivalence relation. Thus $\left(x,x\right) \in S$, and so $S$ is reflexive. Next, let $\left(x,y\right) \in S$. Then $\left(x,y\right) \in S_i$ for each $i \in I$. Then by symmetry of each $S_i$, $\left(y,x\right) \in S_i$ for each $i \in I$ and so $\left(y,x\right) \in S$, i.e., $S$ is symmetric. Lastly, assume $\left(x,y\right),\left(y,z\right) \in S$. Then these are in $S_i$ for each $i\in I$. Then $\left(x,z\right) \in S_i$ for each $i \in I$, by transitivity of $S_i$. Then $\left(x,z\right) \in S$, so $S$ is transitive. Thus, $S$ is an equivalence relation on $A$.
+	
+	\item 
+\end{enumerate}
+\end{proof}
+
+
+
+\begin{problem}{1.3.6}
+Define a relation on the plane by setting \[ \left(x_0,y_0\right) < \left(x_1, y_1\right) \] if either $y_0-x_0^2 < y_1 - x_1^2$, or $y_0 - x_0^2 = y_1 - x_1^2$ and $x_0 < x_1$. Show that this is an order relation on the plane, and describe it geometrically.
+\end{problem}
+\begin{proof}
+Let $\left(x_0,y_0\right), \left(x_1,y_1\right) \in \mathbb{R}^2$ distinct. By being distinct plane points, we either have $x_0 \neq x_1$ or $y_0 \neq y_1$ (or both). If $y_0 - x_0^2 < y_1 - x_1^2$ or $y_1 - x_1^2 < y_0 - x_0^2$ then the two are certainly comparable. Otherwise, if $y_0-x_0^2 = y_1-x_1^2$, then we must have $x_0 \neq x_1$; otherwise, $y_0 - x_0^2 = y_1 - x_1^2 \implies y_0 = y_1$ and then the two plane points are not distinct. Thus, any two points are comparable.
+
+Next, assume that we have some plane point $\left(x,y\right)$ with $\left(x,y\right) < \left(x,y\right)$. Since $x = x$ and not $x < x$, we must have $y- x^2 < y-x^2$. This is clearly absurd. $\bot$ Thus this relation is nonreflexive.
+
+Lastly, let $\left(x_0,y_0\right), \left(x_1,y_1\right), \left(x_2,y_2\right)$ be plane points with $\left(x_0,y_0\right) < \left(x_1,y_1\right)$ and $\left(x_1,y_1\right) < \left(x_2,y_2\right)$. By considering cases, we can show transitivity. If $y_0 - x_0^2 < y_1 - x_1^2$, and $y_1 - x_1^2 < y_2 - x_2^2$, then clearly $y_0 - x_0^2 < y_2 - x_2^2$ by transitivity of the standard order relation on the real line, and so $\left(x_0,y_0\right) < \left(x_2,y_2\right)$. Instead, if $y_1 - x_1^2 = y_2-x_2^2$, then we must have $x_1 < x_2$. But then $y_0 - x_0^2 < y_1 - x_1^2 = y_2 - x_2^2$ and so $\left(x_0,y_0\right) < \left(x_2,y_2\right)$. 
+In another case, if $y_0 - x_0^2 = y_1 - x_1^2$, then $x_0 < x_1$. On one hand, if $y_1-x_1^2 < y_2 - x_2^2$, then $y_0-x_0^2 = y_1-x_1^2 < y_2 - x_2^2$ and so $\left(x_0,y_0\right) < \left(x_2,y_2\right)$. On the other hand, if $y_1 - x_1^2 = y_2 - x_2^2$, then $x_1 < x_2$, and we have $y_0 - x_0^2 = y_2 - y_2^2$ and $x_0 < x_1 < x_2$; thus we have $\left(x_0, y_0\right) < \left(x_2,y_2\right)$. 
+
+In any case, we have the relation transitive. We have shown that this is an order relation on the plane. Consider two plane points $\left(x_0,y_0\right)$ and $\left(x_1,y_1\right)$. Then let $k_0 = y_0 - x_0^2$ and $k_1 = y_1 - x_1^2$. Then we have $\left(x_0,y_0\right) < \left(x_1,y_1\right)$ if $k_0 < k_1$ or if $k_0 = k_1$ and $x_0 < x_1$. If $k_0 < k_1$, then the two plane points lie on parabolas of the form $y=x^2 +k$ which one above the other. If $k_0 = k_1$, the plane points lie on the same parabola but one point lies to the right of the other (in the $x$ direction).
+\end{proof}
+
+
+
+\begin{problem}{1.3.7}
+Show that the restriction of an order relation is an order relation.
+\end{problem}
+\begin{proof}
+Let $<$ be an order relation on a set $A$. Let $A_0 \subset A$ and consider the restriction of $<$ to $A_0$, written as $<_{A_0}$. That is, $x<_{A_0} y$ if and only if $x<y$ and $x,y \in A_0$. Let $x,y,z \in A_0$. Then if $x<_{A_0} x$, then $x < x$ since $x\in A_0$. However, this is a contradiction by definition of the order relation $<$. $\bot$ Thus, $<_{A_0}$ is nonreflexive.
+
+Next, assume $x \neq y$. Then assume $x \not<_{A_0} y$. Since $x,y \in A_0$, we must have $x \not< y$. Then since $x\neq y$, we must have $y < x$. Thus $y <_{A_0} x$. On the other hand, we have $x <_{A_0} y$. In either case, then, we have $x$ and $y$ comparable by the relation $<_{A_0}$.
+
+Lastly, assume $x<_{A_0}y$ and $y <_{A_0} z$. Then since $x,y,z \in A_0$, we have $x<y$ and $y<z$, and by transitivity of the order relation $<$, we have $x<z$ and so $x <_{A_0} z$, and so $<_{A_0}$ is transitive.
+
+Taken together, we have shown that the restriction $<_{A_0}$ of $<$ to $A_0 \subset A$ is itself an order relation.
+\end{proof}
+
+
+\begin{problem}{1.3.8}
+Check that the relation defined in Example 7 is an order relation.
+\end{problem}
+\begin{proof}
+The order relation in Example 7 is the relation on $\mathbb{R}$ consisting of all pairs $\left(x,y\right)$ such that $x^2 < y^2$, or if $x^2=y^2$ and $x<y$. If $x \neq y$, then if $x^2 < y^2$ or $y^2 < x^2$ then $x$ and $y$ are comparable by $<$. Otherwise, if $x^2 = y^2$, then since $x$ and $y$ are distinct, we must have $x = -y$, and so either $x < y$ or $y< x$ and so $x$ and $y$ are comparable again.
+
+Next, assume that $x < x$ for some $x \in \mathbb{R}$. Certainly we do not have $x^2 < x^2$, so we must have $x<x$. This is nonsensical, and so $<$ is nonreflexive.
+
+Lastly, let $x<y$ and $y<z$ for some $x,y,z \in \mathbb{R}$. We proceed in cases. In one case, we have $x^2 < y^2$. If $y^2 < z^2$, then $x^2 < z^2$ and so $x<z$. On the other hand, if $y^2 = z^2$, then $y<z$, and so $x^2 < y^2 = z^2$, so $x < z$. In the other case, we have $x^2 = y^2$ and so $x<y$. Then if $y^2 < z^2$, we have $x^2 = y^2 < z^2$ and so $x < z$. On the other hand, if $y^2=z^2$, then $y<z$ and so $x^2 = y^2 =z^2$ and so $x < z$. Thus, in any case, we have $<$ transitive.
+\end{proof}
+
+
+
+
+\begin{problem}{1.3.9}
+Check that the dictionary order is an order relation.
+\end{problem}
+\begin{proof}
+Recall that the dictionary order relation is the relation $<$ on a Cartesian product $A\times B$ defined by \[ a_1 \times b_1 < a_2 \times b_2 \] if $a_1 <_A a_2$, or if $a_1 = a_2$ and $b_1 <_B b_2$, where $<_A$ and $<_B$ are order relations on $A$ and $B$, respectively.
+
+First, assume that $a\times b < a\times b$. Then certainly $a \not<_A a$, since $<_A$ is an order relation. Then since $a=a$, be must have $b <_B b$, but this is not true since $<_B$ is an order relation. $\bot$ Thus $<$ is nonreflexive.
+
+Let $a_1 \times b_1$ and $a_2 \times b_2$ be two distinct points in $A\times B$. Then either $a_1 \neq a_2$ or $b_1 \neq b_2$ or both. If $a_1 \neq a_2$, then either $a_1 <_A a_2$ or $a_2 <_A a_1$. Then $ a_1\times b_1 < a_2 \times b_2 $ or $a_2 \times b_2 < a_1 \times b_1$, respectively; the points are comparable. On the other hand, if $a_1 = a_2$, then we must have $b_1 \neq b_2$, so either $b_1 <_B b_2$ or $b_2 <_B b_1$. Then $ a_1\times b_1 < a_2 \times b_2 $ or $a_2 \times b_2 < a_1 \times b_1$, respectively; the points are comparable. In either case, we have the distinct points comparable.
+
+Lastly, let $a_1 \times b_1 < a_2 \times b_2$ and $a_2 \times b_2 < a_3 \times b_3$. Then we can consider cases and show that transitivity holds. I will not do this here because it is similar to what we did in the previous couple of problems, and very straightforward.
+
+The dictionary order is an order relation.
+\end{proof}
+
+
+
+\begin{problem}{1.3.10}
+\begin{enumerate}[label=(\alph*)]
+	\item Show that the map $f:\left(-1,1\right)\rightarrow \mathbb{R}$ of Example 9 is order preserving.
+	\item Show that the equation $g\left(y\right) = 2y/\left[1+\left(1+4y^2\right)^{1/2}\right]$ defines a function $g:\mathbb{R}\rightarrow \left(-1,1\right)$ that is both a left and a right inverse for $f$.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item The map in question is $f\left(x\right) = \frac{x}{1-x^2}$. Let $x < y$ for $x,y \in \left(-1,1\right)$. If $\left|x\right| < \left|y\right|$, then $x^2 < y^2$, and then $x^2-1 < y^2 -1$ and so $1-y^2 < 1-x^2$. Finally, $\frac{1}{1-x^2} < \frac{1}{1-y^2}$, and so $f\left(x\right) = \frac{x}{1-x^2} < \frac{x}{1-y^2} < \frac{y}{1-y^2} = f\left(y\right)$. On the other hand, if $\left|x\right| > \left|y\right|$, then $x^2 > y^2$. This is only possible along with $x<y$ if $x$ is negative but larger in magnitude than $y$, which is positive. Thus $f\left(x\right) =\frac{x}{1-x^2} < \frac{y}{1-y^2} = f\left(y\right)$ and since the denominators are positive numbers, and $x$ is negative while $y$ is positive. Hence, in any case we have $f\left(x\right) < f\left(y\right)$.
+	
+	\item We can clearly see that \[ -1 < \frac{2y}{1+\sqrt{1+4y^2}} < 1 \] We can show by direct computation that $f\circ g = i_{\left(-1,1\right)}$ and that $g \circ f = i_{\mathbb{R}}$.
+\end{enumerate}
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection*{1.4 The Integers and the Real Numbers}
+
+
+
+\subsection*{1.5 Cartesian Products}
+
+
+
+\subsection*{1.6 Finite Sets}
+
+
+
+\subsection*{1.7 Countable and Uncountable Sets}
+
+
+
+\subsection*{1.8 The Principle of Recursive Definition}
+
+
+
+\subsection*{1.9 Infinite Sets and the Axiom of Choice}
+
+\subsection*{1.10 Well-Ordered Sets}
+
+
+\subsection*{1.11 The Maximum Principle}
+
+
+\subsection*{1S. Well-Ordering}
+
+
+
+
+
+
+
+
+
+
+
+% --------------------------------------------------------------
+%     You don't have to mess with anything below this line.
+% --------------------------------------------------------------
+
+\end{document}

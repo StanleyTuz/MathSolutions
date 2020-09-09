@@ -1,0 +1,287 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,scrextend}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\renewcommand{\qed}{\hfill$\blacksquare$}
+
+\let\newproof\proof
+\renewenvironment{proof}{\begin{addmargin}[1em]{0em}\begin{newproof}}{\end{newproof}\end{addmargin}\qed}
+% \newcommand{\expl}[1]{\text{\hfill[#1]}$}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+
+
+\begin{document}
+
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+
+\lhead{do Carmo solutions}
+\chead{Stan Tuznik}
+\rhead{\today}
+
+% \maketitle
+
+
+\section*{Chapter 1 Curves}
+
+\subsection*{1.2 Parametrized Curves}
+Can we have a solution environment?
+\begin{problem}{1.2.1}
+Find a parametrized curve $\alpha\left(t\right)$ whose trace is the circle $x^2+y^2=1$ such that $\alpha\left(t\right)$ runs clockwise around the circle with $\alpha\left(0\right)=\left(0,1\right)$.
+\end{problem}
+\begin{proof}
+We know that the familiar sine and cosine functions trace out a circle of unit radius when used as component functions of a plane vector. However, the usual ones run counterclockwise. We can modify this with an inclusion of a negative sign. Further, we need to shift the starting point, $t=0$, so that the trace starts at the point $\left(0,1\right)$. This gives:
+\[ \alpha\left(t\right) = \left(\cos \left(\frac{\pi}{2}+t\right), \sin \left(\frac{\pi}{2} - t \right)\right) \]
+\end{proof}
+
+
+\begin{problem}{1.2.2}
+Let $\alpha\left(t\right)$ be a parametrized curve which does not pass through the origin. If $\alpha\left(t_0\right)$ is a point of the trace of $\alpha$ closest to the origin and $\alpha'\left(t_0\right)\neq 0$, show that the position vector $\alpha\left(t_0\right)$ is orthogonal to $\alpha'\left(t_0\right)$.
+\end{problem}
+
+\begin{proof}
+Assume $\alpha\left(t\right)\neq 0$ for any $t \in I$, and let $\alpha\left(t_0\right)$ be the point of the trace of $\alpha$ which is closest to the origin. That is, $t_0$ minimizes the scalar function $g\left(t\right) = \left|\alpha\left(t\right)\right|$. We know that this happens when the derivative of $g$ is zero, i.e.,
+\begin{align}
+	g'\left(t\right) & = \frac{d}{dt} \left|\alpha\left(t\right)\right| \\
+	& = \frac{d}{dt} \sqrt{x\left(t\right)^2 + y\left(t\right)^2} \\
+	& = \frac{1}{2\sqrt{x\left(t\right)^2+y\left(t\right)^2}} \left[ 2x\left(t\right)x'\left(t\right) + 2y\left(t\right)y'\left(t\right)\right] \\
+	& = \frac{1}{\sqrt{x\left(t\right)^2+y\left(t\right)^2}} \left[ x\left(t\right)x'\left(t\right) + y\left(t\right)y'\left(t\right)\right] \\
+	& = \frac{\left(x\left(t\right),y\left(t\right)\right)\cdot \left(x'\left(t\right),y'\left(t\right)\right)}{\left| \alpha\left(t\right)\right|} \\
+	& = \frac{\alpha\left(t\right)\cdot \alpha'\left(t\right)}{\left| \alpha\left(t\right)\right|}
+\end{align}
+which is well-defined at $t=t_0$ by our hypothesis. In order for this derivative to be $0$ at $t=t_0$, the numerator must be $0$. In the case where $ \alpha'\left(t\right)$ is not the zero vector, this means that $\alpha\left(t_0\right)\cdot \alpha'\left(t_0\right) = 0$, so that the position vector and the velocity vector are orthogonal at this point of closest approach. {\color{red} This makes sense, since if the velocity was at all tangential to the position vector, there would be a small neighborhood about $t=t_0$ where the position vector moved even closer toward the origin, and this would be a contradiction.}
+\end{proof}
+
+
+\begin{problem}{1.2.3}
+A parametrized curve $\alpha\left(t\right)$ has the property that its second derivative $\alpha''\left(t\right)$ is identically zero. What can be said about $\alpha$?
+\end{problem}
+\begin{proof}
+Let $\alpha\left(t\right) = \left(x\left(t\right),y\left(t\right)\right)$ satisfy $\alpha''\left(t\right) = \left(x''\left(t\right),y''\left(t\right)\right) \equiv 0$. Then we have $x''\left(t\right)=0$ and so $x\left(t\right) = at+b$ for constant scalars $a,b$; similarly, $y\left(t\right)=ct+d$ for constants $c,d$. Then we have \[ \alpha\left(t\right) = \left(x\left(t\right),y\left(t\right)\right) = \left(at+b,ct+d\right) = \left(a,c\right)t + \left(b,d\right) \] which is a curve with a straight line trace and constant speed.
+\end{proof}
+
+
+\begin{problem}{1.2.4}
+Let $\alpha:I\rightarrow \mathbb{R}^3$ be a parametrized curve and let $v\in \mathbb{R}^3$ be a fixed vector. Assume that $\alpha'\left(t\right)$ is orthogonal to $v$ for all $t\in I$ and that $\alpha\left(0\right)$ is also orthogonal to $v$. Prove that $\alpha\left(t\right)$ is orthogonal to $v$ for all $t\in I$.
+\end{problem}
+\begin{proof}
+Assume as in the problem statement that $\alpha'\left(t\right)$ is orthogonal to $v$ for all $t\in I$ and that $\alpha\left(0\right)$ is also orthogonal to $v$. {\color{red}The first condition means that the velocity of the curve has no component in the direction of some fixed vector; this implies, since we are in $\mathbb{R}^3$, that our curve is restricted to moving in some plane which is normal to $v$. The second condition requires that the plane in question passes through the origin. From the standpoint of analysis, this seems sensible: the only way for $\alpha$ to become at all tangent to $v$ would require $\alpha'$ being somewhat tangent to $v$ for some moment of time.} Explicitly, these conditions mean that, for $\alpha\left(t\right) = \left(x\left( t\right),y\left( t\right),z\left(t \right) \right)$, we have \[ \alpha'\left(t\right)\cdot v = \left( x'\left(t \right),y'\left(t \right),z'\left( t\right)\right)\cdot v = 0\] and working backward using the product rule, we can see that \[ \frac{d}{dt} \left[ \alpha\left(t\right)\cdot v \right] = \alpha'\left(t\right)\cdot v = 0 \] so that \[ \alpha\left(t\right)\cdot v = k \] for some constant $k$. However, we know that \[ \alpha\left(0\right) \cdot v = 0 = k \] so that we have $\alpha\left(t\right)\cdot v = 0$ for all $t\in I$.
+\end{proof}
+
+
+
+
+
+
+
+\begin{problem}{1.2.5}
+Let $\alpha:I\rightarrow \mathbb{R}^3$ be a parametrized curve, with $\alpha'\left(t\right)\neq 0$ for all $t\in I$. Show that $\left|\alpha\left(t\right)\right|$ is a nonzero constant if and only if $\alpha\left(t\right)$ is orthogonal to $\alpha'\left(t\right)$ for all $t\in I$
+\end{problem}
+{\color{red} Think of tangential velocity!}
+\begin{proof}
+Assume that $\left|\alpha\left(t\right)\right| = v$ is a nonzero constant. Then \[ v^2= \left|\alpha\left(t\right)\right|^2 = \alpha\left(t\right)\cdot \alpha\left(t\right)\] and by differentiating both sides with respect to $t$, we obtain \[ 0 = 2\alpha\left(t\right)\cdot \alpha'\left(t\right) \] Since $\alpha'\left(t\right)\neq 0$, we know that we have $\alpha$ and $\alpha'$ always orthogonal.
+\end{proof}
+
+
+
+
+
+
+
+\subsection*{1.3 Regular Curves; Arc Length}
+
+\begin{problem}{1.3.1}
+Show that the tangent lines to the regular parametrized curve $\alpha\left(t\right)=\left(3t,3t^2,2t^3\right)$ make a constant angle with the line $y=0$, $z=x$.
+\end{problem}
+\begin{proof}
+The tangent lines to $\alpha$ at $t$ have direction vector \[ \alpha'\left(t\right) = \left(3, 6t, 6t^2\right) \] and so a particular tangent line corresponding to $t$ has the form \[ L\left(\lambda\right) = \alpha\left(t\right) + \lambda \alpha'\left(t\right) = \left( 3t+3\lambda, 3t^2+6t\lambda ,  2t^3+ 6\lambda t^2 \right) \] where $\lambda $ is the line parameter. Next, the line $y=0$, $z=x$ can be parametrized as \[ M\left(\omega\right) = \left( \omega, 0, \omega\right) = \omega \left(1,0,1\right) \] The angle between the tangent lines $L$ and the line $M$ can be computed by the inner product between their direction vectors: 
+\begin{align*}
+	\cos\theta =\frac{\left(1,0,1\right) \cdot \left( 3,6t,6t^2\right)}{ \left| \left(1,0,1\right) \right| \left|\left(3,6t,6t^2\right)\right| }  & = \frac{3+6t^2}{\sqrt{2} \sqrt{3^2 + \left(6t\right)^2 + \left(6t^2\right)^2 } }= \frac{3+6t^2}{\sqrt{2} \sqrt{\left(3+6t^2\right)^2} }  = \frac{1}{\sqrt{2}}
+\end{align*} which is independent of $t$, concluding the proof.
+\end{proof}
+
+
+
+\begin{problem}{1.3.2}
+A circular disk of radius $1$ in the plane $xy$ rolls without slipping along the $x$ axis. The figure described by a point of the circumference of the disk is called a \textit{cycloid}.
+\begin{enumerate}[label=(\alph*)]
+	\item Obtain a parametrized curve $\alpha: \mathbb{R}\rightarrow \mathbb{R}^2$ the trace of which is the cycloid, and determine its singular points.
+	\item Compute the arc length of the cycloid corresponding to a complete rotation of the disk.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item Picture a circular disk which begins rolling along the positive $x$ axis after starting with its center positioned above the origin. Consider the point $\left(x,y\right)$ which lies at the origin and is attached to the radius of the disk. As the disk rolls, this point spins along its edge; it moves under the rotation of the disk and also under the rightward motion of the disk.
+
+After the disk rolls through an angle of $\theta$, the center of the disk has moved $r\theta$ to the right, which is equal to the arc length the point has moved. Thus, the motion of the center of the disk is given by \[ C\left(\theta\right) = \left(r\theta, r\right) \] We can figure out the position of our point $\left(x,y\right)$ by thinking of triangles relative to the center of the disk. The $x$ position of the point is $x\left(\theta\right) = r\theta - r \sin \theta$, and the $y$ coordinate is $y\left(\theta\right) = r - r\cos \theta $. Thus, the parametrization is \[ \alpha\left(t\right) = \left( r\left(\theta - \sin \theta \right), r\left(1-\cos \theta \right) \right) \]
+The singular points are those which have zero velocity:
+\[ \alpha'\left(t\right) = r\left(1-\cos \theta, \sin\theta \right) = \left(0,0\right)\] and from our rudimentary knowledge of sine and cosine functions, the coordinates are $0$ precisely when $\theta = 2n\pi$, i.e., when the disk has rolled through exactly an integer number of rotations.
+
+\item From part (a), we need to integrate the arc length over $\theta \in \left[0,2\pi\right]$, which is a single complete rotation of the disk. The integrand is 
+\begin{align*}
+\left| \alpha'\left(\theta\right)\right| & = \sqrt{r^2\left(1-\cos\theta\right)^2 + r^2\sin^2\theta }   \\
+& = r \sqrt{1 -2\cos \theta + \cos^2\theta + \sin^2 \theta } \\
+& = r\sqrt{2-2\cos\theta} \\
+& = 2r \sin \frac{\theta}{2} 
+\end{align*}
+by the law of cosines. The integral is
+\begin{align*}
+L & = \int_{0}^{2\pi} \left| \alpha'\left(\theta\right)\right|\, d\theta \\
+& = 2r \int_{0}^{2\pi} \sin \frac{\theta}{2} \, d\theta \\
+& = -4r \cos \left. \frac{\theta}{2} \right|_{0}^{2\pi} \\
+& = 8r
+\end{align*}
+and so the arc length of a cycloid corresponding to a circle of radius $r=1$ is simply $8$.
+\end{enumerate}
+\end{proof}
+
+
+
+
+
+
+
+\begin{problem}{1.3.3}
+Let $0A=2a$ be the diameter of a circle $S^1$ and $0y$ and $AV$ be the tangents to $S^1$ at $0$ and $A$, respectively. A half-line $r$ is drawn from $0$ which meets the circle $S^1$ at $C$ and the line $AV$ at $B$. On $0B$ mark off the segment $0p=CB$. If we rotate $r$ about $0$, the point $p$ will describe a curve called the \textit{cissoid of Diocles}. By taking $0A$ as the $x$ axis and $0Y$ as the $y$ axis, prove that
+\begin{enumerate}[label=(\alph*)]
+	\item The trace of \[ \alpha\left( t \right) = \left( \frac{2at^2}{1+t^2}, \frac{2at^3}{1+t^2} \right) , \; t\in \mathbb{R} \] is the cissoid of Diocles ($t=\tan \theta $).
+	\item The origin $\left(0,0\right)$ is a singular point of the cissoid.
+	\item As $t\rightarrow \infty$, $\alpha\left(t\right)$ approaches the line $x=2a$, and $\alpha'\left(t\right)\rightarrow 0$, $2a$. Thus, as $t\rightarrow \infty$, the curve and its tangent approach the line $x=2a$; we say that $x=2a$ is an \textit{asymptote} to the cissoid.
+\end{enumerate}
+\end{problem}
+
+
+
+\begin{problem}{1.3.4}
+Let $\alpha:\left(0,\pi\right)\rightarrow \mathbb{R}^2$ be given by \[ \alpha\left(t\right) = \left( \sin t, \cos t + \log \tan \frac{t}{2} \right), \] where $t$ is the angle that the $y$ axis makes with the vector $\alpha'\left(t\right)$. The trace of $\alpha$ is called the \textit{tractrix}. Show that 
+\begin{enumerate}[label=(\alph*)]
+	\item $\alpha$ is a differentiable parametrized curve, regular except at $t=\pi/2$.
+	\item The length of the segment of the tangent of the tractrix between the point of tangency and the $y$ axis is constantly equal to $1$.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item Note that the functions $\cos \frac{t}{2}$ and $\sin \frac{t}{2}$ are nonzero and positive on the interval $\left(0,\pi\right)$. Thus,$\tan \frac{t}{2}$ and the $\log$ are well-defined on this interval. Further, the derivative is\begin{align}
+	\alpha'\left(t\right) & = \left(\cos t, -\sin t + \frac{2}{\tan \frac{t}{2} } \sec^2 \frac{t}{2} \right) \\
+	& = \left( \cos t, -\sin t + 2/ \cos \frac{t}{2} \sin \frac{t}{2} \right) \\
+\end{align}
+This derivative can be zero only if both components are. The first component, $\cos t$, is zero only when $t = \pi /2$. However, the second component at $t=\pi/2$ is \[ -\sin \frac{\pi}{2} + \frac{2}{\cos\frac{\pi}{4}\sin \frac{\pi}{4} }  = -1 + 1 = 0  \] and so $\alpha'\left(t\right)=0$ only at $t=\pi/2$, and so $\alpha$ is not regular there.
+
+	\item The tangent line at any point of the tractrix is given by \[ T\left(\lambda\right) = \alpha\left(t\right) + \lambda \alpha'\left(t\right) \] The length of the desired segment we seek will be given by the Euclidean distance (the straight line distance) between the point $\alpha\left(t\right)$ and the point where $T\left(\lambda\right)$ intersects the $y$ axis.
+\end{enumerate}
+\end{proof}
+
+
+
+
+
+\begin{problem}{1.3.5}
+Let $\alpha: \left(-1,+\infty\right)\rightarrow \mathbb{R}^2$ be given by \[ \alpha\left(t\right) = \left( \frac{3at}{1+t^3}, \frac{3at^2}{1+t^3}\right).\] Prove that:
+\begin{enumerate}[label=(\alph*)]
+	\item For $t=0$, $\alpha$ is tangent to the $x$ axis.
+	\item As $t\rightarrow + \infty$,  $\alpha\left(t\right)\rightarrow \left(0,0\right)$ and $\alpha'\left(t\right) \rightarrow \left(0,0\right)$.
+	\item Take the curve with the opposite orientation. Now, as $t\rightarrow -1$, the curve and its tangent approach the line $x+y+a=0$
+\end{enumerate}
+The figure obtained by completing the trace of $\alpha$ in such a way that it becomes symmetric relative to the line $y=x$ is called the \textit{folium of Descartes}.
+\end{problem}
+
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item The tangent vector to $\alpha$ is 
+		\[ \alpha'\left(t\right)  = 3a\left( \frac{1 - 2t^3}{\left( 1+t^3\right)^2} ,  \frac{ 2t -t^4  }{\left(1+t^3\right)^2} \right) \] At $t=0$, this is \[ \alpha'\left(0\right) = 3a \left(1,0\right) \] which is easily parallel to the $x$ axis, an so $\alpha$ is tangent to the $x$ axis since $\alpha\left(0\right) = \left(0,0\right)$. 
+		
+	\item These limits are easy to see from the definition of $\alpha$ and the computation of $\alpha'$ as both ratios of polynomials in $t$ with higher order powers in the denominator; from basic calculus, these ratios all tend toward $0$.
+	
+	\item 
+\end{enumerate}
+\end{proof}
+
+
+
+
+
+
+
+
+\begin{problem}{1.3.6}
+Let $\alpha\left(t\right) = \left( ae^{bt}\cos t, ae^{bt}\sin t \right)$, $t\in \mathbb{R}$, $a$ and $b$ constants, $a>0$, $b<0$, be a parametrized curve.
+\begin{enumerate}[label=(\alph*)]
+	\item Show that as $t\rightarrow +\infty$, $\alpha\left(t\right)$ approaches the origin $0$, spiraling around it (because of this, the trace of $\alpha$ is called the \textit{logarithmic spiral}).
+	\item Show that $\alpha'\left(t\right)\rightarrow \left(0,0\right)$ as $t\rightarrow +\infty$ and that \[ \lim_{t\rightarrow +\infty} \int_{t_0}^t \left| \alpha'\left(t\right) \right| \, dt \] is finite; that is, $\alpha$ has finite arc length in $\left[ t_0, \infty\right)$.
+\end{enumerate}
+\end{problem}
+
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item We can factor some things out of the vector as \[ \alpha\left(t\right) = ae^{bt} \left(\cos t, \sin t\right) \] so that $ae^{bt}$ is a scalar factor and $\left(\cos t, \sin t\right)$ is the usual circular motion. Hence, $\alpha$ is roughly circular motion, but the magnitude of $\alpha\left(t\right)$ goes as \[ \left|\alpha\right| = ae^{bt} \rightarrow 0, \] thus $\alpha\left(t\right)$ approaches $0$.
+	\item The derivative of $\alpha$ can be computed as
+		\begin{align*}
+			\alpha'\left(t\right) & = \left(abe^{bt}\cos t - ae^{bt}\sin t, abe^{bt}\sin t + ae^{bt}\cos t \right) \\
+			& = ae^{bt}\left( b\cos t - \sin t, b\sin t + \cos t\right) \\
+		\end{align*}
+		which has magnitude
+		\begin{align*}
+			\left| \alpha'\left(t\right) \right|^2 & = a^2e^{2bt} \left[b^2\cos^2 t +\sin^2 t - 2b\cos t \sin t + b^2 \sin^2 t + \cos^2 t + 2b\cos t \sin t\right] \\
+			& = a^2e^{2bt}\left(b^2 + 1\right) \rightarrow 0
+		\end{align*}
+		and so $\alpha'\left(t\right)\rightarrow 0$ as $t\rightarrow +\infty$. The arc length integral can be easily computed from this:
+		\begin{align*}
+			\int_{0}^{+\infty} \left| \alpha'\left(t\right) \right| \, dt & = a\sqrt{b^2+1}\int_{0}^{+\infty} e^{bt} \, dt \\
+			& = \frac{a}{b}\sqrt{b^2+1} \left. e^{bt} \right|_0^{+\infty} \\ 
+			& = - \frac{a}{b}\sqrt{b^2+1}
+		\end{align*}
+		which is certainly finite (and also positive since $b<0$).
+\end{enumerate}
+\end{proof}
+
+
+
+
+
+
+
+
+
+\begin{problem}{1.3.7}
+
+\end{problem}
+
+
+
+
+% --------------------------------------------------------------
+%     You don't have to mess with anything below this line.
+% --------------------------------------------------------------
+
+\end{document}

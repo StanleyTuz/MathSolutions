@@ -1,0 +1,226 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,scrextend}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{xcolor}
+\usepackage{enumitem} % to modify enum labels
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\renewcommand{\qed}{\hfill$\blacksquare$}
+\let\newproof\proof
+\renewenvironment{proof}{\begin{addmargin}[1em]{0em}\begin{newproof}}{\end{newproof}\end{addmargin}\qed}
+% \newcommand{\expl}[1]{\text{\hfill[#1]}$}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+
+
+\begin{document}
+
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+
+\lhead{Spivak ``Calculus'' Solutions}
+\chead{Stan Tuznik}
+\rhead{\today}
+
+% \maketitle
+
+
+\section*{Chapter 1 Basic Properties of Numbers}
+
+\begin{problem}{1.1}
+Prove the following;
+\begin{enumerate}[label=(\roman*)]
+\item if $ax=a$ for some number $a\neq 0$, then $x=1$.
+\item $x^2-y^2 = \left(x-y\right)\left(x+y\right)$.
+\item If $x^2 =y^2$, then $x=y$ or $x=-y$.
+\item $x^3 - y^3 = \left(x-y\right)\left(x^2+xy+y^2\right)$.
+\item $x^n - y^n = \left(x-y\right)\left(x^{n-1} + x^{n-2}y + \cdots + xy^{n-2} + y^{n-1}\right)$.
+\item $x^3 + y^3 = \left(x+y\right)\left(x^2-xy+y^2\right)$. (There is a particularly easy way to do this, using $\left(iv\right)$, and it will show you how to find a factorization for $x^n+y^n$ whenever $n$ is odd.)
+\end{enumerate}
+\end{problem}
+
+\begin{proof}
+\begin{enumerate}[label=(\roman*)]
+	\item Assume $ax=a$ for some $a\neq 0$. Then $a^{-1}$ exists, and we have
+	\[ \begin{split} x & = 1\cdot x \\ & = \left(a^{-1}a\right)x \\ &= a^{-1} \left(ax\right) \\ &= a^{-1} a \\ & = 1\end{split}\]
+	\item \[ \begin{split} \left(x-y\right)\left(x+y\right) & = \left(x-y\right)x + \left(x-y\right)y \\ & = x^2 - yx - +xy - y^2 \\ & = x^2 - y^2 \end{split} \]
+	\item $\ldots$ 
+	\item \[ \begin{split} \left(x-y\right)\left(x^2 + xy + y^2 \right) &=  x\left(x^2 + xy + y^2\right) - y \left(x^2 + xy + y^2\right) \\ & = x^3 + x^2 y + x y^2 - x^2y - xy^2 - y^3 \\ &= x^3 - y^3\end{split} \]
+	\item We can prove this just by manipulating the products, but it is more instructive to prove it by induction. The base case was demonstrated in part $\left(iv\right)$ of the problem. For the inductive step, assume it holds for some $n$, i.e., that \[ x^n - y^n = \left(x-y\right)\left(x^{n-1} + x^{n-2}y + \cdots + xy^{n-2} + y^{n-1}\right) \] Then
+	\begin{equation*}\begin{split}
+		 \left(x^{n} + x^{n-1}y + \cdots + xy^{n-1} + y^{n}\right) &= x\left(x^{n-1} + x^{n-2}y + \cdots + y^{n-1} + x^{-1}y^{n}\right) \\
+		 & = x \left(x^{n-1} + x^{n-2}y + \cdots + y^{n-1} \right) + y^n \\
+	\end{split}\end{equation*} Thus,  multiplying both sides by $\left(x-y\right)$, we have
+	\begin{equation*}\begin{split}
+		x \left(x-y\right) \left(x^{n-1} + x^{n-2}y + \cdots + y^{n-1} \right) + \left(x-y\right) y^n & = x \left(x^n-y^n\right) + xy^n - y^{n+1} \\
+		& = x^{n+1} - xy^n + xy^n - y^{n+1} \\ 
+		& = x^{n+1} - y^{n+1}
+	\end{split}\end{equation*} which is what we sought to prove.
+	\item This can be easily demonstrated by simply multiplying everything out, but as the hint suggests, we can do it more interestingly by comparing with $\left(iv\right)$. In particular, let $y=-z$ and consider $x^3 - z^3$. Then from $\left(iv\right)$ we have
+	\begin{equation*}\begin{split}
+		x^3 + y^3 & = x^3 - z^3 \\
+		& = \left(x-z\right) \left(x^2 + xz + z^2\right) \\
+		& = \left(x+y\right) \left(x^2 - xy + y^2 \right)
+	\end{split} \end{equation*} The suggested factorization for $x^n + y^n$ for $n$ odd involves $\ldots$
+\end{enumerate}
+
+
+\end{proof}
+
+
+
+\begin{problem}{1.2}
+What is wrong with the following ``proof''? Let $x=y$. Then
+\begin{equation*}\begin{split}
+x^2 & = xy, \\
+x^2 - y^2 & =xy-y^2, \\
+\left(x+y\right)\left(x-y\right) & =y\left(x-y\right),\\
+x+y & = y, \\
+2y & =y, \\
+2 &= 1.
+\end{split}\end{equation*}
+\end{problem}
+\begin{proof}
+The ``proof'' moves from the third line to the fourth line by ``cancelling out'' the common factor of $\left(x-y\right)$ from both sides. In actuality, this is accomplished by multiplying both sides by the multiplicative inverse of $\left(x-y\right)$, $\left(x-y\right)^{-1}$. However multiplicative inverses only exist for non-zero numbers, and $\left(x-y\right)=0$ since $x=y$. Thus, this inverse does not exist and we cannot perform this cancellation.
+\end{proof}
+
+
+
+
+
+
+\begin{problem}{1.3}
+Prove the following:
+\begin{enumerate}[label=(\roman*)]
+	\item $\frac{a}{b} = \frac{ac}{bc},$ if $b,c \neq 0$.
+	\item $\frac{a}{b} + \frac{c}{d} = \frac{ad+bc}{bd},$ if $b,d\neq 0$.
+	\item $\left(ab\right)^{-1} = a^{-1}b^{-1},$ if $a,b\neq 0$. (To do this you must remember the defining property of $\left(ab\right)^{-1}$.)
+	\item $\frac{a}{b}\cdot \frac{c}{d} = \frac{ac}{db}$, if $b,d\neq 0$.
+	\item $\frac{a}{b} / \frac{c}{d} = \frac{ad}{bc},$ if $b,c,d\neq 0$.
+	\item If $b,d\neq 0$, then $\frac{a}{b} = \frac{c}{d}$ if and only if $ad=bc$. Also determine when $\frac{a}{b}=\frac{b}{a}$.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\roman*)]
+	\item
+	\item
+	\item Recall that for nonzero $a,b$, the inverse $\left(ab\right)^{-1}$ is defined by the equation \[ \left(ab\right)\left(ab\right)^{-1} = 1 \] and that inverses are unique. Then notice that \[ \begin{split} \left(ab\right) \left(a^{-1}b^{-1}\right) & = \left(aa^{-1}\right)\left(bb^{-1}\right) \\ & = 1\cdot 1 \\ & = 1 \end{split} \] where we used both the commutativity and associativity of multiplication. Thus, $a^{-1}b^{-1} = \left(ab\right)^{-1}$ is the unique inverse of $ab$.
+	\item
+	\item
+	\item
+\end{enumerate}
+\end{proof}
+
+
+\begin{problem}{1.4}
+Find all numbers $x$ for which
+\begin{enumerate}[label=(\roman*)]
+	\item $4-x < 3-2x$.
+	\item $5-x^2 < 8$.
+	\item $5-x^2 < -2$.
+	\item $\left(x-1\right)\left(x-3\right) > 0$. (When is a product of two numbers positive?)
+	\item $x^2 - 2x+2 > 0$.
+	\item $x^2+x+1>2$.
+	\item $x^2 -x+10 > 16$.
+	\item $x^2+x+1>0$.
+	\item $\left(x-\pi\right)\left(x+5\right)\left(x-3\right) > 0$.
+	\item $\left(x-\sqrt[3]{2}\right)\left(x-\sqrt{2}\right) > 0$.
+	\item $2^x < 8$.
+	\item $x+3^x < 4$.
+	\item $\frac{1}{x} + \frac{1}{1-x} > 0$.
+	\item $\frac{x-1}{x+1} > 0$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{1.5}
+Prove the following:
+\begin{enumerate}[label=(\roman*)]
+	\item If $a<b$ and $c<d$, then $a+c < b+d$.
+	\item If $a<b$, then $-b < -a$.
+	\item If $a<b$ and $c>d$, then $a-c<b-d$.
+	\item If $a<b$ and $c>0$, then $ac < bc$.
+	\item If $a<b$ and $c<0$, then $ac >bc$.
+	\item If $a>1$, then $a^2 > a$.
+	\item If $0<a<1$, then $a^2<a$.
+	\item If $0\leq a < b$ and $0\leq c < d$, then $ac<bd$.
+	\item If $0\leq a < b$, then $a^2 < b^2$. (Use $\left(viii\right)$.)
+	\item If $a,b\geq 0$ and $a^2 < b^2$, then $a<b$. (Use $\left(ix\right)$, backwards.)
+\end{enumerate}
+\end{problem}
+
+
+
+\begin{problem}{1.6}
+\begin{enumerate}[label=(\roman*)]
+	\item Prove that if $0\leq x < y$, then $x^n < y^n$, $n=1,2,3,\ldots$.
+	\item Prove that if $x<y$ and $n$ is odd, then $x^n<y^n$.
+	\item Prove that if $x^n = y^n$ and $n$ is odd, then $x=y$.
+	\item Prove that if $x^n = y^n$ and $n$ is even, then $x=y$ or $x=-y$.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\roman*)]
+	\item Assume $0\leq x < y$. Then certainly $x^1 < y^1 $. Assume that $x^n < y^n$ for some integer $n>1$. Then \[ \begin{split} x^{n+1} & = x\cdot x^n \\ & < x \cdot y^n \\ & < y \cdot y^n \\ & = y^{n+1} \end{split} \] where we used both the inductive hypothesis and the base case to assert the inequalities.
+\end{enumerate}
+\end{proof}
+
+
+
+\begin{problem}{1.7}
+Prove that if $0<a<b$, then $$ a < \sqrt{ab} < \frac{a+b}{2} < b.$$ Notice that the inequality $\sqrt{ab} \leq \left(a+b\right)/2$ holds for all $a,b\geq 0$. A generalization of this fact occurs in Problem 2-22.
+\end{problem}
+
+\begin{problem}{1.8}
+Although the basic properties of inequalities were stated in terms of the collection $P$ of all positive numbers, and $<$ was defined in terms of $P$, this procedure can be reversed. Suppose that $P10-P12$ are replaced by
+\begin{enumerate}[label=($P'$\arabic*),start=10]
+	\item For any numbers $a$ and $b$ one, and only one, of the following holds:
+	\begin{enumerate}[label=(\roman*)]
+		\item $a=b$,
+		\item $a<b$,
+		\item $b<a$.
+	\end{enumerate}
+	\item For any numbers $a$, $b$, and $c$, if $a<b$ and $b<c$, then $a<c$.
+	\item For any numbers $a$, $b$, and $c$, if $a<b$, then $a+c < b+c$.
+	\item For any numbers $a$, $b$, and $c$, if $a<b$ and $0<c$, then $ac<bc$.
+\end{enumerate}
+Show that $P10-P12$ can be deduced as theorems.
+\end{problem}
+
+
+
+
+
+
+
+% --------------------------------------------------------------
+%     You don't have to mess with anything below this line.
+% --------------------------------------------------------------
+
+\end{document}

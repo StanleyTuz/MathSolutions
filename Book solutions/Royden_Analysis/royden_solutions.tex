@@ -1,0 +1,195 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,scrextend}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{xcolor}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\renewcommand{\qed}{\hfill$\blacksquare$}
+\let\newproof\proof
+\renewenvironment{proof}{\begin{addmargin}[1em]{0em}\begin{newproof}}{\end{newproof}\end{addmargin}\qed}
+% \newcommand{\expl}[1]{\text{\hfill[#1]}$}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+
+
+\begin{document}
+
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+
+\lhead{Royden ``Analysis'' Solutions}
+\chead{Stan Tuznik}
+\rhead{\today}
+
+% \maketitle
+
+
+\section*{Chapter 1 The Real Numbers; Sets, Sequences, and Functions}
+
+\subsection*{1.1 The Field, Positivity, and Completness Axioms}
+
+\begin{problem}{1.1.1}
+For $a\neq 0$ and $b\neq 0$, show that $\left(ab\right)^{-1}=a^{-1}b^{-1}$.
+\end{problem}
+\begin{proof}
+This can be shown easily by use of the associativity and commutativity properties of the field of real numbers. Also, the field axioms guarantee multiplicative inverses $a^{-1}$ and $b^{-1}$ of $a$ and $b$, respectively. Then
+\[ \left(a^{-1}b^{-1}\right)\left(ab\right) = \left(a^{-1}a\right)\left(b^{-1}b\right) = 1\cdot 1 = 1\] and so $\left(ab\right)^{-1} = a^{-1}b^{-1} $
+\end{proof}
+
+
+\begin{problem}{1.1.2}
+Verify the following:
+\begin{itemize}
+	\item For each real number $a\neq 0$, $a^2 > 0$. In particular, $1>0$ since $1\neq 0$ and $1=1^2$.
+	\item For each positive number $a$, its multiplicative inverse $a^{-1}$ also is positive.
+	\item If $a>b$, then \[ ac>bc \hspace{5mm} \text{if} \hspace{5mm} c>0 \hspace{5mm} \text{and} \hspace{5mm} ac<bc \hspace{5mm} \text{if} \hspace{5mm} c<0.\]
+\end{itemize}
+\end{problem}
+\begin{proof}
+\begin{itemize}
+	\item Let $a\neq 0$. Then by the positivity axioms, we have either $a$ positive or $-a$ positive. Hence, we have also by the positivity axioms that either $a^2$ positive or $\left(-a\right)^2 = \left(-1\right)^2a^2 = a^2$ positive, respectively. In either case, we have $a^2$ positive.
+	For the particular case of $1$, we have $1\neq 0$ and so we have $1^2 = 1 >0$.
+	\item Assume by way of contradiction that $a^{-1}<0$. Then $-a^{-1}>0$ by the second positivity axioms (since $a^{-1}\neq 0$). Then \[ \left(-a^{1}\right)a = \left(-1\right) a^{-1}a = -1 >0 \] since it is the product of two positive numbers. But we know that $1>0$ from the previous part of this problem, and so we cannot also have $-1 >0$. Thus, $a^{-1}>0$.
+	\item Let $a>b$. By definition, this means that $a-b >0 $. Then if $c>0$, we have $c\left(a-b\right) = ca - cb > 0$, or $ca > cb$, where we used the distribution of real multiplication over real addition (and moved the $-1$ around). On the other hand, if $c<0$ then $-c >0 $ and we have \[ \left(-c\right)\left(a-b\right) = cb - ca >0 \] and so \[ cb > ca, \] completing the proof.
+\end{itemize}
+\end{proof}
+
+
+\begin{problem}{1.1.3}
+For a nonempty set of real numbers $E$, show that $\inf E = \sup E$ if and only if $E$ consists of a single point.
+\end{problem}
+\begin{proof}
+Certainly if $E=\left\{x\right\}$ is a singleton subset of $\mathbb{R}$, then $x$ is obviously both the supremum and the infimum of $E$ (this is quite obvious to see: there are no other choices, and this is a closed subset). Thus, the equality holds.
+
+Conversely, assume that $\inf E = \sup E = r$ and let $x$ be some element of $E$. Then by definition of infimum and supremum, we have $r\leq x$ and $x\leq r$. The only way for these to both be true is for $x=r$. Thus, for any $x\in E$ we have $x=r$, i.e., $E = \left\{r\right\}$, a singleton set. 
+\end{proof}
+
+
+
+\begin{problem}{1.1.4}
+Let $a$ and $b$ be real numbers.
+\begin{itemize}
+	\item Show that if $ab=0$ then $a=0$ or $b=0$.
+	\item Verify that $a^2-b^2 = \left(a-b\right)\left(a+b\right)$ and conclude from part (i) that if $a^2=b^2$, then $a=b$ or $a=-b$.
+	\item Let $c$ be a positive real number. Define $E=\left\{x\in \mathbb{R} \, | \, x^2 < c\right\}$. Verify that $E$ is nonempty and bounded above. Define $x_0 = \sup E$. Show that $x_0^2 = c$. Use part (ii) to show that there is a unique $x>0$ for which $x^2 = c$. It is denoted by $\sqrt{c}$.
+\end{itemize}
+\end{problem}
+\begin{proof}
+\begin{itemize}
+	\item Assume that $ab=0$. Assume by way of contradiction that we have $a\neq 0$ and $b\neq 0$. Then by the positivity axioms, we have $a>0$ or $-a>0$ and $b>0$ or $-b>0$. First, if $a,b>0$, then $ab >0$ by the positivity axioms, violating our assumption that $ab=0$. Instead, if $-a,-b >0$, then $ab = \left(-a\right)\left(-b\right) > 0 $, similarly violating our assumption that $ab=0$. In the final case, assume without loss of generality that $a,-b>0$. Then we have \[ a\left(-b\right) = -1ab > 0 \] where we used the commutativity and associativity axioms of a field. That is, $ab <0$. Again our assumption is violated. Thus, if $ab=0$ we cannot have both $a\neq 0$ and $b\neq 0$.
+	\item The identity is easily proven using the various associativity, commutativity, and distributivity axioms of the addition and multiplication operations of the field of real numbers. Without explicitly labeling each step, we have, roughly,
+	\[ \begin{split}
+		\left(a-b\right)\left(a+b\right) & = a\left(a+b\right)-b\left(a+b\right) \\
+		& = a^2 + ab - ba -b^2 \\
+		& = a^2 - b^2 + ab - ab \\
+		& = a^2 - b^2
+	\end{split} \]
+Assume now that $a^2=b^2$. Rearranging, we have $0=a^2-b^2 = \left(a-b\right)\left(a+b\right)$. Thus, from part (i) we have either $a-b =0$ or $a+b=0$, which are the conclusions we sought.
+\item Let $E$ be defined as in the problem statement. Then certainly $0 \in E$, so $E\notin \varnothing$. From Problem 1.1.2, we have the $c>0 \implies c^2 > 0\cdot c = 0$. \ldots Let $x_0 = \sup E$. Then 
+\end{itemize}
+\end{proof}
+
+
+
+
+
+
+\begin{problem}{1.1.5}
+Let $a$, $b$, and $c$ be real numbers such that $a\neq 0$ and consider the quadratic equation \[ ax^2 + bx + c = 0, \, x\in \mathbb{R} \]
+\begin{itemize}
+	\item Suppose $b^2-4ac >0$. Use the Field axioms and the preceding problem to complete the square and thereby show that this equation has exactly two solutions given by \[ x= \frac{-b+\sqrt{b^2-4ac}}{2a} \hspace{5mm} \text{and} \hspace{5mm} x=\frac{-b-\sqrt{b^2-4ac}}{2a} \]
+	\item Now suppose $b^2-4ac <0$. Show that the quadratic equation fails to have any solution.
+\end{itemize}
+\end{problem}
+\begin{proof}
+Let $a,b,c \in \mathbb{R}$ and $a\neq 0$.
+\begin{itemize}
+	\item Assume $b^2-4ac>0$. Then we can manipulate the quadratic equation using the completing-the-square procedure (which can be performed by virtue of the field axioms):
+	\begin{equation}
+		\begin{split}
+			0 = ax^2 + bx + c & = a\left(x^2 + \frac{b}{a}x + \left(\frac{b}{2a}\right)^2 \right) - a \left( \frac{b}{2a}\right)^2 + c \\
+			& = a\left( \left(x + \frac{b}{2a}\right)^2 + \left(\frac{c}{a} - \left(\frac{b}{2a}\right)^2 \right)  \right)
+		\end{split}
+	\end{equation}
+	Since $a\neq 0$, we must have the large factor in parenthesis equal to zero. Rearranging, this gives
+	\[ \begin{split} \left(x+\frac{b}{2a}\right)^2 & = \left(\frac{b}{2a}\right)^2 - \frac{c}{a} \\ & = \frac{b^2}{\left(2a\right)^2} - \frac{c}{a} \\ & = \frac{b^2 - 4ac}{\left(2a\right)^2} \end{split} \] From the previous problem, we know that there is a unique positive number $\tilde{x}$ such that $\tilde{x}^2 = \frac{b^2-4ac}{\left(2a\right)^2}$, which we call $\tilde{x} = \sqrt{\frac{b^2-4ac}{\left(2a\right)^2}} = \frac{\sqrt{b^2 - 4ac}}{2a}$. In the above equation, then, we have $\tilde{x}^2 = \left(x+\frac{b}{2a}\right)^2$. We can also take the negative root, to obtain
+	\[ x = -\frac{b}{2a} \pm \frac{\sqrt{b^2-4ac}}{2a} \] which are precisely the solutions we expected.
+	
+	\item In the case where $b^2-4ac <0$, we 
+\end{itemize}
+\end{proof}
+
+
+
+\begin{problem}{1.1.6}
+Use the Completeness Axiom to show that every nonempty set of real numbers that is bounded below has an infimum and that \[ \inf E = -\sup \left\{ -x \, | \, x\in E \right\}. \]
+\end{problem}
+\begin{proof}
+Let $E$ be a nonempty set of real numbers which is bounded below. Let $r$ be some lower bound for $E$ and define $E' = \left\{ -x \, | \, x\in E \right\}$. Then by definition of $r \leq x$, we have $0 \leq x - r = \left(-r\right) - \left(-x\right)$ so that $-x \leq -r$ for all $x \in E$. That is, $x' \leq -r$ for all $x' \in E'$. Hence, $-r$ is an upper bound for $E'$, so by completeness of real numbers there is some $x_0 = \sup E'$. That is, $x' \leq x_0$ for all $x' \in E'$ and no $x' < x_0$ is also an upper bound for $E'$. Then $x' \leq x_0$ means $x_0 - x' \geq 0$ and so $\left(-x'\right) - \left(-x_0\right) \geq 0$ and so $-x_0 \leq -x'$ for all $x' \in E'$.  Equivalently, then, $-x_0 \leq x $ for all $x \in E$. Thus, $-x_0=-\sup E'$ is indeed a lower bound for $E$. Assume that $-x_0'$ is another lower bound for $E$ with $-x_0 <-x_0'$. Then certainly $x_0' < x_0$ and both are again upper bounds for $E'$. But $x_0$ is the least upper bound of $E'$, and so this $-x_0'$ cannot exist. Thus, $-x_0$ is the greatest lower bound of $E$, and we have shown that $\inf E = -\sup E_0$ which is what we sought to prove.
+\end{proof}
+
+
+
+
+\begin{problem}{1.1.7}
+For real numbers $a$ and $b$, verify the following:
+\begin{itemize}
+	\item $\left|ab\right| = \left|a\right|\left|b\right|$.
+	\item $\left|a+b\right| \leq \left|a\right| + \left|b\right|$.
+	\item For $\epsilon >0$, \[ \left|x-a\right| < \epsilon \hspace{5mm} \text{if and only if} \hspace{5mm} a-\epsilon < x < a + \epsilon . \]
+\end{itemize}
+\end{problem}
+\begin{proof}
+Let $a,b\in \mathbb{R}$. Recall that the absolute value function is defined as \[ \left|x\right| = \left\{ \begin{array}{lr} x, & x>=0 \\ -x, & x<0 \end{array} \right. \]
+\begin{itemize}
+	\item We can proceed in cases. If $a,b>0$ or $a,b <0$, then $ab > 0$ and so $\left|ab\right| = ab$. If $a,b>0$, then $\left|a\right| = a $ and $\left|b\right|= b $ so that $\left|a\right|\left|b\right|=ab$ and the equality holds. On the other hand, if $a,b <0$ then $\left|a\right|=-a$ and $\left|b\right|=-b$ so that $\left|a\right|\left|b\right|=\left(-a\right)\left(-b\right) = ab$ by commutativity and associativity, and again equality holds. Assume without loss of generality that $b=0$. Then $\left|b\right|=0$ and both sides of the equality are $0$, and so the equality trivially holds in the case of one (or both) variables being $0$. Lastly, assume without loss of generality that $a>0$ and $b<0$. Then $\left|a\right|=a$ and $\left|b\right|=-b$ and so $\left|a\right|\left|b\right| = -ab$. Also $a\left(-b\right) >0$ so that $\left|ab\right| = -ab$ and the equality holds. We have shown that it holds in all possible cases. 
+	
+	\item The traditional ``easy'' proof of the triangle inequality involves squaring the left-hand side and multiplying out the product, then using the bound $xy \leq \left|xy\right|$. Instead, since the book presents the material in a different way, we will proceed using a case-by-case analysis.
+	
+	If $a,b \geq 0$, then certainly $\left|a\right| = a \geq 0$ and $\left|b\right| = b \geq 0$, and $a+b \geq 0 $ and so $\left|a+b\right| = a+b \geq 0$; hence, $\left|a+b\right| = a+b = \left|a\right| + \left|b\right|$ and so the inequality holds (equality in this case).
+	
+	If $a,b \leq 0$, then  $\left|a\right| = -a $ and  $\left|b\right| = -b$. We also have $a+b \leq 0$ and so $\left|a+b\right| = -\left(a+b\right) = -a - b = \left|a\right|+\left|b\right|$, and the inequality holds (again equality in this case).
+	
+	Lastly, assume without loss of contradiction that $a\leq 0$ and $b\geq 0$. Then  $\left|a\right| = -a$ and  $\left|b\right| = b$. We again have several possibilities. First, assume $\left|a\right| < \left|b\right|$. Then $a\leq 0 \implies -a \geq 0$, and so $-a + b \geq 0$. 
+\end{itemize}
+\end{proof}
+
+
+
+
+
+
+
+
+% --------------------------------------------------------------
+%     You don't have to mess with anything below this line.
+% --------------------------------------------------------------
+
+\end{document}

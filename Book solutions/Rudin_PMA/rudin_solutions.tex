@@ -1,0 +1,225 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,scrextend}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\renewcommand{\qed}{\hfill$\blacksquare$}
+\let\newproof\proof
+\renewenvironment{proof}{\begin{addmargin}[1em]{0em}\begin{newproof}}{\end{newproof}\end{addmargin}\qed}
+% \newcommand{\expl}[1]{\text{\hfill[#1]}$}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+
+
+\begin{document}
+
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+
+\lhead{Dummit \& Foote solutions}
+\chead{Stan Tuznik}
+\rhead{\today}
+
+% \maketitle
+
+
+\section*{Chapter 2 Basic Topology}
+
+
+\begin{problem}{2.6}
+Let $E'$ be the set of all limit points of a set $E$. Prove that $E'$ is closed. Prove that $E$ and $\overline{E}$ have the same limit points. (Recall that $\overline{E}=E\cup E'$.) Do $E$ and $E'$ always have the same limit points?
+\end{problem}
+\begin{proof}
+Let $x$ be a limit point of $E'$. We want to show that $x \in E'$. Since $x$ is a limit point, for any neighborhood $N$ of $x$, we have some point $y \in N\cap E'$. That is, $y$ is a limit point of $E$. Then since $N$ is a neighborhood of $y$, there is some point $z \in N\cap E$. But then for any arbitrary neighborhood of $x$, $N$, we have found a point $z \in E$ with $z \in N$. Thus, $x$ is a limit point of $E$, i.e., $x\in E'$. That is, $E'$ contains all of its limit points, and is closed by definition.
+
+{\color{red} We can alternatively approach this problem from the equivalent definition of a closed set as a complement of an open set. Let $x\notin E'$. Then $x$ is not a limit point of $E$. That is, there is some neighborhood $N$ of $x$ which does not intersect $E$: $N\cap E = \varnothing$. We claim also that $N\cap E' = \varnothing$. Otherwise, if $z \in N \cap E'$, then since $z \in E'$, and $N$ is a neighborhood of $z$, there is some point $p \in E$ with $p \in N$. But now we have a point $p$ of $E$ in our neighborhood $N$ of $x$, which we constructed to have no such points of $E$. $\bot$ Hence we have $N\cap E' = \varnothing$, and so $N$ is a neighborhood of $x$ which does not intersect $E'$. Thus, $E'$ is closed since $E'^c$ is open.}
+
+Let $x$ be a limit point of $E$. Then let $N$ be a neighborhood of $x$. Then there is a $y\in E$ with $y\in N$. But then $y \in E \subset E\cup E' = \overline{E}$, so arbitrary neighborhoods of $x$ contain points of $\overline{E}$. Thus, $x$ is a limit point of $\overline{E}$. Conversely, let $x$ be a limit point of $\overline{E}$, with $N$ a neighborhood of $x$. Then $x$ contains some point of $\overline{E}$, say $y$. If $y\in E$, then $N$ trivially contains a point $y$ of $E$. Otherwise, if $y \in E'$, then since $N$ is a neighborhood of $y$, $N$ contains some point $z \in E$. Thus, in either case, neighborhood $N$ of $x$ contains a point of $E$; $x$ is a limit point of $E$. From both directions, we see that the limit points of $E$ and of $\overline{E}$ are the same.
+
+Let $E = \left\{ \frac{1}{n} \, | \, n\in \mathbb{N} \right\}$. Then surely $E' = \left\{0\right\}$, which has no limit points. But since $0$ is a limit point of $E$, $E$ and $E'$ do not have the same limit points.
+\end{proof}
+
+
+
+\begin{problem}{2.7}
+Let $A_1$, $A_2$, $A_3$, \ldots be subsets of a metric space.
+\begin{enumerate}[label=(\alph*)]
+	\item If $B_n = \cup_{i=1}^n A_i$, prove that $\overline{B}_n = \cup_{i=1}^n \overline{A}_i$ for $n=1,2,3,\ldots$.
+	\item If $B = \cup_{i=1}^{\infty} A_i$, prove that $\overline{B} \supset \cup_{i=1}^{\infty} \overline{A}_i$.
+\end{enumerate}
+Show, by an example, that this inclusion can be proper.
+\end{problem}
+
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item Let $x \in \overline{B}_n$. 
+\end{enumerate}
+\end{proof}
+
+
+
+
+\begin{problem}{2.10}
+Let $X$ be an infinite set. For $p\in X$ and $q\in X$, define
+\begin{equation*}
+ d\left(p,q\right) = \left\{ \begin{array}{lr} 1 & \left(\text{if}\, p\neq q\right) \\ 0 & \left(\text{if}\, p=q\right) \end{array} \right.
+\end{equation*}
+Prove that this is a metric. Which subsets of the resulting metric space are open? Which are closed? Which are compact?
+\end{problem}
+
+\begin{proof}
+In order for this to be a metric, it must be non-negative and $d\left(p,q\right) = 0$ only when $p=q$. This is obviously true from the definition of $d$. It is also very clearly symmetric. The final condition is that the triangle inequality must hold for every combination of points $x,y,z \in X$. First, if $x=z$, then $d\left(x,z\right) =0 \leq d\left(x,y\right) + d\left(y,z\right)$ since the right hand side is at least $0$. On the other hand, if $x\neq z$, then $d\left(x,z\right)=1$. If $y\in X$ is such that $y\neq x$ and $y\neq z$, then $d\left(x,y\right) + d\left(y,z\right) = 2$, so the inequality holds. Instead, if $y\neq x$ but $y=z$, then $d\left(x,y\right) + d\left(y,z\right) = 1$ and the inequality holds; this same logic applies if $y\neq x$ but $y=z$. We cannot have both $y=x$ and $y=z$, since we assumed $x\neq z$. Thus in all cases we have the triangle inequality satisfied. This completes the proof that $d$ is a metric. {\color{red}It is the simplest metric, the discrete metric on $X$.}
+
+A set $A\subset X$ is open {\color{red}in the metric space sense} if every point $x\in A$ has some open ball neighborhood $B_r\left(x\right) = \left\{ y\in X\,|\, d\left(x,y\right)<r\right\}$ with $B_r\left(x\right) \subset A$. Note that for any $x\in X$ we have the ball neighborhood $\left\{x\right\} = B_1\left(x\right)$ which is certainly a subset of and set $A$ containing $x$. Thus every set is open in this metric space. Since any closed set is the complement of some open set, every set is also closed in this metric space.
+
+For set $K \subset X$, we have the open cover $\left\{ \left\{k\right\}\, | \, k \in K\right\}$ since the singleton sets are open. This open cover clearly has {\color{red}no subcover}, since removing any one of the singletons would remove the corresponding point from $K$. Thus, the open cover of $K$ has a finite open subcover if and only if this cover itself is the finite open subcover, i.e., if $K$ is a finite set. Thus, the finite subsets of $K$ are the only compact sets in this metric.
+\end{proof}
+
+
+
+
+
+
+\begin{problem}{2.12}
+Let $K\subset \mathbb{R}^1$ consist of $0$ and the numbers $1/n$, for $n=1,2,3,\ldots $. Prove that $K$ is compact directly from the definition (without using the Heine-Borel theorem).
+\end{problem}
+\begin{proof}
+{\color{red}The Heine-Borel theorem applies here since $K$ is certainly closed and bounded. Since we cannot use this, we must take an arbitrary open cover of $K$ and construct a finite open subcover. By drawing some pictures, we note that $0$ is a limit point of $K$, and so any open neighborhood $N$ about $0$ must naturally contain some point $1/m$ to the right of it. Then we can use this open set $N$ to cover the infinitely many points ``to the left of'' $1/m$. } Let $\left\{U_{\alpha}\right\}_{\alpha =1}^{\infty}$ be an open cover of $K$. Then $0\in U_{\beta}=:V $ for one of these open sets, which we will call $V$. Then since $0$ is a limit point of $K$ {\color{red}(easy to show)}, we have some point $1/m \in K$ also in $V$. Since we are considering the metric space $\mathbb{R}^1$, we have $1/m' \in V$ for all $ m' $ such that $m' \geq m$. For each $1/n \in K$ with $1\leq n < m$, we have some element of the open cover, say $U_{\gamma}=:V_n$ with $1/n \in V_n$. Then $\cup_{i=1}^{m-1} V_n \cup V $ is a finite open subcover of $K$. Thus, $K$ is compact.
+\end{proof}
+
+
+
+\begin{problem}{2.13}
+Construct a compact set of real numbers whose limit points form a countable set.
+\end{problem}
+
+
+
+
+\begin{problem}{2.14}
+Give an example of an open cover of the segment $\left(0,1\right)$ which has no finite subcover.
+\end{problem}
+
+
+\begin{problem}{2.16}
+Regard $\mathbb{Q}$, the set of all rational numbers, as a metric space, with $d\left(p,q\right)=\left|p-q\right|$. Let $E$ be the set of all $p\in \mathbb{Q}$ such that $2 < p^2 < 3$. Show that $E$ is closed and bounded in $\mathbb{Q}$, but that $E$ is not compact. Is $E$ open in $\mathbb{Q}$?
+\end{problem}
+\begin{proof}
+Let $\mathbb{Q}$ be the metric space described in the problem statement, and let $E = \left\{p\in \mathbb{Q}\,|\, 2<p^2<3\right\}$. Certainly $2$ and $-2$ are upper and lower bounds for $E$, respectively, since $2^2 =4 > 3$; hence, $E$ is bounded. 
+
+Let $x \notin E$. Then $x\in \mathbb{Q}$ but either $x^2 \leq 2$ or $x^3 \geq 3$. Consider first the case in which $x^2 \leq 2$. Certainly, then, $x^2<2 $ since $x^2=2$ for no rational $x$. 
+
+\end{proof}
+
+
+
+
+
+
+\begin{problem}{2.17}
+Let $E$ be the set of all $x\in\left[0,1\right]$ whose decimal expansion contains only the digits $4$ and $7$. Is $E$ countable? Is $E$ dense in $\left[0,1\right]$? is $E$ compact? Is $E$ perfect?
+\end{problem}
+
+
+\begin{problem}{2.18}
+Is there a nonempty perfect set in $\mathbb{R}^1$ which contains no rational number?
+\end{problem}
+\begin{proof}
+{\color{red}Recall that a perfect set is one which is closed every point is a limit point.} 
+\end{proof}
+
+
+
+
+\begin{problem}{2.19}
+\begin{enumerate}[label=(\alph*)]
+	\item If $A$ and $B$ are disjoint closed sets in some metric space $X$, prove that they are separated.
+	\item Prove the same for disjoint open sets.
+	\item Fix $p\in X$, $\delta > 0$, define $A$ to be the set of all $q\in X$ for which $d\left(p,q\right)<\delta$, define $B$ similarly, with $>$ in place of $<$. Prove that $A$ and $B$ are separated.
+	\item Prove that every connected metric space with at least two points is uncountable. \textit{Hint}: Use (c).
+\end{enumerate}
+\end{problem}
+
+\begin{proof}
+{\color{red}Recall that two sets $A$ and $B$ are separated if both $A\cap \overline{B}$ and $\overline{A}\cap B$ are empty.}
+\begin{enumerate}[label=(\alph*)]
+	\item Let $A$ and $B$ be disjoint and closed. By definition of closed, $A$ contains all of its limit points and $B$ contains all of its limit points. Thus, $A=\overline{A}$ and $B=\overline{B}$. Since $A$ and $B$ are disjoint, we have $A\cap \overline{B} = A\cap B = \varnothing$ and $\overline{A}\cap B = A\cap B = \varnothing$. That is, disjoint closed sets in a metric space are separated.
+	\item {\color{red}For disjoint open sets, we cannot use the same trick with the limit points, since open sets do not necessarily contain their limit points.} Assume by way of contradiction that $B$ contains some limit point of $A$, say $x$. Then since $B$ open, there is some open neighborhood $U_x$ of $x$ with $U_x \subset B$. But since $x$ is a limit point of $A$, the neighborhood $U_x$ contains some point $y$ of $A$. But then we have $y \in U_x \subset B$, and $A$ and $B$ are assumed to be disjoint $\bot$. Thus, neither $A$ nor $B$ may contain a limit point of the other, and so $A$ and $B$ are separated.
+	\item Let $A= \left\{ q\in X\, | \, d\left(p,q\right) < \delta \right\}${\color{red}; this is an open ball about $p$ in the $d$ metric, and it is certainly open (in that metric)}. Similarly, $B$ is the open complement of $A$, and is easily also open. Then $A$ and $B$ are disjoint open sets in metric space $X$, and so by (b) the two are separated.
+	\item Let $X$ be a connected metric space containing two distinct points $x$ and $y$. Let $\delta = \frac{1}{2}d\left(x,y\right)$ and define $A$ and $B$ as in (c) but with this $\delta >0$. Then $A$ and $B$ separate $X$ unless there is some $z$ with $d\left(x,z\right) = \delta$. Since $X$ connected, this $z$ must exist. We picked $\delta = d\left(x,y\right)/2$ arbitrarily; we might just as easily have chosen $0<\delta <d\left(x,y\right)$ and for each choice of $\delta$ we obtain some $z\in X$. Thus, we have a bijection from $\left(0,1\right)$ to a subset of $X$ (the $z$), and so this subset is uncountable. Thus, $X$ itself must be uncountable.
+\end{enumerate}
+\end{proof}
+
+
+
+
+
+
+
+\newpage
+\section*{Chapter 3 Numerical Sequences and Series}
+
+\begin{problem}{3.1}
+Prove that convergence of $\left\{s_n\right\}$ implies convergence of $\left\{\left|s_n\right|\right\}$. is the converse true?
+\end{problem}
+\begin{proof}
+This is true from the triangle inequality. If $\left\{s_n\right\}$ converges, let $\epsilon>0$ and we have some $N\in \mathbb{N}$ so that $n>N \implies \left| s_n - L\right|<\epsilon$, where $L$ is the limit of the sequence. Then for $n>N$, by the triangle inequality we have $\left|\left|s_n\right|-\left|L\right|\right| \leq \left|s_n-L\right| < \epsilon$ and so $\lim_{n\rightarrow \infty} \left|s_n\right| = \left|L\right|$.
+
+The converse is not true. The sequence $s_n = \left(-1\right)^n$ does not converge, but the sequence $\left|s_n\right|=1$ trivially converges.
+\end{proof}
+
+
+\begin{problem}{3.2}
+Calculate $\lim_{n\rightarrow \infty} \left(\sqrt{n^2+n}-n\right)$.
+\end{problem}
+\begin{proof}
+We can guess what this limit might be by considering the function $f\left(x\right) = \sqrt{n^2+n}-n$. We can guess the limit as $x\rightarrow \infty$ by the usual trick of rationalizing the denominator:
+\begin{equation*}
+\begin{split}
+\sqrt{x^2+x}-x & = \left( \sqrt{x^2+x}-x\right)\left( \frac{\sqrt{x^2+x}+x}{\sqrt{x^2+x}+x}\right) \\
+& = \frac{x}{\sqrt{x^2+x}+x} \\
+& = \frac{1}{1+\sqrt{1+1/x}}
+\end{split}
+\end{equation*}
+where the last equality is allowed since $x$ is away from $0$. Without formally taking limits, we can see that as $x$ gets very large, the $1/x$ term tends toward $0$ and the entire quantity then tends toward $1/2$.
+\end{proof}
+
+
+
+
+
+
+% --------------------------------------------------------------
+%     You don't have to mess with anything below this line.
+% --------------------------------------------------------------
+
+\end{document}
