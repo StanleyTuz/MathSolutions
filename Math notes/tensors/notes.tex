@@ -1,0 +1,102 @@
+\input{../header}
+\begin{document}
+
+\tableofcontents
+
+
+
+\chapter{Vector Spaces}
+The concept of a vector space leads naturally to that of a tensor. Tensors generalize vectors.
+
+A vector $U$ is simply an element of a set $\mathcal{V}$ called a (linear) vector space. A vector space is a specific type of set along with two operations \[ +: \mathcal{V}\times \mathcal{V} \rightarrow \mathcal{V} \] and \[ \cdot : \mathbb{R} \times \mathcal{V} \rightarrow \mathcal{V} \] which satisfies certain axioms:
+\begin{itemize}
+	\setlength\itemsep{0em}
+	\item $U+V \in \mathcal{V}$ for all $U,V \in \mathcal{V}$.
+	\item $aU \in \mathcal{V}$ for all $c\in \mathbb{R}, U \in \mathcal{V}$.
+	\item There is some $0 \in \mathcal{V}$ such that $0+U=U+0=U \in \mathcal{V}$.
+	\item For any $U \in \mathcal{V}$, there exists $-U \in \mathcal{V}$ such that $U+(-U) = (-U)+U = 0$.
+	\item $\left(U+V\right)+W = U + \left(V+W\right)$ for all $U,V,W \in \mathcal{V}$.
+\end{itemize}
+
+Since vector spaces are dominated by the concept of linearity, we often like to express vectors as linear combinations of other vectors: \[ q = aw + bp + cv + \cdots \] From linear algebra, we know that the number of basis vectors for a particular vector space is unique (well-defined) and is called the dimension of that space.
+
+Picking a basis is often required for computations, but it is not necessary always. Things can be done in a basis-free way.
+
+Two vector spaces are isomorphic if we can establish a bijective linear map between the two.
+
+Vector spaces are a very elementary concept. Many things in mathematics and physics are vector spaces with additional structures on top.
+
+We will write basis vectors as \[ e_0, e_1, e_2 , \ldots \] and write arbitrary vector $A$ as \[ A = A^0e_0 + A^1e_1 + A^2e_2 + A^3e_3 = A^{\mu}  e_{\mu} \]
+
+
+\section{Mappings}
+Consider two vector spaces $\mathcal{V}$ and $\mathcal{W}$ with bases $\left\{ e_{\mu} \right\}$ and $\left\{ f_{\mu} \right\}$, respectively. A map between the vector spaces can be written \[ \Lambda: \mathcal{V} \rightarrow \mathcal{W} \] or in bracket notation as \[ \left\langle \Lambda, \cdot \right\rangle : \mathcal{V} \rightarrow \mathcal{W} \] When we restrict ourselves to linear maps, we have 
+\begin{align*}
+	\left\langle \Lambda, A\right\rangle & = \left\langle \Lambda, A^{\mu} e_{\mu} \right\rangle \\
+	& = A^{\mu} \left\langle \Lambda, e_{\mu} \right\rangle 
+\end{align*}
+which only depends on the action of $\Lambda$ on the basis vectors of $\mathcal{V}$. Thus, $\Lambda$ is completely defined if we know how it operates on all basis vectors.
+
+
+\section{Dual Space}
+Consider real vector space $\mathcal{V}$ with basis $\left\{ e_{\mu}\right\}$. We can map $\mathcal{V}$ to any other vector space $\mathcal{W}$ with basis $\left\{ f_{\mu}\right\}$. One particular choice for $\mathcal{W}$ is the underlying set of scalars, $\mathcal{R}$ (which is, itself, a vector space).
+
+The \textit{dual space} to real vector space $\mathcal{V}$ is the vector space $\mathcal{V}^*$ consisting of linear maps $\Lambda: \mathcal{V}\rightarrow \mathbb{R}$. It is a vector space when we define addition and scalar multiplication in the obvious way. As a vector space, it has its own basis, which we will write as $\left\{ e^{\mu}\right\}$.
+
+Note that we automatically obtain the dual space from only the original vector space; no additional structure is needed to obtain this.
+
+There is no immediate relation between the bases of the vector space and the dual space; there is no canonical mapping from a basis vector to a dual basis vector. However, we make the convenient choice of dual basis which satisfies \[ \left\langle e^{\mu}, e_{\nu} \right\rangle = \delta_{\nu}^{\mu} \]
+
+\begin{prop}
+Let $\mathcal{V}$ be a finite-dimensional vector space with basis $\left\{ e_{1},\ldots,e_{n}\right\}$. Then the set $\left\{ e^{1},\ldots,e^{n} \right\}$ of covectors defined by \[ \left\langle e^{\mu}, e_{\nu} \right\rangle = \delta_{\nu}^{\mu} \] forms a basis for the dual space to $\mathcal{V}$, $\mathcal{V}^{*}$. In particular, \[ \dim \, \mathcal{V} = \dim \, \mathcal{V}^{*} \]
+\end{prop}
+\begin{proof}
+Existence of this basis is guaranteed, since given a basis for $\mathcal{V}$, we are defining the linear functionals $\left\{ e_{\nu}\right\}$.
+
+Linear independence is easy to prove. Assume \[ A_{\mu}e^{\mu} = 0 \] is a trivial covector and let it operate on the basis for $V$: \[ 0 = \left\langle A_{\mu}e^{\mu}, e_{\nu} \right\rangle = A_{\mu} \left\langle e^{\mu}, e_{\nu} \right\rangle = A_{\mu} \delta_{\nu}^{\mu} = A_{\nu} \] so that every component of the trivial covector is $0$. Hence, the dual basis vectors $\left\{ e^{\nu} \right\}$ are a linearly independent set.
+
+To prove that the dual basis spans the dual space, first note that, if so, we could write arbitrary dual vector $A \in \mathcal{V}^*$ as $A_{\mu}e^{\mu}$ and operate on basis vector $e_{\nu}$ to obtain $\left\langle  A_{\mu}e^{\mu}, e_{\nu} \right\rangle = A_{\nu}$ so that \[ A_{\mu} e^{\mu} = \left\langle A_{\nu}e^{\nu}, e_{\mu} \right\rangle e^{\mu} = A\left(e_{\mu}\right) e^{\mu} \] That is, the coefficients of the dual vector in the dual basis would be just the result of the dual vector applied to the basis vectors of $\mathcal{V}$. To show that this expansion is correct, we must show that \[A\left(V\right) =  A\left(e_{\mu}\right) \left\langle e^{\mu}, V\right\rangle \] for arbitrary vector $V = V^{\lambda}e_{\lambda}\in \mathcal{V}$. Then \[ A\left(V\right) = A\left(V^{\lambda}e_{\lambda}\right) = V^{\lambda}A\left(e_{\lambda}\right) \] by linearity of $A$. The right-hand side gives \[ A\left(e_{\mu}\right) \left\langle e^{\mu}, V\right\rangle = V^{\lambda} A\left(e_{\mu}\right) \delta_{\lambda}^{\mu} = V^{\lambda} A\left(e_{\lambda}\right)  \] and so we have $A = A_{\mu} e^{\mu} $ where $A_{\mu} = A\left(e_{\mu}\right)$, thus the dual basis spans $\mathcal{V}^*$. This choice of dual basis is arbitrary, yet convenient.
+
+As a linearly independent spanning set for $\mathcal{V}^*$, the dual basis is truly a basis for this vector space. There are the same number of basis vectors in the dual basis as in the original basis for $\mathcal{V}$, and so the spaces have equal dimension.
+
+\end{proof}
+
+
+Since the dual space is itself a vector space, we can imagine maps which send the dual space vectors to the real numbers: this is the ``double-dual'' space $\mathcal{V}^{**}$. Though it seems that we could repeat this construct to obtain infinitely many such spaces, an observation simplifies the situation. Note that if $\Lambda$ is a dual vector and $A^{\mu}e_{\mu}$ is a vector, then we write the linear transformation as \[ \left\langle \Lambda, A^{\mu}e_{\mu}\right\rangle \] and we think of this as the operation of the linear function \[ \left\langle \Lambda, \cdot \right\rangle : \mathcal{V} \rightarrow \mathbb{R} \] However, notice that we can alternatively think of this as the operation of the function \[ \left\langle \cdot, A^{\mu}e_{\mu} \right\rangle: \mathcal{V}^* \rightarrow \mathbb{R} \] which is a linear function. Thus, we have $\mathcal{V} \subset \mathcal{V}^**$.
+
+\begin{theorem}
+A finite-dimensional vector space $\mathcal{V}$ and its double-dual space $\mathcal{V}^{**}$ are isomorphic.
+\end{theorem}
+\begin{proof}
+Let $V\in \mathcal{V}$ be an arbitrary vector and define the map $\phi_V: \mathcal{V}^* \rightarrow \mathbb{R}$ as \[ \phi_{V} \left(\Lambda\right) = \left\langle \Lambda, V \right\rangle \] We claim that the mapping $V \mapsto \phi_V$ is a vector space isomorphism, i.e., a linear bijection, between $\mathcal{V}$ and $\mathcal{V}^{**}$. First, note that $\phi_V \in \mathcal{V}^{**}$.
+
+Next, assume $\phi_V = \phi_W$ for some $V, W \in \mathcal{V}$. That is, for arbitrary dual vector $\Lambda$ we have \[ \phi_V\left(\Lambda\right) = \left\langle \Lambda, V \right\rangle = \left\langle \Lambda, W \right\rangle = \phi_W\left(\Lambda\right) \] In particular, let $\Lambda$ be the projection onto the $i$-th basis vector, $\pi_i$ (certainly a linear mapping from $\mathcal{V}$ to $\mathbb{R}$). Then \[ V^i = \left\langle \pi_i, V\right\rangle = \left\langle \pi_i, W\right\rangle = W^i \] We can do this for every basis vector, and conclude that $V=W$. Hence, our mapping is injective.
+
+Last, let $\Psi \in \mathcal{V}^{**}$ be an arbitrary double-dual vector. We must show that $\Psi = \Phi_V$ for some $V \in \mathcal{V}$. This is the direct approach....
+
+Instead, note that since a vector space and its dual space have equal dimension, it follows that $\mathcal{V}$ and $\mathcal{V}^{**}$ have equal dimension.
+\end{proof}
+
+
+
+
+
+
+
+\chapter{Tensor Spaces}
+
+Given a vector space $\mathcal{V}$, we automatically obtain a dual vector space $\mathcal{V}^*$.
+
+We can naturally start taking Cartesian products:\[ \mathcal{V}\times \mathcal{V} = \left\{ \left(V,W\right) \, | \, V,W \in \mathcal{V}\right\} \]
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

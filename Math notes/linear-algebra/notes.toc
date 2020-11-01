@@ -1,0 +1,25 @@
+\contentsline {chapter}{\numberline {1}Linear Systems}{2}% 
+\contentsline {chapter}{\numberline {2}Special Matrices}{3}% 
+\contentsline {chapter}{\numberline {3}Basis}{4}% 
+\contentsline {section}{\numberline {3.1}Definition of Basis, Consequences}{4}% 
+\contentsline {subsection}{\numberline {3.1.1}Alternate Characterizations}{6}% 
+\contentsline {subsection}{\numberline {3.1.2}Existence}{7}% 
+\contentsline {section}{\numberline {3.2}Isomorphism from Abstract $V$ to $\mathbb {R}^n$}{7}% 
+\contentsline {subsection}{\numberline {3.2.1}Matrix Representations}{7}% 
+\contentsline {chapter}{\numberline {4}Dimension}{11}% 
+\contentsline {chapter}{\numberline {5}Change of Basis}{12}% 
+\contentsline {section}{\numberline {5.1}Vector Change of Basis}{12}% 
+\contentsline {section}{\numberline {5.2}Change of basis: endomorphism}{14}% 
+\contentsline {section}{\numberline {5.3}Change of basis: linear map}{15}% 
+\contentsline {section}{\numberline {5.4}Change of basis: linear function composition}{16}% 
+\contentsline {chapter}{\numberline {6}Determinants}{17}% 
+\contentsline {chapter}{\numberline {7}Eigenvalues}{19}% 
+\contentsline {section}{\numberline {7.1}Distinct Eigenvalues}{22}% 
+\contentsline {chapter}{\numberline {8}Symmetric Matrices}{23}% 
+\contentsline {chapter}{\numberline {9}Singular Values}{25}% 
+\contentsline {chapter}{\numberline {10}Inner Product Spaces}{26}% 
+\contentsline {section}{\numberline {10.1}Definition}{26}% 
+\contentsline {section}{\numberline {10.2}Norms, Schwartz Inequality}{27}% 
+\contentsline {section}{\numberline {10.3}Change of Basis; Orthogonality}{28}% 
+\contentsline {chapter}{\numberline {11}Jordan Canonical Form}{31}% 
+\contentsline {chapter}{\numberline {12}Dual Spaces}{32}% 

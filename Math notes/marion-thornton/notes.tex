@@ -1,0 +1,48 @@
+%\documentclass[12pt]{report}
+
+%\title{Classical Mechanics (Marion, Thornton) Notes}
+%\author{Stan Tuznik}
+
+\input{../header}
+\begin{document}
+
+%\maketitle
+\tableofcontents
+
+
+
+\chapter{Matrices, Vectors, and Vector Calculus}
+
+We know the usual definition of sequences in $\mathbb{R}$. A sequence of vectors converges similarly, except that the norm used in the definition of convergence is now a vector norm, not simply absolute value. A sequence of vectors $\left\{ \vec{a}_i\right\}$ in $\mathbb{R}^n$ converges to $\vec{a}\in \mathbb{R}^n$ if for any $\epsilon >0 $ there exists a $n\in \mathbb{N}$ such that \[ n>N \implies \left\lVert \vec{a}_i - \vec{a}\right\rVert < \epsilon \] This definition can be related to the convergence of the vector components.
+
+\begin{prop}
+Let $ \left\{ \vec{a}_i \right\} $ be a sequence of vectors (coordinate vectors) in $\mathbb{R}^n$. Then $\left\{ \vec{a}_i\right\}$ converges to $\vec{a} \in \mathbb{R}^n$ if and only if each component $\left(\vec{a}_i\right)_j$ converges to $\left(\vec{a}\right)_j$.
+\end{prop}
+\begin{proof}
+Assume that we have the components converging. That is, for $\epsilon >0$ we have some $N \in \mathbb{N}$ such that  \[ n > N \implies \left| \left(\vec{a}_i\right)_j - \left(\vec{a}\right)_j \right| < \epsilon  / \sqrt{n} \]
+We choose $N$ to hold for every component $i$. This can be arranged by taking $N$ to the the maximum of the $N$ guaranteed for each individual component. Thus, we have, for $n>N$,
+\begin{align*}
+	\left\lVert \vec{a}_i - \vec{a} \right\rVert^2 & = \sum_{j=1}^n \left\lvert  \left(\vec{a}_i\right)_j - \left(\vec{a}\right)_j \right\rvert^2 \\
+	& < \sum_{j=1}^n \epsilon^2 / n \\
+	& = \epsilon
+\end{align*}
+so that $\left\{ \vec{a}_i \right\}$ converges to $\vec{a}$. 
+
+Conversely, assume that $\left\{ \vec{a}_i \right\}$ converges to $\vec{a}$. Let $\epsilon > 0 $ be arbitrary and let $N$ be the guaranteed natural number in the definition of vector sequence convergence. The key is to note that for any $j = 1,2,\ldots, n$ we have \[ \left\lvert \left(\vec{a}_i\right)_j - \left(\vec{a}\right)_j \right\rvert^2 \leq \sum_{k=1}^n \left\lvert \left(\vec{a}_i\right)_k - \left(\vec{a}\right)_k \right\rvert^2 < \epsilon^2 \] whenever $n>N$. Thus, we have in particular \[ n>N \implies \left\lvert \left(\vec{a}_i\right)_j - \left(\vec{a}\right)_j \right\rvert < \epsilon \] and so the component sequences converge as expected.
+\end{proof}
+
+\begin{problem}{1.2}
+hi
+\end{problem}
+
+
+
+
+
+
+Let's look at some interesting consequences.
+
+
+
+
+\end{document}

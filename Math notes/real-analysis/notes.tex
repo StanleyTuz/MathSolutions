@@ -1,0 +1,198 @@
+%\documentclass[12pt]{report}
+
+\title{Real Analysis Notes}
+\author{Stan Tuznik}
+
+\input{../header}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+% \begin{prop}
+% \begin{lemmaa}
+% \begin{proof}
+
+\chapter{Continuity}
+
+
+
+\begin{prop}
+Let $ \left\{ \vec{a}_i \right\} $ be a sequence of vectors (coordinate vectors) in $\mathbb{R}^n$. Then $\left\{ \vec{a}_i\right\}$ converges to $\vec{a} \in \mathbb{R}^n$ if and only if each component $\left(\vec{a}_i\right)_j$ converges to $\left(\vec{a}\right)_j$.
+\end{prop}
+\begin{proof}
+Assume that we have the components converging. That is, for $\epsilon >0$ we have some $N \in \mathbb{N}$ such that  \[ n > N \implies \left| \left(\vec{a}_i\right)_j - \left(\vec{a}\right)_j \right| < \epsilon  / \sqrt{n} \]
+We choose $N$ to hold for every component $i$. This can be arranged by taking $N$ to the the maximum of the $N$ guaranteed for each individual component. Thus, we have, for $n>N$,
+\begin{align*}
+	\left\lVert \vec{a}_i - \vec{a} \right\rVert^2 & = \sum_{j=1}^n \left\lvert  \left(\vec{a}_i\right)_j - \left(\vec{a}\right)_j \right\rvert^2 \\
+	& < \sum_{j=1}^n \epsilon^2 / n \\
+	& = \epsilon
+\end{align*}
+so that $\left\{ \vec{a}_i \right\}$ converges to $\vec{a}$. 
+
+Conversely, assume that $\left\{ \vec{a}_i \right\}$ converges to $\vec{a}$. Let $\epsilon > 0 $ be arbitrary and let $N$ be the guaranteed natural number in the definition of vector sequence convergence. The key is to note that for any $j = 1,2,\ldots, n$ we have \[ \left\lvert \left(\vec{a}_i\right)_j - \left(\vec{a}\right)_j \right\rvert^2 \leq \sum_{k=1}^n \left\lvert \left(\vec{a}_i\right)_k - \left(\vec{a}\right)_k \right\rvert^2 < \epsilon^2 \] whenever $n>N$. Thus, we have in particular \[ n>N \implies \left\lvert \left(\vec{a}_i\right)_j - \left(\vec{a}\right)_j \right\rvert < \epsilon \] and so the component sequences converge as expected.
+\end{proof}
+
+
+
+
+
+
+
+
+Let's look at some interesting consequences.
+
+\begin{prop}
+Let $\vec{x}_k \rightarrow \vec{a}$. Then $\left\lVert \vec{x}_k \right\rVert \rightarrow \left\lVert \vec{a} \right\rVert$ and $\vec{b}\cdot \vec{x}_k \rightarrow \vec{b}\cdot \vec{a}$.
+\end{prop}
+\begin{proof}
+The first can be proven by writing $\vec{x} = \left[ x_1, x_2,\ldots,x_n\right]$ and proceeding as usual with the usual 2-norm. More generally, though, we can use the (reverse) triangle inequality property of the norm to see that \[ \left| \left\lVert \vec{x}_k \right\rVert - \left\lVert \vec{a} \right\rVert \right| \leq \left\lVert \vec{x}_k - \vec{a} \right\rVert \] which can be made smaller than arbitrary $\epsilon > 0$ by proper choice of $N$. Thus, the sequence of norms converges as expected.
+
+Next, we could let $f\left(\vec{x} \right) = \vec{b}^T \vec{x}$ and use continuity of linear functions to prove the conclusion. Instead, just notice that, from a useful proposition in the next chapter, we have \[ \left\lVert \vec{b}^T \vec{x} \right\rVert \leq \left\lVert \vec{b} \right\rVert \left\lVert \vec{x}\right\rVert \] so that we have \[ \left\lVert \vec{b}^T \vec{x}_k - \vec{b}^T \vec{a} \right\rVert = \left\lVert \vec{b}^T \left( \vec{x}_k-\vec{a} \right) \right\rVert = \left\lVert \vec{b} \right\rVert \left\lVert \vec{x}_k - \vec{a} \right\rVert \] Since $\vec{x}_k \rightarrow \vec{a}$, given arbitrary $\epsilon >0$, there is some $N$ such that $k>N \implies \left\lVert \vec{x}_k -\vec{a} \right\rVert < \epsilon / \left\lVert \vec{b} \right\rVert $. Thus, we have proven the statement.
+
+\end{proof}
+
+
+
+\section{Subsequences}
+A subsequence of a sequence $\left\{ \vec{x}_k\right\}_{k}$ is a subset $\left\{ \vec{x}_{k_i} \right\}_{k_i}$ where $k_1 < k_2 < k_3 < \ldots$ is an increasing sequence of natural numbers. 
+
+\begin{prop}
+If a sequence converges, then any subsequence converges. If \textit{every} subsequence of a sequence converges, then the sequence converges.
+\end{prop}
+\begin{proof}
+The converse is trivial, since the sequence itself is a subsequence. Note that it is not the case that a single convergent subsequence implies convergence of the sequence.
+
+Let $\left\{ \vec{x}_{k_i} \right\}_{k_i}$ be a subsequence of convergent sequence $\left\{ \vec{x}_k\right\}_{k}$ which has limit $\vec{a}$. Then for arbitrary $\epsilon >0$, there is an $N$ such that \[ k > N \implies \left\lVert \vec{x}_k -\vec{a} \right\rVert < \epsilon \] Since $\left\{ \vec{x}_{k_i} \right\}_{k_i}$ is a subsequence, we then have \[ i > N \implies \left\lVert \vec{x}_{k_i} -\vec{a} \right\rVert < \epsilon \]
+
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+\chapter{Continuity}
+
+
+
+\begin{prop}
+Let $T: \mathbb{R}^n \rightarrow \mathbb{R}^m$ be a linear map represented by the matrix $A \in \mathbb{R}^{m \times n}$. Then we have \[ \left\lVert T\left(h\right) \right\rVert = \left\lVert Ah \right\rVert  \leq M \left\lVert h \right\rVert \] for some constant $M$.
+\end{prop}
+\begin{proof}
+Note that this is just a statement about matrix-vector multiplication. Let $\left[ Ah \right]_i$ denote the $i$th entry of the matrix product $Ah \in \mathbb{R}^m$. That is, \[ \left[Ah\right]_i = \sum_{j=1}^n A_{ij}h_j \] Then let \[ r = \max_{i,j} \left| A_{ij} \right| \] Also note that since \[ \left\lVert h \right\rVert^2 = \sum_{j=1}^n \left| h_j \right|^2 \] we have \[ \left| h_j \right| \leq \left\lVert h \right\rVert \] Taken together, we have \[ \left[ Ah\right]_i = \sum_{j=1}^n A_{ij} h_j \leq \sum_{j=1}^n \left| A_{ij} \right| \left| h_j \right| \leq rn\left\lVert h \right\rVert \] so that \[ \left\lVert Ah\right\rVert^2 = \sum_{i=1}^m \left[Ah\right]_i^2 \leq \sum_{i=1}^m r^2n^2 \left\lVert h\right\rVert^2 = mr^2n^2 \left\lVert h\right\rVert^2 \] and so we have \[ \left\lVert Ah\right\rVert \leq rn\sqrt{m}\left\lVert h \right\rVert \] Letting $M = rn\sqrt{m}$, the conclusion holds.
+\end{proof}
+
+
+\begin{lemma}
+Let $T: \mathbb{R}^n \rightarrow \mathbb{R}^m$ be a linear map represented by the matrix $A \in \mathbb{R}^{m \times n}$. Then for $a \in \mathbb{R}^n$, $T$ is continuous at $a$.
+\end{lemma}
+\begin{proof}
+We must show that \[ \lim_{h\rightarrow 0} \left\lVert T\left(a+h\right) - T\left(a\right) \right\rVert =0 \] Note that, by linearity, \[ \left\lVert T\left(a+h\right) - T\left(a\right) \right\rVert = \left\lVert T\left(a\right) + T\left(h\right) - T\left(a\right) \right\rVert = \left\lVert T\left(h\right) \right\rVert  \leq M \left\lVert h \right\rVert \] and the right-hand side clearly goes to $0$ as $h \rightarrow 0$. 
+\end{proof}
+
+
+
+
+
+
+
+The next seems to be an alternative approach. For arbitrary linear map $A\in \mathbb{R}^{m\times n}$, we can define a matrix norm \[ \left\lVert A \right\rVert := \sum_{i = 1,\ldots, m } \sum_{j=1,\ldots,n} A_{i,j}^2 \] This is technically the square of the element-wise matrix $p$-norm: \[ \left\lVert A \right\rVert_p = \left( \sum_{\text{rows}}\sum_{\text{cols}} A_{i,j}^p  \right)^{1/p}\]Then we can look at bounds on matrix-vector and matrix-matrix products. In fact, the following proposition is a generalization of the one above.
+
+\begin{prop}
+Let $A \in \mathbb{R}^{m\times n}$, $B \in \mathbb{R}^{n \times p}$, and $\vec{b} \in \mathbb{R}^n$. Then \[ \left\lVert A\vec{b}\right\rVert \leq \left\lVert A \right\rVert \left\lVert \vec{b} \right\rVert \] \[ \left\lVert AB\right\rVert \leq \left\lVert A \right\rVert \left\lVert B \right\rVert \]
+\end{prop}
+\begin{proof}
+For the first inequality, notice that the magnitude on the left is a vector norm. That is, \[ \left\lVert A\vec{b}\right\rVert^2 = \sum_{i=1}^m \left(A\vec{b}\right)^2_i  \] and that each entry in this vector is the inner product (usual Euclidean dot product) of $\vec{b}$ with a row of $A$: \[ \left(A\vec{b}\right)_i = A_{i*}\vec{b} \] Since this is an inner product, we may apply the Cauchy-Schwarz inequality to it and obtain \[  \left(A\vec{b}\right)_i = A_{i*}\vec{b} \leq \left| A_{i*}\vec{b}  \right| \leq \left\lVert A_{i*} \right\rVert \left\lVert \vec{b} \right\rVert \] Taking this in the original vector magnitude, we have 
+\begin{align*}
+	\left\lVert A\vec{b} \right\rVert^2  & = \sum_{i=1}^m \left( A\vec{b}\right)^2_i \\
+	& \leq \sum_{i=1}^m \left\lVert A_{i*} \right\rVert^2 \left\lVert \vec{b} \right\rVert^2 \\
+	& = \left( \sum_{i=1}^m \left\lVert A_{i*} \right\rVert^2 \right) \left\lVert \vec{b}\right\rVert^2 \\
+	& = \left\lVert A \right\rVert^2 \left\lVert \vec{b} \right\rVert^2
+\end{align*}
+and so $\left\lVert A\vec{b}\right\rVert \leq \left\lVert A \right\rVert \left\lVert \vec{b} \right\rVert$ as we wanted to prove.
+
+The next inequality is even more general and follows from the matrix-vector product case. Note that every column of the matrix product $AB$ is of the form $A\vec{b}$ where $\vec{b} = B_{*j}$. Thus
+\begin{align*}
+	\left\lVert AB \right\rVert^2 & = \sum_{i=1}^m \sum_{j=1}^n \left(AB\right)_{i,j}^2 \\
+	& = \sum_{j=1}^n \left| A B_{*j} \right|^2 \\
+	& \leq \sum_{j=1}^n \left\lVert A \right\rVert^2 \left\lVert B_{*j}\right\rVert^2 \\
+	& = \left\lVert A \right\rVert^2 \left( \sum_{j=1}^n \left\lVert B_{*j} \right\rVert^2 \right) \\ 
+	& = \left\lVert A \right\rVert^2 \left\lVert B \right\rVert^2
+\end{align*}
+and so \[ \left\lVert AB \right\rVert \leq \left\lVert A \right\rVert \left\lVert B \right\rVert \] as desired.
+
+
+\end{proof}
+
+The second inequality defines the matrix norm $\left\lVert \cdot \right\rVert$ (and more generally the matrix 2-norm) as a \textit{submultiplicative} norm. With these general properties in hand, we can easily verify continuity of a linear function.
+
+\begin{proof}
+The linear function $T:\mathbb{R}^n \rightarrow \mathbb{R}^m$ will be continuous if we have \[ \lim_{x\rightarrow a}\, T\left(x\right) = T\left(a\right) \] Let $\epsilon >0 $ be arbitrary. Then \[ \left\lvert \vec{x} - \vec{a} \right\rvert < \epsilon / \left\lVert A \right\rVert  \] implies that
+\begin{align*}
+\left\lVert T\left(\vec{x}\right) - T\left(\vec{a}\right) \right\rVert & = \left\lVert A\vec{x} - A\vec{a} \right\rVert \\ 
+& = \left\lVert A\left(\vec{x} - \vec{a}\right) \right\rVert \\ 
+& \leq \left\lVert A \right\rVert \left\lVert \vec{x} - \vec{a} \right\rVert \\
+& < \epsilon
+\end{align*}
+Note that linearity of $T$ allowed us to express its action as a matrix multiplication, and the associative (linearity) property of matrix multiplication allowed us to ``pull it off'' of the $\vec{x}$ and $\vec{a}$ and onto their vector difference. Then, the previous proposition allowed us to bound this matrix-vector product by the norm of the vector and a quantity which measures in some sense the size of the matrix $A$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{The Derivative}
+
+Let \[ f:\mathbb{R}^n \rightarrow \mathbb{R}^m \] be an arbitrary function. Then the derivative of $f$ at $a \in \mathbb{R}^n$ is the unique linear map \[ \lambda: \mathbb{R}^n \rightarrow \mathbb{R}^m \] such that
+\[ \lim_{h\rightarrow 0} \frac{\left\lVert f\left(a+h\right) - f\left(a\right) - \lambda\left( h\right)  \right\rVert }{\left\lVert h \right\rVert } =0 \] The norms are required since all quantities are vectors. Note that since $\lambda$ is a linear map, it has a matrix representation, written $Df\left(a\right)$ and called the derivative of $f$ at $a$. The action of $\lambda $ on $h$ is \[ \lambda\left(h\right) = Df\left(a\right) h \] i.e., the usual matrix multiplication.
+
+\begin{prop}
+If $f:\mathbb{R}^n \rightarrow \mathbb{R}^m$ is differentiable at $a\in \mathbb{R}^n$, then this derivative is unique.
+\end{prop}
+\begin{proof}
+	Let $f:\mathbb{R}^n \rightarrow \mathbb{R}^m$ be differentiable at $a \in \mathbb{R}^n$ and assume there are two derivatives $\lambda$ and $\mu$. Then 
+	\begin{align*}
+		\left\lVert \lambda\left(h\right) - \mu\left(h\right) \right\rVert & \leq \left\lVert \lambda\left(h\right) - f\left(a+h\right) + f\left(a\right) \right\rVert + \left\lVert \mu\left(h\right) - f\left(a+h\right) + f\left(a\right) \right\rVert
+	\end{align*}
+	and upon dividing by $\left\lVert h \right\rVert $ and taking the limit $h \rightarrow 0$, we obtain \[ \lim_{h\rightarrow 0} \frac{\left\lVert \lambda\left(h\right) - \mu\left(h\right) \right\rVert }{\left\lVert h \right\rVert } = 0 \]
+	Choosing arbitrary $x \in \mathbb{R}^n\setminus \left\{ 0 \right\} $, note that $tx \rightarrow 0 $ when $t \rightarrow 0$ ($t \in \mathbb{R}$). Then \[ 0 = \lim_{t\rightarrow 0} \frac{\left\lVert \lambda\left(tx\right) - \mu\left(tx\right) \right\rVert }{\left\lVert tx \right\rVert } = \lim_{t\rightarrow 0} \frac{\left| t\right| \left\lVert \lambda\left(x\right) - \mu\left(x\right) \right\rVert }{\left| t \right| \left\lVert x \right\rVert } = \frac{\left\lVert \lambda\left(x\right) - \mu\left(x\right) \right\rVert }{\left\lVert x \right\rVert } \] and so we have $\lambda\left(x\right) = \mu \left(x\right)$ for arbitrary $x\in \mathbb{R}^n$. Thus, the derivative is unique.
+\end{proof}
+
+\begin{prop}
+If $f:\mathbb{R}^n \rightarrow \mathbb{R}^m$ is differentiable at $a\in \mathbb{R}^n$, then it is continuous at $a$.
+\end{prop}
+\begin{proof}
+\begin{align*}
+	\left\lVert f\left(a+h\right) - f\left(a\right) \right\rVert & \leq \left\lVert f\left(a+h\right) - f\left(a\right) - \lambda\left(h\right) \right\rVert + \left\lVert \lambda\left(h\right) \right\rVert
+\end{align*}
+so that \[ \left\lVert f\left(a+h\right) - f\left(a\right) \right\rVert \leq \left\lVert h \right\rVert \frac{\left\lVert f\left(a+h\right) - f\left(a\right) - \lambda\left(h\right) \right\rVert}{\left\lVert h \right\rVert} + \left\lVert \lambda\left(h\right) \right\rVert \]
+By taking the limit of both sides as $h\rightarrow 0$, the first term on the right-hand side is $0$, and the second term, containing the linear $\lambda$, goes to $0$ as well. Specifically, from a property of linear maps proved in the previous chapter, we have \[ \left\lVert \lambda\left(h\right) \right\rVert \leq M \left\lVert h \right\rVert \] for some constant $M$ which certainly tends toward $0$. Specifically, we have shown that \[ \left\lVert \lambda\left(h\right) \right\rVert \leq \left\lVert Df\left(a\right)\right\rVert \left\lVert h \right\rVert \] where $\left\lVert Df\left(a\right)\right\rVert$ is the squared entry-wise matrix norm of the derivative (matrix) of $f$ at $a$, which certainly exists (is finite). Thus, we have \[ \lim_{h\rightarrow 0} \left\lVert f\left(a+h\right) - f\left(a\right) \right\rVert = 0, \] establishing continuity of $f$ at $a$.
+\end{proof}
+
+
+
+
+
+
+
+\end{document}
