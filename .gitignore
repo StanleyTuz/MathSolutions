@@ -1,0 +1,5 @@
+books/
+./*.djvu
+./*.pdf
+./*.webm
+
