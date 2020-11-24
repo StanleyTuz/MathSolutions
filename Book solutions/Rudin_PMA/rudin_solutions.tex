@@ -45,14 +45,245 @@
 %                         Start here
 % --------------------------------------------------------------
 
-\lhead{Dummit \& Foote solutions}
+\lhead{Rudin \textit{PMA} Solutions}
 \chead{Stan Tuznik}
 \rhead{\today}
 
 % \maketitle
+\section*{Chapter 1. The Real and Complex Number Systems}
+
+\begin{problem}{1.1}
+If $r$ is rational ($r\neq0$) and $x$ is irrational, prove that $r+x$ and $rx$ are irrational.
+\end{problem}
+\begin{proof}
+The easiest way to show this is to recall that $\mathbb{Q}$ is closed under addition and scalar multiplication. Thus, assume by way of contradiction that $r+x\in \mathbb{Q}$. Then certainly $$ \left(r+x\right)-r = x \in \mathbb{Q}$$ but this contradicts our assumptions. Similarly, if $rx\in\mathbb{Q}$, then $$ \left(rx\right) \cdot \frac{1}{r} = x \in \mathbb{Q}$$ and we are done.
+\end{proof}
 
 
-\section*{Chapter 2 Basic Topology}
+\begin{problem}{1.2}
+Prove that there is no rational number whose square is 12.
+\end{problem}
+\begin{proof}
+Assume $q = \frac{m}{n} \in\mathbb{Q}$ for $m,n \in \mathbb{Z}, n \neq 0,$ is a rational number in lowest terms, i.e., $m$ and $n$ have no common terms, and that we have $q^2 = 12$. Then we have $m^2 = 12 n^2 = 2 \cdot 6n^2$. Hence, $m$ must be even, i.e., $m=2k$ for some $k\in \mathbb{Z}$. But then $k^2 = 3n^2$. Since $n$ cannot be even (otherwise $n$ and $m$ would have a factor of $2$ in common), we must have $n$ odd. Then $k$ must be odd since it is a product of odd numbers ($3n^2$). That is, $$ k =2y+1 \; \text{and} \; n = 2z+1$$ for some $y,z\in\mathbb{Z}$. Plugging these into the equation, we get $$ 4y^2 + 4y + 1 = 3\left(4z^2 + 4z + 1\right) $$ which, upon rearranging terms, is $$ 4\left(y^2 + y -3z^2 - 3z\right) = 2 $$ Notice that the quantity in parenthesis is an integer (thanks to the closure of the integers under addition and multiplication), call it $r$. Then we have $$ 4r = 2$$ which is certainly not satisfied for any integer. Hence, $\sqrt{12}\notin \mathbb{Q}$.
+\end{proof}
+
+Below is an alternate proof whose trick was suggested to me online.\\
+
+\begin{proof}
+We can write $\sqrt{12} = 2\sqrt{3}$ and the previous exercise indicates that rational multiples of irrationals are still irrational; thus, we can instead show that $\sqrt{3}$ is irrational. Proceed in the usual way: assume $m,n\in \mathbb{Z}, n\neq 0,$ in lowest terms with $\frac{m^2}{n^2} = 3$ so that $m^2 = 3 n^2$.
+\end{proof}
+
+
+
+
+
+\begin{problem}{1.3}
+Prove Proposition 1.15.
+\end{problem}
+\begin{proof} 
+These are relatively straightforward consequences of the multiplication axioms for fields
+\begin{enumerate}[label=(\alph*)]
+	\item Assume $x\neq 0$ and $xy=xz$. Then \begin{align*}
+	y & = 1 y \\
+	& = \left(x^{-1}x\right)y \\
+	& = x^{-1}\left(xy\right) \\
+	& = x^{-1}\left(xz\right) \\
+	& = \left(x^{-1}x\right)z \\
+	& = 1 z \\
+	& = z
+	\end{align*}
+	\item Assume $x\neq 0$ and $xy=x$. Then  \begin{align*}
+	y & = 1 y \\
+	& = \left(x^{-1}x\right)y \\
+	& = x^{-1}\left(xy\right) \\
+	& = x^{-1}\left(x\right) \\
+	& = x^{-1}x \\
+	& = 1
+	\end{align*}
+	\item Assume $x\neq 0 $ and $xy=1$. Then \begin{align*}
+	y & = 1 y \\
+	& = \left(x^{-1}x\right)y \\
+	& = x^{-1}\left(xy\right) \\
+	& = x^{-1}\left(1\right) \\
+	& = x^{-1} 
+	\end{align*}
+	\item Assume $x\neq 0$. Then \begin{align*}
+	\left(x^{-1}\right)^{-1} & = 1\left(x^{-1}\right)^{-1} \\
+	& = \left(x x^{-1}\right)\left(x^{-1}\right)^{-1} \\
+	& = x \left(x^{-1} \left(x^{-1}\right)^{-1} \right) \\
+	& = x \left(1\right) \\ 
+	& = x
+	\end{align*}
+\end{enumerate}
+\end{proof}
+
+
+
+
+
+
+\begin{problem}{1.4}
+Let $E$ be a nonempty subset of an ordered set; suppose $\alpha$ is a lower bound of $E$ and $\beta$ is an upper bound of $E$. Prove that $\alpha \leq \beta$.
+\end{problem}
+\begin{proof}
+This seems almost obvious, yet is a careful consequence of the order axioms. Since $E \neq \varphi$, there is some $x \in E$. Then since $E$ is a subset of an ordered set, and by definition of bounds, we have $$ \alpha \leq x \leq \beta. $$ From the transitivity of orders, we have $\alpha \leq \beta$.
+\end{proof}
+
+\begin{problem}{1.5}
+Let $A$ be a nonempty set of real numbers which is bounded below. Let $- A$ be the set of all numbers $-x$, where $x\in A$. Prove that $$ \inf A = -\sup \left(-A\right) $$
+\end{problem}
+\begin{proof}
+Again, this is a seemingly straightforward conclusion that requires some axiomatic precision.
+
+First, we show that the relevant bounds exist. If $A$ is bounded below, then by the completeness axiom, it has a greatest lower bound, $\beta = \inf A$. That is, for any $x\in A$ (guaranteed at least one, since $A\neq \varphi$), we have $$ \beta \leq x. $$ By properties of $\mathbb{R}$ as an ordered field, we have, equivalently, $$ -x \leq -\beta. $$ Notice that $$ x\in A \iff -x \in -A $$ so that $-\beta$ is an upper bound on the set $-A$. By completeness of $\mathbb{R}$, again, $-A$ has some least upper bound, written $\alpha = \sup -A$.
+
+The goal now is to show that $\beta = -\alpha$. Let $b$ be an arbitrary lower bound of $A$. Then $-b$ is an upper bound of $-A$, as shown above. Hence, $-b \geq \sup -A$ by definition of supremum. But then $b \leq -\sup -A$ by properties of the ordering on $\mathbb{R}$, and so we have any lower bound of $A$ below $-\alpha$. If we can show that $-\alpha$ is indeed a lower bound on $A$, then we are done. Assume by way of contradiction that there is some $x\in A$ with $x < -\alpha$. Then we have $\alpha < -x$ and $-x \in -A$. This contradicts the definition of $\alpha = \sup -A$, and so no such $x\in A$ may exists. Hence, $-\alpha$ is a lower bound on $A$ which is greater than all other lower bounds; we have proven $$ \inf A = -\sup -A $$
+\end{proof}
+
+
+
+\begin{problem}{1.6} 
+Fix $b>1$.
+\begin{enumerate}[label=(\alph*)]
+	\item hi
+\end{enumerate}
+\end{problem}
+
+
+
+
+\begin{problem}{1.11}
+If $z$ is a complex number, prove that there exists an $r\geq 0$ and a complex number $w$ with $\left|w\right|=1$ such that $z=rw$. Are $w$ and $r$ always uniquely determined by $z$?
+\end{problem} 
+\begin{proof}
+This can be accomplished by cleverly decomposing $z$: $$ z= \left|z\right| \frac{z}{\left|z\right|} = rw $$ where $r=\left|z\right|$ and $w = z / \left|z\right|$. Certainly $\left|w\right|=1$.
+
+We can easily prove the uniqueness. Assume we have two decompositions which satisfy the hypotheses: $$ z= rw = r'w'. $$ Then by taking the magnitude of both, we have $$  r = \left|r\right| = \left|r\right|\left|w\right| = \left|rw\right| = \left|r'w'\right| = \left|r'\right| \left| w'\right| = \left|r'\right| = r' $$ Since $r= r'$, we have $$ rw = r'w' \implies w=w' $$ completing the proof.
+\end{proof}
+
+
+\begin{problem}{1.12}
+If $z_1,\ldots,z_n$ are complex, prove that $$ \left|z_1 + z_2 + \cdots + z_n \right| \leq \left|z_1\right| + \left|z_2\right| + \cdots + \left|z_n\right|. $$
+\end{problem}
+\begin{proof}
+This is a straightforward induction proof. The base case where $n=2$ clearly holds by the triangle inequality for complex absolute value (Rudin, Theorem 1.33). Assume the conclusion holds for some $n\in \mathbb{N}$. Then consider some set $\left\{z_1,z_2,\ldots,z_{n+1}\right\}$ of complex numbers. Then \begin{align*}
+\left|z_1 + z_2 + \cdots + z_n + z_{n+1}\right| & = \left|\left(z_1 + z_2 + \cdots + z_n\right) + z_{n+1}\right| \\ & \leq \left| z_1 + z_2 + \cdots + z_n\right| + \left| z_{n+1}\right| \\
+& \leq \left|z_1\right| + \left|z_2\right| + \cdots + \left|z_n\right| + \left|z_{n+1}\right| 
+\end{align*} where the base case was used in the second step and the induction hypothesis was used in the third step. This completes the proof.
+\end{proof}
+
+
+
+\begin{problem}{1.13}
+If $x$, $y$ are complex, prove that $$ \left| \left|x\right| - \left|y\right| \right| \leq \left|x-y\right|. $$
+\end{problem}
+\begin{proof}
+This is an easy corollary of the triangle inequality. Let $x,y \in \mathbb{C}$. Then \begin{align*}
+\left| x\right| & = \left| \left(x-y\right) + y\right| \\ & \leq \left|x-y\right| + \left|y\right| 
+\end{align*}
+so that $\left|x\right| - \left|y\right| \leq \left|x-y\right|$. We can repeat this starting with $\left|y\right|$ to obtain $\left|y\right| - \left|x\right| \leq \left|x-y\right|$ as well. Thus, taken together, we have the conclusion proven.
+\end{proof}
+
+
+\begin{problem}{1.14}
+If $z$ is a complex number such that $\left|z\right|=1$, that is, such that $z\overline{z}=1$, compute $$ \left|1+z\right|^2 + \left|1-z\right|^2.$$
+\end{problem}
+\begin{proof}
+We can compute this by appealing to the definition of the absolute value of complex numbers: \begin{align*}
+\left|1+z\right|^2 + \left|1-z\right|^2 & = \left(1+z\right)\left(1+\overline{z}\right) + \left(1-z\right)\left(1-\overline{z}\right) \\ & = 1+z+\overline{z} + \left|z\right|^2 + 1 -z -\overline{z} + \left|z\right|^2 \\ & = 2 + 2\left|z\right|^2 \\ & = 4
+\end{align*}
+\end{proof}
+
+
+\begin{problem}{1.15}
+Under what conditions does equality hold in the Schwarz inequality?
+\end{problem}
+\begin{proof}
+We must look to the proof.
+
+Equality obviously holds if one or both of the vectors are zero. If not, the inequality is introduced in the proof by showing that $ \sum_j \left|Ba_j- Cb_j\right|^2 \geq 0.$ Equality will hold if $$ B a_j - Cb_j = 0, $$ that is, if we have $a_j \propto b_j$ for each $j$. In other words, the vectors $a$ and $b$ must be linearly dependent. Conversely, if the vectors are linearly dependent, it is easy to see that equality holds.
+\end{proof}
+
+
+
+
+\begin{problem}{1.17}
+Prove that $$ \left|x+y\right|^2 + \left|x-y\right|^2 = 2\left|x\right|^2 + 2\left|y\right|^2 $$ if $x\in \mathbb{R}^k$ and $y\in \mathbb{R}^k$. Interpret this geometrically, as a statement about parallelograms.
+\end{problem}
+\begin{proof}
+This identity is straightforward to prove by proceeding left-to-right: \begin{align*}
+\left|x+y\right|^2 + \left|x-y\right|^2 & = x^2 + y^2 +2xy + x^2 + y^2 -2xy \\ & = 2x^2 + 2y^2 \\ & = \left|x\right|^2 + \left|y\right|^2 
+\end{align*}
+Thinking of $x$ and $y$ as plane vectors, centered at the origin, $\left|x\right|^2+\left|y\right\|^2$ is the sum of squares of the lengths of two neighboring sides of a parallelogram, while $\left|x+y\right|^2 + \left|x-y\right|^2$ is the sum of squares of the lengths of the face diagonals of the same parallelogram. This proof shows that the two quantities are equal.
+\end{proof}
+
+\begin{problem}{1.18}
+If $k\geq 2$ and $x\in \mathbb{R}^k$, prove that there exists $y\in \mathbb{R}^k$ such that $y\neq 0$ but $x\cdot y = 0$. Is this also true if $k=1$?
+\end{problem}
+\begin{proof}
+First, this is not true in $\mathbb{R}^1$, in general. Assume by way of contradiction that for some $x\in \mathbb{R}^k$, there is some $y\in \mathbb{R}^k$ with $y \neq 0$ but $x\cdot y = 0$. Then since $y\neq 0$, we have $x=xy y^{-1}=0\cdot y^{-1} = 0$. The converse with $x=0$ is easy to show. Thus, this only holds for $x=0$ in $\mathbb{R}^1$.
+
+In $\mathbb{R}^k$, the conclusion holds if $x=0$ easily, so assume $x\neq 0$. That is, $x$ has some component, $x_j$, $j\in \left\{1,2,\ldots,k\right\}$, which is nonzero. Then we can construct the desired $y$ with components $y_i = 1$ for $i\neq j$ and $y_j = -\frac{\sum_{k\neq j} x_ky_k}{x_j}$. Compute the dot product to see that $x\cdot y =0 $, and $y$ is certainly nonzero (since it has all the $1$'s).
+\end{proof}
+
+
+
+
+
+\begin{problem}{1.19}
+Suppose $a\in \mathbb{R}^k$, $b\in \mathbb{R}^k$. Find $c\in \mathbb{R}^k$ and $r>0$ such that $$ \left|x-a\right| = 2\left|x-b\right| $$ if and only if $\left|x-c\right| = r$.
+\end{problem}
+\begin{proof}
+
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section*{Chapter 2. Basic Topology}
+
+\begin{problem}{2.1}
+Prove that the empty set is a subset of every set.
+\end{problem}
+\begin{proof}
+The empty set $\varphi$ is a subset of another set $E$ if $x \in \varphi \implies x \in E$. Since $\varphi$ contains no elements, the statement is vacuously true (the antecedent can never be satisfied).
+\end{proof}
+
+
+
+
+
+\begin{problem}{2.4}
+Is the set of all irrational real numbers countable?
+\end{problem}
+\begin{proof}
+Assume that the irrational numbers are countable. We know that the real numbers are uncountable (think: the diagonalization argument involving decimals), that the rational numbers are countable, and that the real numbers are the union of the rational and irrational numbers. Then the real numbers are the union of two countable sets, which is itself countable (this is a simple lemma to prove). Thus, we have the real numbers both countable and uncountable, which is a contradiction.
+\end{proof}
+
+
+\begin{problem}{2.5}
+Construct a bounded set of real numbers with exactly three limit points.
+\end{problem}
+\begin{proof}
+An easy way to construct this set would be to make a sequence which alternatingly approaches three separate limit points. For example, let $\left(a_n\right)$ be the sequence $$ 1,2,3,1,2,3,1,2,3,\ldots $$ and let $\left(b_n\right)$ be the sequence $$ b_n = a_n + \frac{1}{n+1}. $$ Then the set $\left\{b_n\right\}_{n=1}^{\infty}$ is bounded and has $1$, $2$, and $3$ as limit points.
+
+Another example, which I was suggested by a friend, cleverly uses the sine function to write $$ a_n = \sin \left(\frac{2\pi}{3} n\right) + \frac{1}{n}. $$
+\end{proof}
+
+
+
+
+
+
+
 
 
 \begin{problem}{2.6}
@@ -81,9 +312,52 @@ Show, by an example, that this inclusion can be proper.
 
 \begin{proof}
 \begin{enumerate}[label=(\alph*)]
-	\item Let $x \in \overline{B}_n$. 
+	\item Let $x \in \overline{B}_n$. Let $x\in \overline{B}_n$. Thus, $x\in A_i$ for some $i$. Then $x \in A_i \subseteq \overline{A}_i \subseteq \cup_{j=1}^n \overline{A}_j $. Conversely, let $x \in \cup_{i=1}^n \overline{A}_i$. Then $x\in \overline{A}_i$ for some $i$. If $x \in A_i$, then $x\in B_n$. If $x \notin A_i$, then $x$ must be a limit point of $A_i$, hence we can construct an arbitrary open ball about $x$ and find some $y\in A_i$ within this ball; but then $y_i \in B_n$ by definition of $B_n$, and so $x$ is a limit point of $B_n$. Hence, taking the cases together, we have $\cup_{i=1}^n \overline{A}_i \subseteq \overline{B}_n$. Since we have proven both directions, the equality holds.
+	\item Assume that $B = \cup_{i=1}^{\infty} A_i$, and let $x \in \cup_{i=1}^{\infty} \overline{A}_i$. Then $x \in \overline{A_i}$ for some $i$. If $x \in A_i$, then $x \in B$. Otherwise, $x$ is a limit point of $A_i$. As in part (a), construct a ball neighborhood about $x$ and choose the guaranteed $y\in A_i$ within this neighborhood. Then $y \in B$, and so $x$ is again a limit point of $B$. Thus, $x \in \overline{B}$.
+\end{enumerate}
+
+
+Interesting things happen when we take an infinite union, however. It is possible to have a countable union of closures which are a proper subset of the closure of the union. How?
+\end{proof}
+
+
+
+
+
+
+
+\begin{problem}{2.9}
+Let $E^{\circ}$ denote the set of all interior points of a set $E$. [$E^{\circ}$ is called the interior of $E$.]
+\begin{enumerate}[label=(\alph*)]
+	\item Prove that $E^{\circ}$ is always open.
+	\item Prove that $E$ is open if and only if $E^{\circ} = E$.
+	\item If $G\subset E$ and $G$ is open, prove that $G\subset E^{\circ}$.
+	\item Prove that the complement of $E^{\circ}$ is the closure of the complement of $E$.
+	\item Do $E$ and $\overline{E}$ always have the same interiors?
+	\item Do $E$ and $E^{\circ}$ always have the same closures?
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item We must show that every point of $E^{\circ}$ is an interior point (to $E^{\circ}$). Let $x\in E^{\circ}$. Then there is some neighborhood $N$ of $x$ with $N\subset E$. We want to show that this neighborhood $N$ is contained within $E^{\circ}$ as well. Consider any other $y\in N$; then $y$ is contained in a neighborhood --- namely, $N$ --- which is contained within $E$. Hence, $y$ is also an interior point of $E$. Since this logic holds for any other $y\in N$, we have $N \subseteq E^{\circ}$, and so $E^{\circ}$ is open.
+	
+	\item Assume $E$ is open. Then every point of $E$ is interior to $E$, so $E \subseteq E^{\circ}$. On the other hand, $E^{\circ} \subseteq E$ by definition, so $E=E^{\circ}$. Conversely, assume that $E=E^{\circ}$. Then every point of $E$ is also interior to $E$, i.e., $E$ is open by definition.
+	
+	\item Let $G\subset E$, $G$ open. Let $x \in G$. Then, since $G$ is open, there is some neighborhood of $x$, say $N$, with $x\in N \subset G \subset E$. Hence, every point of $G$ is an interior point of $E$, so $G\subset E^{\circ}$.
+	
+	\item We want to show that $\left(E^{\circ}\right)^c = \overline{E^c}$. Let $x \in \left(E^{\circ}\right)^c$, that is, $x\notin E^{\circ}$. Hence, either $x$ is not in $E$ or it is a boundary point of $E$. If $x$ is not in $E$, then $x\in E^c \subseteq \overline{E^c}$. Otherwise, if $x$ is a boundary point of $E$, then every neighborhood of $x$ contains some point $y \in E^c$. That is, $x \in \overline{E^c}$. Taken together, we have shown that $\left(E^{\circ}\right)^c \subseteq \overline{E^c}$. 
+	Conversely, assume $x\in \overline{E^c}$. Then every neighborhood of $x$ also contains some point of $E^c$; thus, $x$ cannot be interior to $E$. In other words, $x\in \left(E^{\circ}\right)^{c}$. Thus, $\overline{E^c} \subseteq \left(E^{\circ}\right)^{c}$. 
+	We have shown both directions of the equality.
+	
+	\item $E$ and $\overline{E}$ do not have the same interiors. For example, consider $E = \left(-1,0\right)\cup\left(0,1\right)$ as a subset of $\mathbb{R}$. Then $0$ is not interior to $E$ (it's not even in $E$) but it is interior to $\overline{E}=\left[-1,1\right]$.
+	
+	\item 
+	
 \end{enumerate}
 \end{proof}
+
+
+
 
 
 
@@ -103,6 +377,32 @@ A set $A\subset X$ is open {\color{red}in the metric space sense} if every point
 
 For set $K \subset X$, we have the open cover $\left\{ \left\{k\right\}\, | \, k \in K\right\}$ since the singleton sets are open. This open cover clearly has {\color{red}no subcover}, since removing any one of the singletons would remove the corresponding point from $K$. Thus, the open cover of $K$ has a finite open subcover if and only if this cover itself is the finite open subcover, i.e., if $K$ is a finite set. Thus, the finite subsets of $K$ are the only compact sets in this metric.
 \end{proof}
+
+
+
+\begin{problem}{2.11}
+For $x\in \mathbb{R}^1$ and $y\in \mathbb{R}^1$, define \begin{align*}
+d_1\left(x,y\right) & = \left(x-y\right)^2, \\
+d_2\left(x,y\right) & = \sqrt{\left|x-y\right|}, \\
+d_3\left(x,y\right) & = \left|x^2-y^2\right|, \\
+d_4\left(x,y\right) & = \left|x-2y\right|,\\
+d_5\left(x,y\right) & = \frac{\left|x-y\right|}{1+\left|x-y\right|}.
+\end{align*} Determine, for each of these, whether it is a metric or not.
+\end{problem}
+\begin{proof}
+\begin{enumerate}
+	\item The function $d_1$ is certainly non-negative and zero only when $x=y$; it is also obviously symmetric; it satisfies the triangle inequality. Thus, $d_1$ is a metric.
+	\item 
+	\item
+	\item The function $d_4$ clearly does not satisfy symmetry, so it is not a metric.
+	\item 
+\end{enumerate}
+\end{proof}
+
+
+
+
+
 
 
 
@@ -186,7 +486,7 @@ Is there a nonempty perfect set in $\mathbb{R}^1$ which contains no rational num
 
 
 \newpage
-\section*{Chapter 3 Numerical Sequences and Series}
+\section*{Chapter 3. Numerical Sequences and Series}
 
 \begin{problem}{3.1}
 Prove that convergence of $\left\{s_n\right\}$ implies convergence of $\left\{\left|s_n\right|\right\}$. is the converse true?
@@ -207,11 +507,132 @@ We can guess what this limit might be by considering the function $f\left(x\righ
 \begin{split}
 \sqrt{x^2+x}-x & = \left( \sqrt{x^2+x}-x\right)\left( \frac{\sqrt{x^2+x}+x}{\sqrt{x^2+x}+x}\right) \\
 & = \frac{x}{\sqrt{x^2+x}+x} \\
-& = \frac{1}{1+\sqrt{1+1/x}}
+& = \frac{1}{1+\sqrt{1+\frac{1}{x} }}
 \end{split}
 \end{equation*}
 where the last equality is allowed since $x$ is away from $0$. Without formally taking limits, we can see that as $x$ gets very large, the $1/x$ term tends toward $0$ and the entire quantity then tends toward $1/2$.
 \end{proof}
+
+
+\begin{problem}{3.3}
+If $s_1=\sqrt{2}$, and $$s_{n+1}=\sqrt{2+\sqrt{s_n}} \hspace{10mm} \left(n=1,2,3,\ldots\right), $$ prove that $\left\{s_n\right\}$ converges, and that $s_n < 2$ for $n=1,2,3,\ldots$.
+\end{problem}
+\begin{proof}
+
+To see that $s_n < 2$ always, we can use induction. First, we certainly have $s_1 = \sqrt{2} < 2$ since $s_1^2 = 2 < 2^2$. Next, assume that $s_n < 2$. Then $$s_{n+1} = \sqrt{2 + \sqrt{s_n}} < \sqrt{2 + \sqrt{2}} < \sqrt{2+2} = 2 .$$ By induction, then, $s_n < 2$ for all $n$.
+\end{proof}
+
+
+
+\begin{problem}{3.4}
+Find the upper and lower limits of the sequence $\left\{s_n\right\}$ defined by $$ s_1=0; \hspace{5mm} s_{2m} = \frac{s_{2m-1}}{2}; \hspace{5mm} s_{2m+1} = \frac{1}{2}+s_{2m}.$$
+\end{problem}
+\begin{proof}
+To get some intuition, it helps to write out (or, even better, plot) some points of this sequence: $$ 0, 0, \frac{1}{2}, \frac{1}{4}, \frac{3}{4}, \frac{3}{8}, \frac{7}{8}, \frac{7}{16}, \frac{15}{16}, \frac{15}{32}, \frac{31}{32},\ldots   $$ It looks like the lim sup is $1$ and lim inf is $\frac{1}{2}$. It will be easier to prove this if we can write the sequence in terms of the index $m$, so let's do this. 
+\end{proof}
+
+
+
+
+\begin{problem}{3.5}
+For any two real sequences $\left\{a_n\right\}$, $\left\{b_n\right\}$, prove that $$ \limsup_{n\rightarrow \infty} \left(a_n + b_n\right) \leq \limsup_{n\rightarrow \infty} a_n + \limsup_{n\rightarrow \infty} b_n, $$ provided the sum on the right is not of the form $\infty - \infty$.
+\end{problem}
+\begin{proof}
+Recall that the $\limsup$ of a sequence is defined as the supremum of the set of all subsequential limits of the sequence. Thus, consider two sequences $\left(a_n\right)$ and $\left(b_n\right)$ which do not have $\limsup$s equal to $\infty$ (if either does, both sides of the inequality are infinity).
+
+Consider an arbitrary subsequence $\left(a_{n_k}+b_{n_k}\right)$.
+\end{proof}
+
+
+
+
+
+
+
+\begin{problem}{3.8}
+if $\sum a_n$ converges, and if $\left\{b_n\right\}$ is monotonic and bounded, prove that $\sum a_n b_n$ converges.
+\end{problem}
+\begin{proof}
+Since $\sum a_n$ converges, we know that $a_n \rightarrow 0$. We also know that since $\left(b_n\right)$ is monotonic and bounded, it must converge as well to some $b$ (the supremum of the set $\left\{b_n\right\}_{n=1}^{\infty}$).
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section*{Chapter 4. Continuity}
+
+\begin{problem}{4.1}
+Suppose $f$ is a real function defined on $\mathbb{R}^1$ which satisfies $$ \lim_{h\rightarrow 0} \left[f\left(x+h\right)-f\left(x-h\right)\right] = 0 $$ for every $x\in \mathbb{R}^1$. Does this imply that $f$ is continuous?
+\end{problem}
+\begin{proof}
+What the condition is showing is that $f$ approaches the same value from the right as it does from the left: it says nothing about what the function value actually \textit{is} at $x$. Thus, a counterexample is a function with a point discontinuity: let $$ f\left(x\right) = \left\{ \begin{array}{rl} 0, & x \neq 0 \\ 1, & x=0 \end{array} \right. $$ Then clearly $$ \lim_{h\rightarrow 0} \left[f\left(x+h\right)-f\left(x-h\right)\right] = \lim_{h\rightarrow 0} 0 = 0 $$ but $f\left(0\right) = 1$, hence $f$ is not continuous at $x=0$.
+\end{proof}
+
+\begin{problem}{4.2}
+If $f$ is a continuous mapping of a metric space $X$ into a metric space $Y$, prove that $$ f\left(\overline{E}\right) \subset \overline{f\left(E\right)} $$ for every set $E\subset X$. ($\overline{E}$ denotes the closure of $E$.) Show, by an example, that $f\left(\overline{E}\right)$ can be a proper subset of $\overline{f\left(E\right)}$.
+\end{problem}
+
+
+
+
+\begin{problem}{4.3}
+Let $f$ be a continuous real function on a metric space $X$. Let $Z\left(f\right)$ (the zero set of $f$) be the set of all $p\in X$ at which $f\left(p\right)=0$. Prove that $Z\left(f\right)$ is closed.
+\end{problem}
+{\color{red} Note that this is a very topological proof, and we didn't even need to invoke the $\epsilon$-$\delta$ definitions in these metric spaces. An alternate approach would be to take $p\notin Z\left(f\right)$ and show that it has a neighborhood entirely disjoint from $Z\left(f\right)$, i.e., $Z\left(f\right)$ has an open complement.}
+\begin{proof}
+We will show that $Z\left(f\right)$ contains all of its limit points, and is thus closed. Let $p\in X$ be a limit point of $Z\left(f\right)$. Assume by way of contradiction that $p \notin Z\left(f\right)$, so that $f\left(p\right) \neq 0$. Assume that $f\left(p\right)>0$. Then since $\mathbb{R}$ is a metric space (and Hausdorff), we have open balls $U$ and $V$ about $0$ and $f\left(p\right)$, respectively, so that $U\cap V = \emptyset$. Then $f^{-1}\left(U\right)$ and $f^{-1}\left(V\right)$ are open by continuity of $f$, and $Z\left(f\right)\subset f^{-1}\left(U\right)$ and $p \in f^{-1}\left(V\right)$, and the two preimages clearly do not intersect. Hence, we have a neighborhood of $p$ which contains no points of $Z\left(f\right)$, thus $p$ cannot be a limit point; this is our contradiction. Thus, $Z\left(f\right)$ must contain its limit points, and is closed.
+\end{proof}
+
+
+
+\begin{problem}{4.4}
+
+\end{problem}
+\begin{proof}
+Let $y\in f\left(X\right)$ and $V$ be an arbitrary open set about $y$. Let $x\in X$ be such that $f\left(x\right)=y$. Then $f^{-1}\left(V\right)$ is an open neighborhood of $x$, since $f$ is continuous, and thus it contains some point $z \in E\cap f^{-1}\left(V\right)$ since $E$ is dense in $X$. Thus $f\left(z\right) \in f\left(E\right)\cap V$, so that $V$ contains a point of $f\left(E\right)$. Thus, an arbitrary open neighborhood of a point of $f\left(X\right)$ contains a point of $f\left(E\right)$, so the latter is dense in the former.
+
+Next, let $g\left(p\right) = f\left(p\right)$, both continuous, for all $p\in E$. Assume by way of contradiction that $g\left(p\right) \neq f\left(p\right)$ for some $p \in X$ (certainly $p\in X\setminus E$). Then since $Y$ is a metric space, there is an open ball $B$ about $f\left(p\right)$ which does not contain $g\left(p\right)$. Since $f\left(E\right)$ is dense in $f\left(X\right)$, there is some $f\left(e\right)\in B$ for an $e\in E$.
+\end{proof}
+
+
+
+\begin{problem}{4.6}
+If $f$ is defined on $E$, the graph of $f$ is the set of points $\left(x,f\left(\right)\right)$, for $x\in E$. In particular, if $E$ is a set of real numbers, and $f$ is real-valued, the graph of $f$ is a subset of the plane.
+
+Suppose $E$ is compact, and prove that $f$ is continuous on $E$ if and only if its graph is compact.
+\end{problem}
+\begin{proof}
+
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

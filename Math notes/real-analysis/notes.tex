@@ -13,64 +13,6 @@
 % \begin{lemmaa}
 % \begin{proof}
 
-\chapter{Continuity}
-
-
-
-\begin{prop}
-Let $ \left\{ \vec{a}_i \right\} $ be a sequence of vectors (coordinate vectors) in $\mathbb{R}^n$. Then $\left\{ \vec{a}_i\right\}$ converges to $\vec{a} \in \mathbb{R}^n$ if and only if each component $\left(\vec{a}_i\right)_j$ converges to $\left(\vec{a}\right)_j$.
-\end{prop}
-\begin{proof}
-Assume that we have the components converging. That is, for $\epsilon >0$ we have some $N \in \mathbb{N}$ such that  \[ n > N \implies \left| \left(\vec{a}_i\right)_j - \left(\vec{a}\right)_j \right| < \epsilon  / \sqrt{n} \]
-We choose $N$ to hold for every component $i$. This can be arranged by taking $N$ to the the maximum of the $N$ guaranteed for each individual component. Thus, we have, for $n>N$,
-\begin{align*}
-	\left\lVert \vec{a}_i - \vec{a} \right\rVert^2 & = \sum_{j=1}^n \left\lvert  \left(\vec{a}_i\right)_j - \left(\vec{a}\right)_j \right\rvert^2 \\
-	& < \sum_{j=1}^n \epsilon^2 / n \\
-	& = \epsilon
-\end{align*}
-so that $\left\{ \vec{a}_i \right\}$ converges to $\vec{a}$. 
-
-Conversely, assume that $\left\{ \vec{a}_i \right\}$ converges to $\vec{a}$. Let $\epsilon > 0 $ be arbitrary and let $N$ be the guaranteed natural number in the definition of vector sequence convergence. The key is to note that for any $j = 1,2,\ldots, n$ we have \[ \left\lvert \left(\vec{a}_i\right)_j - \left(\vec{a}\right)_j \right\rvert^2 \leq \sum_{k=1}^n \left\lvert \left(\vec{a}_i\right)_k - \left(\vec{a}\right)_k \right\rvert^2 < \epsilon^2 \] whenever $n>N$. Thus, we have in particular \[ n>N \implies \left\lvert \left(\vec{a}_i\right)_j - \left(\vec{a}\right)_j \right\rvert < \epsilon \] and so the component sequences converge as expected.
-\end{proof}
-
-
-
-
-
-
-
-
-Let's look at some interesting consequences.
-
-\begin{prop}
-Let $\vec{x}_k \rightarrow \vec{a}$. Then $\left\lVert \vec{x}_k \right\rVert \rightarrow \left\lVert \vec{a} \right\rVert$ and $\vec{b}\cdot \vec{x}_k \rightarrow \vec{b}\cdot \vec{a}$.
-\end{prop}
-\begin{proof}
-The first can be proven by writing $\vec{x} = \left[ x_1, x_2,\ldots,x_n\right]$ and proceeding as usual with the usual 2-norm. More generally, though, we can use the (reverse) triangle inequality property of the norm to see that \[ \left| \left\lVert \vec{x}_k \right\rVert - \left\lVert \vec{a} \right\rVert \right| \leq \left\lVert \vec{x}_k - \vec{a} \right\rVert \] which can be made smaller than arbitrary $\epsilon > 0$ by proper choice of $N$. Thus, the sequence of norms converges as expected.
-
-Next, we could let $f\left(\vec{x} \right) = \vec{b}^T \vec{x}$ and use continuity of linear functions to prove the conclusion. Instead, just notice that, from a useful proposition in the next chapter, we have \[ \left\lVert \vec{b}^T \vec{x} \right\rVert \leq \left\lVert \vec{b} \right\rVert \left\lVert \vec{x}\right\rVert \] so that we have \[ \left\lVert \vec{b}^T \vec{x}_k - \vec{b}^T \vec{a} \right\rVert = \left\lVert \vec{b}^T \left( \vec{x}_k-\vec{a} \right) \right\rVert = \left\lVert \vec{b} \right\rVert \left\lVert \vec{x}_k - \vec{a} \right\rVert \] Since $\vec{x}_k \rightarrow \vec{a}$, given arbitrary $\epsilon >0$, there is some $N$ such that $k>N \implies \left\lVert \vec{x}_k -\vec{a} \right\rVert < \epsilon / \left\lVert \vec{b} \right\rVert $. Thus, we have proven the statement.
-
-\end{proof}
-
-
-
-\section{Subsequences}
-A subsequence of a sequence $\left\{ \vec{x}_k\right\}_{k}$ is a subset $\left\{ \vec{x}_{k_i} \right\}_{k_i}$ where $k_1 < k_2 < k_3 < \ldots$ is an increasing sequence of natural numbers. 
-
-\begin{prop}
-If a sequence converges, then any subsequence converges. If \textit{every} subsequence of a sequence converges, then the sequence converges.
-\end{prop}
-\begin{proof}
-The converse is trivial, since the sequence itself is a subsequence. Note that it is not the case that a single convergent subsequence implies convergence of the sequence.
-
-Let $\left\{ \vec{x}_{k_i} \right\}_{k_i}$ be a subsequence of convergent sequence $\left\{ \vec{x}_k\right\}_{k}$ which has limit $\vec{a}$. Then for arbitrary $\epsilon >0$, there is an $N$ such that \[ k > N \implies \left\lVert \vec{x}_k -\vec{a} \right\rVert < \epsilon \] Since $\left\{ \vec{x}_{k_i} \right\}_{k_i}$ is a subsequence, we then have \[ i > N \implies \left\lVert \vec{x}_{k_i} -\vec{a} \right\rVert < \epsilon \]
-
-\end{proof}
-
-
-
-
-
 
 
 
@@ -163,35 +105,253 @@ Note that linearity of $T$ allowed us to express its action as a matrix multipli
 
 \chapter{The Derivative}
 
-Let \[ f:\mathbb{R}^n \rightarrow \mathbb{R}^m \] be an arbitrary function. Then the derivative of $f$ at $a \in \mathbb{R}^n$ is the unique linear map \[ \lambda: \mathbb{R}^n \rightarrow \mathbb{R}^m \] such that
-\[ \lim_{h\rightarrow 0} \frac{\left\lVert f\left(a+h\right) - f\left(a\right) - \lambda\left( h\right)  \right\rVert }{\left\lVert h \right\rVert } =0 \] The norms are required since all quantities are vectors. Note that since $\lambda$ is a linear map, it has a matrix representation, written $Df\left(a\right)$ and called the derivative of $f$ at $a$. The action of $\lambda $ on $h$ is \[ \lambda\left(h\right) = Df\left(a\right) h \] i.e., the usual matrix multiplication.
+
+
+
+
+
+\section{Local Properties}
+
+Just as with continuity, the derivative is a local notion: its definition at a point depends only on the behavior of $f$ on a small neighborhood of that point. Recall that we were able to use the continuity of $f$ to make certain claims about the local behavior of $f$. For example, we showed rather easily that if $f\left(x\right)>0$, then $f\left(t\right)>0$ for $t$ in some neighborhood of $x$. Since a differentiable function is continuous, these claims still hold. We can go further, now, since the derivative gives us a bit more information. Let's compare the definitions to try to understand this.
+
+The continuity of $f$ at $x$ says that for any $\epsilon > 0$, there exists a $\delta > 0$ so that $$ \left| t-  x\right| < \delta  \implies \left| f\left(t\right) - f\left(x\right) \right| < \epsilon $$ That is, continuity at a point $x$ tells us that the function values can be made arbitrarily close to the function value $f\left(x\right)$ --- i.e., what we would expect --- by restricting $t$ to be sufficiently close to $x$ in the domain.
+
+Differentiability of $f$ at $x$ says that there exists a number $f'\left(x\right) \in \mathbb{R}$ so that for any $\epsilon > 0$, there is a $\delta > 0 $ with $$ \left| t-  x\right| < \delta  \implies \left| \frac{f\left(t\right) - f\left(x\right)}{t-x} - f'\left(x\right) \right| < \epsilon $$ This definition tells us that the slope of the secant line can be made arbitrarily close to the number $f'\left(x\right)$ by restricting us to be sufficiently close to $x$ in the domain.
+
+Thus, continuity deals with the function values directly while differentiability deals with rates of change of functions. 
+
+The key difference for many applications of differentiability is that knowledge about the derivative $f'\left(x\right)$, that is, the number, will inform us about possible function values $f\left(t\right)$ at $t$ nearby $x$; the notion of ``locality'' again rears its head.
+
+Intuitively, since $f'\left(x\right)$ is the limiting slope of the secant line ``at $x$,'' we expect that $f'\left(x\right)>0$ implies that $f\left(t\right) > f\left(x\right)$ for $t > x$ in some small region. We can make this official.
 
 \begin{prop}
-If $f:\mathbb{R}^n \rightarrow \mathbb{R}^m$ is differentiable at $a\in \mathbb{R}^n$, then this derivative is unique.
+Let $f$ be differentiable at $x \in \mathbb{R}$ and assume that $f'\left(x\right) > 0$. Then $f\left(t\right) > f\left(x\right)$ for $t \in \left(x,x+\delta\right)$ for some sufficiently small $\delta > 0$. Similarly, $f\left(t\right) < f\left(x\right)$ for $t\in \left(x-\delta,x\right)$.
 \end{prop}
 \begin{proof}
-	Let $f:\mathbb{R}^n \rightarrow \mathbb{R}^m$ be differentiable at $a \in \mathbb{R}^n$ and assume there are two derivatives $\lambda$ and $\mu$. Then 
-	\begin{align*}
-		\left\lVert \lambda\left(h\right) - \mu\left(h\right) \right\rVert & \leq \left\lVert \lambda\left(h\right) - f\left(a+h\right) + f\left(a\right) \right\rVert + \left\lVert \mu\left(h\right) - f\left(a+h\right) + f\left(a\right) \right\rVert
-	\end{align*}
-	and upon dividing by $\left\lVert h \right\rVert $ and taking the limit $h \rightarrow 0$, we obtain \[ \lim_{h\rightarrow 0} \frac{\left\lVert \lambda\left(h\right) - \mu\left(h\right) \right\rVert }{\left\lVert h \right\rVert } = 0 \]
-	Choosing arbitrary $x \in \mathbb{R}^n\setminus \left\{ 0 \right\} $, note that $tx \rightarrow 0 $ when $t \rightarrow 0$ ($t \in \mathbb{R}$). Then \[ 0 = \lim_{t\rightarrow 0} \frac{\left\lVert \lambda\left(tx\right) - \mu\left(tx\right) \right\rVert }{\left\lVert tx \right\rVert } = \lim_{t\rightarrow 0} \frac{\left| t\right| \left\lVert \lambda\left(x\right) - \mu\left(x\right) \right\rVert }{\left| t \right| \left\lVert x \right\rVert } = \frac{\left\lVert \lambda\left(x\right) - \mu\left(x\right) \right\rVert }{\left\lVert x \right\rVert } \] and so we have $\lambda\left(x\right) = \mu \left(x\right)$ for arbitrary $x\in \mathbb{R}^n$. Thus, the derivative is unique.
+This will be an almost obvious consequence of the definition of derivative. Since $f'\left(x\right) > 0$, we have for arbitrary $\epsilon >0 $ some $\delta >0$ with $$ \left| t - x \right| < \delta \implies \left| \frac{f\left(t\right)-f\left(x\right)}{t-x} - f'\left(x\right)\right| < \epsilon $$ Since we want to compare $f\left(t\right)$ and $f\left(x\right)$, we see them in the numerator and wish to get rid of the absolute value. We can do this by explicitly writing out what the absolute value means: $$ -\epsilon < \frac{f\left(t\right)-f\left(x\right)}{t-x} - f'\left(x\right) < \epsilon $$ or $$ f'\left(x\right)-\epsilon < \frac{f\left(t\right)-f\left(x\right)}{t-x} < f'\left(x\right) + \epsilon $$ Since, $\epsilon$ can be made arbitrarily small, and since $f'\left(x\right)>0$, we see that we can make the left-most terms positive by suitably restricting $t$; that is, we appeal to the definition of derivative again and choose $\epsilon = \frac{1}{2}f'\left(x\right)$ and choose the appropriate $\delta$. Thus, if $\left|t-x\right|<\delta$, then we now have $$ 0 < \frac{1}{2}f'\left(x\right) <  \frac{f\left(t\right)-f\left(x\right)}{t-x} $$ Lastly, we can restrict $t > x$ so that $ 0 < t-x < \delta $, or $ x < t < x+ \delta $, and we have $$ 0 < f\left(t\right) - f\left(x\right) $$ which is what we sought to prove. On the other hand, if we let $t<x$ so that $-\delta < t-x < 0$, or $  x-\delta < t < x$, we have $$ 0 > f\left(t\right) - f\left(x\right) $$ which was the other part of what we want to prove.
 \end{proof}
+
+In this example, we used information about how the function is changing at a point, instantaneously, to inform us about the relative values of the function near that point. With only continuity, we were unable to make such comparisons; we only knew that function values were arbitrarily close by.
+
+Another extremely helpful conclusion is that the derivative of a function is zero at a local extremum. This is particularly helpful in identifying potential local extrema of functions.
 
 \begin{prop}
-If $f:\mathbb{R}^n \rightarrow \mathbb{R}^m$ is differentiable at $a\in \mathbb{R}^n$, then it is continuous at $a$.
+Let $f$ have a local maximum at $x$. If $f$ is differentiable at $x$, then we have $f'\left(x\right)=0$.
 \end{prop}
 \begin{proof}
-\begin{align*}
-	\left\lVert f\left(a+h\right) - f\left(a\right) \right\rVert & \leq \left\lVert f\left(a+h\right) - f\left(a\right) - \lambda\left(h\right) \right\rVert + \left\lVert \lambda\left(h\right) \right\rVert
-\end{align*}
-so that \[ \left\lVert f\left(a+h\right) - f\left(a\right) \right\rVert \leq \left\lVert h \right\rVert \frac{\left\lVert f\left(a+h\right) - f\left(a\right) - \lambda\left(h\right) \right\rVert}{\left\lVert h \right\rVert} + \left\lVert \lambda\left(h\right) \right\rVert \]
-By taking the limit of both sides as $h\rightarrow 0$, the first term on the right-hand side is $0$, and the second term, containing the linear $\lambda$, goes to $0$ as well. Specifically, from a property of linear maps proved in the previous chapter, we have \[ \left\lVert \lambda\left(h\right) \right\rVert \leq M \left\lVert h \right\rVert \] for some constant $M$ which certainly tends toward $0$. Specifically, we have shown that \[ \left\lVert \lambda\left(h\right) \right\rVert \leq \left\lVert Df\left(a\right)\right\rVert \left\lVert h \right\rVert \] where $\left\lVert Df\left(a\right)\right\rVert$ is the squared entry-wise matrix norm of the derivative (matrix) of $f$ at $a$, which certainly exists (is finite). Thus, we have \[ \lim_{h\rightarrow 0} \left\lVert f\left(a+h\right) - f\left(a\right) \right\rVert = 0, \] establishing continuity of $f$ at $a$.
+We prove this directly. The proof would naturally proceed very similarly to that of the previous proposition; we instead simply use the results.
+
+Assume $f$ has a local maximum at $x$, then we have $f\left(t\right) < f\left(x\right)$ for all $t$ sufficiently near $x$. If $f'\left(x\right) >0$, then we would have $f\left(t\right)>f\left(x\right)$ for all $t\in\left(x,x+\delta\right)$, by the previous proposition. This would contradict the local maximum at $x$, so we know that $f'\left(x\right) \leq 0$.
+
+On the other hand, if $f'\left(x\right) < 0$, then we would have $f\left(t\right) > f\left(x\right)$ for all $t\in\left(x-\delta,x\right)$, by (an unproven analogue of) the previous proposition. This would again contradict the local maximum of $f$ at $x$, so we must have $f'\left(x\right) \geq 0$.
+
+Taken together, we see that we must have $f'\left(x\right) = 0$.
 \end{proof}
 
 
 
 
+
+\section{The Mean-value Theorem}
+A key result in elementary real analysis is the mean value theorem for derivatives. The idea is that we start with a closed interval $\left[a,b\right]\subset \mathbb{R}$ and consider the values of a function $f$ which is continuous on $\left[a,b\right]$ and differentiable on $\left(a,b\right)$. Given the function values at the interval endpoints, $f\left(a\right)$ and $f\left(b\right)$, we can draw a secant line between the endpoints $\left(a,f\left(a\right)\right)$ and $\left(b,f\left(b\right)\right)$. This secant line naturally has the slope $$ \frac{f\left(b\right)-f\left(a\right)}{b-a} $$ and the mean-value theorem asserts that we can always find some point within the interval, say $c\in \left(a,b\right)$, where the derivative of the function $f$ equals this slope of the secant line. As it will turn out, this theorem has numerous important applications (including the fundamental theorem of calculus), so it is important to understand.
+
+First, we prove a special case in which the secant line is horizontal (the slope is zero).
+
+\begin{theorem}[Rolle]
+Let $f$ be continuous on $\left[a,b\right]$ and differentiable on $\left(a,b\right)$, and $f\left(a\right) = f\left(b\right)$. Then there is some $c\in\left(a,b\right)$ with $$ f'\left(c\right) = 0 $$
+\end{theorem}
+\begin{proof}
+If $f$ is constant on $\left[a,b\right]$, then we are done, since every interior point of $\left[a,b\right]$ will have zero derivative.
+
+On the other hand, assume without loss of generality that there is some point $d \in \left(a,b\right)$ with $f\left(d\right) > f\left(a\right) $. 
+
+Since $f$ is a continuous function on a compact set, the image $f\left(\left[a,b\right]\right)$ is also compact; since compact subsets of $\mathbb{R}$ are exactly those which are closed and bounded, $f\left(\left[a,b\right]\right)$ is closed and bounded. Hence, $f$ is bounded above on $\left[a,b\right]$. Let $M = \sup_{x\in\left[a,b\right]} f\left(x\right) $. Since this image is closed, $M \in f\left(\left[a,b\right]\right)$, i.e., this supremum is actually a maximum of $f$ which is attained at some point, say $c$, in $\left[a,b\right]$: $f\left(c\right) = M$. Also, note that since we have $f\left(d\right) > f\left(a\right)$, we know that $c\neq a$ and $c\neq b$, so it occurs in the interior of the closed interval. Since $f$ has a maximum at $c$, we must have $f'\left(c\right)=0$, and we are done.
+
+The logic proceeds similarly if we considered the existence of some $d\in \left(a,b\right)$ with $f\left(d\right) < f\left(a\right)$, in which case we would deal with an infimum and obtain the same conclusion.
+\end{proof}
+
+
+We can use this special case to prove a more general version:
+\begin{theorem}[Mean-value Theorem]
+Let $f$ be continuous on $\left[a,b\right]$ and differentiable on $\left(a,b\right)$. Then there is some $c\in\left(a,b\right)$ with $$ f'\left(c\right) = \frac{f\left(b\right)-f\left(a\right)}{b-a} $$
+\end{theorem}
+\begin{proof}
+The standard trick is to look at an auxiliary function to which we can apply Rolle's theorem, but which involves the derivative $f'$ of $f$, so that we might extract the desired result. For example, we might try letting $h\left(t\right) = \alpha f \left(t\right) $ where $\alpha$ is a constant to be determined. Then we have $h'\left(t\right) = f'\left(t\right) $. Unfortunately, we do not have $h\left(a\right) = h\left(b\right)$, so we cannot apply Rolle's theorem to this choice of $h$.
+
+Instead, we may try a function such as $$ h\left(t\right) = f\left(t\right) - \alpha t $$ which has derivative $$ h'\left(t\right) = f'\left(t\right) - \alpha $$ By clever choice of $\alpha$, we may now ensure that Rolle's theorem applies to $h$: $h\left(a\right) = h\left(b\right)$ requires $$ f\left(a\right) - \alpha a = f\left(b\right) - \alpha b $$ or $$ \alpha = \frac{f\left(b\right) - f\left(a\right)}{b-a} $$ With this choice of $\alpha$, Rolle's theorem applies to $h$ and so we have a $c\in\left(a,b\right)$ with $$ h'\left(c\right) = f'\left(c\right) - \frac{f\left(b\right) - f\left(a\right)}{b-a} = 0, $$ which proves the theorem.
+\end{proof}
+
+
+
+\begin{theorem}[Extended Mean-value Theorem]
+Let $f,g$ be continuous on $\left[a,b\right]$ and differentiable on $\left(a,b\right)$. Then there is some $c\in \left(a,b\right)$ with $$ \left[f\left(b\right)-f\left(a\right)\right]g'\left(c\right) = \left[g\left(b\right)-g\left(a\right)\right]f'\left(c\right) $$
+\end{theorem}
+\begin{proof}
+Note that if we divide both sides of the result by $b-a$, we obtain $$ \frac{f\left(b\right)-f\left(a\right)}{b-a}g'\left(c\right) = \frac{g\left(b\right)-g\left(a\right)}{b-a}f'\left(c\right) $$ which reduces to the standard mean-value theorem result when $g\left(t\right) = t$ is the identity function. We use nearly the same technique to prove this version: come up with a suitable function to which Rolle's theorem applies, and which gives us the final result.
+
+First, assume that $g\left(a\right) \neq g\left(b\right)$; otherwise, the result follows directly from Rolle's theorem applied to $g$. Then let $$ h\left(t\right) = f\left(t\right) - \alpha g\left(t\right). $$ To force Rolle's theorem to apply, we need $h\left(a\right) = h\left(b\right)$, which requires $$ \alpha = \frac{f\left(b\right)  - f\left(a\right)}{g\left(b\right) - g\left(a\right)} $$ which is where the assumption that $g\left(b\right) \neq g\left(a\right) $ becomes handy. Then we apply Rolle's theorem to $h$ to conclude that there is a $c\in \left(a,b\right)$ such that $$h'\left(c\right) = f'\left(c\right) - \frac{f\left(b\right)-f\left(a\right)}{g\left(b\right)-g\left(a\right)}g'\left(c\right) = 0$$ and the proof is complete.
+
+(Note that we could also have used $$ h\left(t\right) = \left[f\left(b\right)-f\left(a\right)\right]g\left(t\right) - \left[g\left(b\right)-g\left(a\right)\right]f\left(t\right) $$ as is done in~\cite{rudin1964principles}.)
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+\section{Taylor's Theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Integration}
+
+\section{Darboux Integral (Green-blue)}
+One of the most rudimentary types of integrals is defined in terms of Darboux sums. This is the definition of integral most commonly found in introductory calculus courses, but formalized, and is equivalent to the Riemann integral (discussed next). Upper and lower Darboux sums are computed over a partition, and the infimum and supremum of these, respectively, are taken and are the upper and lower Darboux integrals. When these are equal, the function is Darboux integrable, and the Darboux integral is the common value.
+
+
+
+\section{Riemann Integral (Red)}
+The Riemann integral, while equivalent to the Darboux integral, is usually formulated in a more complicated manner. We start with a function on a closed interval, together with a tagged partition of that interval. A tagged partition is a normal partition which also comes with a set of points, each of which lies in a distinct interval of the partition. The Riemann sum of the function over this interval with respect to the tagged partition is $$ \sum_{i=1}^n f\left(t_i\right)\left(x_{i}-x_{i-1}\right) $$
+
+(Note that the Riemann sum is related to the Darboux sums, which instead of the tagged function values $f\left(t_i\right)$ use the supremum and infimum of the function over the intervals. In cases where $f$ is continuous on the intervals, the intervals (being compact) map to a compact image under the continuous $f$, and so the image is closed and bounded; $f$ thus attains its maximum and minimum on each interval, and we can take these values as the tags to obtain a Riemann sum equal to the upper and lower Darboux sums, respectively.)
+
+The integral involves, as expected, a limiting process over smaller and smaller partitions. We must make this precise. Similar to the derivative, the Riemann integral of $f$ over an interval is usually defined as some number, $I$, such that we can make the Riemann sums arbitrarily close to $I$ by restricting the mesh of the partition (the maximum subinterval length) to be less than some value. This may look something like the following: $$ I = \int_a^b f\left(x\right)\, dx := \lim_{n\rightarrow \infty} \sum_{k=1}^n f\left(x_k^*\right) \Delta x_k $$ and where $\max \Delta x_k \rightarrow 0$ as $n\rightarrow \infty$.  More consistent with the $\epsilon-\delta$ definition is the following: $f$ is Riemann integrable with Riemann integral $I$ if for any $\epsilon >0$ there is some $\delta >0$ with $$ \text{mesh}\left(P\right) < \delta \implies \left| RS\left(f,P\right) - I\right| < \epsilon $$ where $P$ indicates a partition and $RS\left(f,P\right)$ is the Riemann sum of $f$ over the partition $P$.
+
+
+Note that this definition makes no mention of a particular partition: it claims that as we shrink any partition, we eventually get close to the value.
+
+\begin{prop}
+The Riemann integral of $f:\left[a,b\right]\rightarrow \mathbb{R}$, when it exists, is uniquely defined.
+\end{prop}
+\begin{proof}
+The proof is extremely similar to that of the uniqueness of functional limits. Assume by way of contradiction that there are two integrals, say $I$ and $I'$. Then let $\epsilon>0$. By the definition of the integral, we know that we have $\delta >0$ so that any tagged partition $P$ with $\text{mesh}\left(P\right) < \delta$ has $\left|RS\left(f,P\right)-I\right| < \frac{\epsilon}{2}$. Similarly, there is a $\delta' >0$ so that any tagged partition $P$ with $\text{mesh}\left(P\right) < \delta'$ has $\left|RS\left(f,P\right)-I'\right| < \frac{\epsilon}{2}$. Not surprisingly, take $\text{mesh}\left(P\right) < \min\left\{\delta,\delta'\right\}$ and obtain  $$ \left| I-I'\right| \leq \left| RS\left(f,P\right)-I\right| + \left|RS\left(f,P\right)-I'\right| < 2\frac{\epsilon}{2} = \epsilon $$ which proves that $I=I'$, since $\epsilon>0$ can be made arbitrarily small.
+\end{proof}
+
+Let's try to work through an example, to see this definition in action.
+
+
+\begin{prop}
+$ \int_a^b x\, dx = \frac{b^2-a^2}{2}$ for $0\leq a < b$.
+\end{prop}
+\begin{proof}
+Let $P = \left\{ \left[x_{i-1},x_i\right] \right\}_{i=1}^n$ be an arbitrary tagged partition of $\left[a,b\right]$. Given $\epsilon>0$, we wish to choose a $\delta>0$ to force $\left|RS\left(f,P\right) - \frac{b^2-a^2}{2}\right|<\epsilon$ for $\text{mesh}\left(P\right)<\delta$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{theorem}
+a function $f:\left[a,b\right]\rightarrow \mathbb{R}$ is Darboux integrable if and only if it is Riemann integrable. If so, the integrals are equal.
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Riemann-Stieltjes Integral}
+This is the integral which is introduced in~\cite{rudin1964principles}.
+
+
+\section{Lebesgue Integral}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Fundamental Theorems}
+
+\section{Fundamental Theorem of Calculus}
+
+\begin{theorem}[FTOC I~\cite{rudin1964principles}]
+Let $f:\left[a,b\right]\rightarrow \mathbb{R}$. Then $$F\left(x\right)= \int_a^x f\left(t\right)\, dt $$ is continuous on $\left[a,b\right]$ (as a function of $x$). If $f$ continuous at $x_0 \in \left[a,b\right]$, then $F$ is differentiable at $x_0$ with $$ F'\left(x_0\right) = f\left(x_0\right).$$
+\end{theorem}
+\begin{proof}
+Since we assume $f$ is finite, it is bounded on $\left[a,b\right]$. Let $M$ be such a bound. We want to show continuity of $F$ at an arbitrary point, say $x \in \left[a,b\right]$. The definition of continuity tells us to look at $$ \left| F\left(t\right) - F\left(x\right)\right| = \left| \int_x^y f\left(t\right)\, dt \right| \leq M \left|y-x\right| < \epsilon $$ where we used a property of integrals for the central inequality. Thus, taking $\delta = \epsilon/M$ gives the desired continuity of $F$.
+
+Next, we assume that $f$ is continuous at $x_0$. We want to prove a derivative of $F$, so let's resort to the definition; let $\epsilon >0$, and consider \begin{align}  \left| \frac{F\left(x\right)-F\left(x_0\right)}{x-x_0} - f\left(x_0\right)\right|  & = \left| \frac{\int_{x_0}^x f\left(u\right)\, du }{x-x_0} - \left(x-x_0\right)\frac{f\left(x_0\right) }{x-x_0}\right| \\ & = \left| \frac{\int_{x_0}^x f\left(u\right)\, du }{x-x_0} - \frac{ \int_{x_0}^x f\left(x_0\right)\, du }{x-x_0}\right| \\ & = \left| \frac{\int_{x_0}^x \left[f\left(u\right) - f\left(x_0\right)\right]\, du }{x-x_0} \right| \end{align} where $u\in \left[x_0, x\right]$ is the dummy variable of integration. Note that the difference in the integrand is similar to what is usually seen in the definition of continuity; further, we are assuming that $f$ is continuous at $x_0$. Hence, we can make $u$ close to $x_0$ by making $x$, the upper limit of integration, close to $x_0$. Pick $\delta$ so that $$ \left|x-x_0\right|<\delta \implies \left| f\left(x\right) - f\left(x_0\right)\right| < \epsilon . $$ Then we have \begin{align}  \left| \frac{F\left(x\right)-F\left(x_0\right)}{x-x_0} - f\left(x_0\right)\right|  & = \left| \frac{\int_{x_0}^x \left[f\left(u\right) - f\left(x_0\right)\right]\, du }{x-x_0} \right| \\ & < \frac{\epsilon\left|x-x_0\right|}{\left|x-x_0\right|} = \epsilon \end{align} This is the definition of derivative, and we have shown that $$ F'\left(x_0\right) = f\left(x_0\right).$$ 
+\end{proof}
+
+\begin{corollary}[\cite{spivak2008calculus}]
+Let $f:\left[a,b\right]\rightarrow \mathbb{R}$ be continuous and assume we have a function $F$ such that $f=F'$. Then $$ \int_a^b f\left(t\right)\, dt = F\left(b\right) - F\left(a\right). $$
+\end{corollary}
+\begin{proof}
+Write $G\left(x\right) = \int_a^x f\left(t\right)\, dt $. Then we have $G'\left(x\right) = f\left(x\right) = F'\left(x\right)$ by the FTOC I, so that we have $G = F + c$ for some $c \in \mathbb{R}$. Since $G\left(a\right) = 0$, $c= -F\left(a\right)$. Hence, we have $$G\left(x\right) = F\left(x\right)-F\left(a\right) = \int_a^x f\left(t\right)\, dt $$ which is what we sought to prove.
+\end{proof}
+Note: this should not be confused with a definition for the integral. In fact, it may be that a function is integrable but not the derivative of another function. Thus, we should think of this as a shortcut for computing an integral: if we know an antiderivative for $f$, then we can compute the integral easily.
+
+\begin{theorem}[FTOC II~\cite{rudin1964principles}]
+Let $f:\left[a,b\right]\rightarrow \mathbb{R}$ be integrable and assume we have a function $F$, differentiable on $\left[a,b\right]$, such that $F'=f$. Then we have $$ \int_a^b f\left(t\right)\, dt = F\left(b\right) - F\left(a\right). $$
+\end{theorem}
+Note: this looks similar to the previous corollary, but differs in that we do not assume that $f$ is continuous! Thus, this is a stronger result, since we have a weaker hypothesis (since integrability does not necessitate continuity).
+\begin{proof}
+Our goal is to compute the integral on the left in terms of the antiderivative $F$. We will apply the mean-value theorem to $F$ on each subinterval of a partition. Let $\epsilon >0$ and $P= \left\{ \left[x_{i-1},x_i\right]\right\}_{i=1}^n$ be a tagged partition of $\left[a,b\right]$ such that $$ \left| \sum_{i=1}^n f\left(t_i\right) \Delta x_i - \int_a^b f\left(x\right)\, dx\right| < \epsilon $$ (this is just the definition of Riemann integrability of $f$). 
+
+Next, consider the partition subinterval $\left[x_{i-1},x_i\right]$. Then we have the tags $t_0,t_1,\ldots,t_n$ so that $$ f\left(t_i\right) = F'\left(t_i\right) = \frac{F\left(x_i\right)-F\left(x_{i-1}\right)}{\Delta x_i} $$ or, upon rearranging, we have $$ f\left(t_i\right)\Delta x_i = F\left(x_i\right) - F\left(x_{i-1}\right) $$ and we have the telescoping sum $$ \sum_{i=1}^n f\left(t_i\right)\Delta x_i = F\left(b\right) - F\left(a\right). $$ Ultimately, then, we have $$ \left| F\left(b\right)- F\left(a\right) - \int_a^b f\left(x\right)\, dx\right| < \epsilon $$ where $\epsilon >0 $ is arbitrary. Thus, $\int_a^b f\left(x\right)\, dx = F\left(b\right)-F\left(a\right)$, and we are done.
+\end{proof}
+
+
+
+
+%\cite{rudin1964principles, spivak2008calculus, apostol1991calculus}
+
+
+
+\bibliography{refs}{}
+\bibliographystyle{alpha} % plain, alpha, apalike
 
 
 
