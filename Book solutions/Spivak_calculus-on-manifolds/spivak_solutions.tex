@@ -52,7 +52,7 @@
 \section*{Chapter 1}
 
 
-\begin{problem}{1.1} Prove that $\left|x\right| \leq \sum_{i=1}^n \left| x^i\right|$.
+\begin{problem}{1-1} Prove that $\left|x\right| \leq \sum_{i=1}^n \left| x^i\right|$.
 \end{problem}
 
 \begin{proof}
@@ -69,21 +69,34 @@ Taking the square root, the statement is obtained.
 
 
 
-\begin{problem}{1.3}
-Prove that $\left|x-y\right| \leq \left|x\right| + \left|y\right|$. When does equality hold?
+\begin{problem}{1-2}
+When does equality hold in Theorem 1-1(3)? \textit{Hint}: Re-examine the proof; the answer is not ``when $x$ and $y$ are linearly dependent.''
 \end{problem}
-
 \begin{proof}
-Let $x,y \in \mathbb{R}^n$. Then we have
-$$ \left|x-y\right| = \left|x + \left(-y\right)\right| \leq \left|x\right| + \left| -y\right| = \left|x\right| + \left| y\right| $$
+In the proof, the key inquality assumption we make is that $$ \sum_{i=1}^n x^i y^i \leq \left|x\right|\left|y\right| $$ which follows from the Cauchy-Schwarz inequality of 1-1(2). Equality will hold for the triangle inequality if and only if equality holds for this inequality. 
+
+If equality holds, then we have $ \sum_{i=1} x^i y^i = \left|x\right|\left|y\right|$, and so $\left|\sum_{i=1} x^i y^i \right| = \left|x\right|\left|y\right|$, and by 1-1(2) we have that $x$ and $y$ are linearly dependent. 
+
+In the other direction, assume that $x$ and $y$ are linearly dependent, i.e., there is some $\lambda \in \mathbb{R}\setminus \left\{0\right\}$ with $y = \lambda x$. Then the key inequality looks like $$ \lambda \left|x\right|^2   = \sum_{i=1}^n x^i y^i \leq \left|x\right|\left|y\right| = \left|\lambda\right| \left|x\right|^2 $$ so that equality holds iff $ \lambda = \left|\lambda\right|$, i.e., $\lambda >0$. This means that $x$ and $y$ ``point in the same direction.''
 \end{proof}
 
 
 
-\begin{problem}{1.4}
+
+
+\begin{problem}{1-3}
+Prove that $\left|x-y\right| \leq \left|x\right| + \left|y\right|$. When does equality hold?
+\end{problem}
+\begin{proof}
+Let $x,y \in \mathbb{R}^n$. Then we have
+$$ \left|x-y\right| = \left|x + \left(-y\right)\right| \leq \left|x\right| + \left| -y\right| = \left|x\right| + \left| y\right| $$ This is an easy application of the triangle inequality.
+\end{proof}
+
+
+
+\begin{problem}{1-4}
 Prove that $\left| \left|x\right|- \left|y\right| \right| \leq \left|x-y\right|$. 
 \end{problem}
-
 \begin{proof}
 This is commonly referred to as the reverse triangle inequality. It is rather easily seen as a corollary to the standard triangle inequality. Let $x,y \in \mathbb{R}^n$. Then note that
 $$ \left| x\right| = \left| \left(x-y\right) + y \right| \leq \left|x-y\right| + \left|y\right| $$ Upon subtraction, we obtain
@@ -99,10 +112,9 @@ $$ \left| \left|x\right| - \left|y\right| \right| \leq \left|x-y\right| $$
 
 
 
-\begin{problem}{1.5}
+\begin{problem}{1-5}
 The quantity $\left|y-x\right|$ is called the distance between $x$ and $y$. Prove and interpret geometrically the ``triangle inequality'' $\left|z-x\right| \leq \left|z-y\right| + \left|y-x\right|$.
 \end{problem}
-
 \begin{proof}
 Let $x,y,z \in \mathbb{R}^n$. Then
 \begin{equation*}
@@ -118,10 +130,23 @@ The moniker ``triangle inequality'' is obvious if we interpret $x$, $y$, and $z$
 
 
 
+\begin{problem}{1-6}
+Let $f$ and $g$ be integrable on $\left[a,b\right]$.
+\begin{itemize}
+	\item Prove that $\left|\int_a^b f\cdot g \right| \leq \left(\int_a^b f^2\right)^{1/2}\cdot \left(\int_a^b g^2\right)^{1/2}$. \textit{Hint}: Consider separately the cases $0 = \int_a^b \left(f-\lambda g\right)^2$ for some $\lambda \in \mathbb{R}$ and $0 < \int_a^b \left(f-\lambda g\right)^2$ for all $\lambda \in \mathbb{R}$.
+\end{itemize}
+\end{problem}
+\begin{proof}
+\begin{itemize}
+	\item As the hint suggests, we first consider the case $0 = \int_a^b \left(f-\lambda g\right)^2$ for some $\lambda$. Multiplying out the integrand, we have $$ 0 = \int_a^b \left(f^2 - 2\lambda f\cdot g + \lambda^2 g^2 \right) =  \left( \int_a^b g^2\right) \lambda^2 - 2\left(\int_a^b f\cdot g\right) \lambda + \left(\int_a^b f^2\right) $$ This is, again, a quadratic equation in $\lambda$, and the equality states that this quadratic function has a root at this particular $\lambda$. That is, assume $\int_a^b g^2 \neq 0$, we have $$ \lambda = \frac{\left(\int_a^b f\cdot g\right) \pm \sqrt{\left(\int_a^b f\cdot g\right)^2 - \left(\int_a^b f^2\right)\left(\int_a^b g^2\right) }}{\left(\int_a^b g^2 \right)} $$ In order for this real root $\lambda$ to exist, we must have the discriminant non-negative, i.e., $$\left(\int_a^b f\cdot g\right)^2 - \left(\int_a^b f^2\right)\left(\int_a^b g^2\right) \geq 0 $$ which, upon taking the square root, is what we sought to prove.
+\end{itemize}
+\end{proof}
 
 
 
-\begin{problem}{1.7}
+
+
+\begin{problem}{1-7}
 A linear transformation $T: \mathbb{R}^n \rightarrow \mathbb{R}^n$ is norm preserving if $\left| T\left(x\right) \right| = \left| x \right|$, and inner product preserving if $\left\langle T\left(x\right), T\left(y\right) \right\rangle = \left\langle x,y\right\rangle$.
 \begin{itemize}
 	\item Prove that $T$ is norm preserving if and only if $T$ is inner product preserving. \\
@@ -131,7 +156,7 @@ A linear transformation $T: \mathbb{R}^n \rightarrow \mathbb{R}^n$ is norm prese
 
 \begin{proof}
 \begin{itemize}
-	\item Let $T$ be norm preserving. Then, by the polarization identity,
+	\item Let $T$ be norm preserving. Recall that the polarization identity relates the inner product with the norm. Thus, by the polarization identity,
 	\begin{equation*}
 	\begin{split}
 	\left\langle T\left(x\right), T\left(y\right) \right\rangle & = \frac{\left|T\left(x\right) + T\left(y\right) \right|^2 - \left|T\left(x\right)-T\left(y\right)\right|^2 }{4} \\
@@ -141,18 +166,18 @@ A linear transformation $T: \mathbb{R}^n \rightarrow \mathbb{R}^n$ is norm prese
 	\end{split} 
 	\end{equation*}
 	hence it is inner product preserving. \\
-	Let $T$ be inner product preserving. Then
+	Conversely, let $T$ be inner product preserving. Then
 	$$ \left|T\left(x\right)\right|^2 = \left\langle T\left(x\right), T\left(x\right) \right\rangle = \left\langle x, y\right\rangle = \left|x\right|^2 $$ and so it is norm preserving. \\
 	\item Let $T$ be such a linear transformation. To show that it is injective, let $x,y\in \mathbb{R}^n$ such that $T\left(x\right) = T\left(y\right)$. Then we want to show that $x$ is equal to $y$. Thus, consider the distance between these points:
 	$$ \left|x-y\right| = \left| T\left(x-y\right) \right| = \left|T\left(x\right) - T\left(y\right) \right| = 0$$
 	by the norm preserving property and linearity of $T$. Hence, $x=y$ and $T$ is injective. Let $u\in \mathbb{R}^n$ be some element in the range of $T$. Then since $T$ is injective, we can find some $x\in\mathbb{R}^n$ such that $T\left(x\right) = u$, i.e., $x = T^{-1}\left(u\right)$ (basically, $T$ is surjective on its range). We want to consider the properties of $T^{-1}$ (we are looking at a specific point where we are saying it exists --- is there some general theorem about linear injective maps which guarantees its existence?). Well,
-	$$ \left| u \right| = \left| T \circ T^{-1} \left(u\right) \right| = \left| T \left(T^{-1}\left(u\right)\right) \right| = \left| T^{-1}\left(u\right) \right| $$ and we are done.
+	$$ \left| u \right| = \left| T \circ T^{-1} \left(u\right) \right| = \left| T \left(T^{-1}\left(u\right)\right) \right| = \left| T^{-1}\left(u\right) \right|, $$ i.e., $T^{-1}$ is norm-preserving, and we are done.
 \end{itemize}
 \end{proof}
 
 
 
-\begin{problem}{1.8}
+\begin{problem}{1-8}
 If $x,y \in \mathbb{R}^n$ are non-zero, the angle between $x$ and $y$, denoted $\angle\left(x,y\right)$, is defined as $\arccos \left( \left\langle x,y\right\rangle / \left|x\right| \cdot \left|y\right| \right)$, which makes sense by Theorem 1-1 (2). The linear transformation $T$ is angle preserving if $T$ is 1-1, and for $x,y \neq 0$ we have $\angle \left(Tx,Ty\right) = \angle\left(x,y\right)$.
 \begin{itemize}
 	\item Prove that if $T$ is norm preserving, then $T$ is angle preserving. \\
@@ -173,7 +198,10 @@ If $x,y \in \mathbb{R}^n$ are non-zero, the angle between $x$ and $y$, denoted $
 	\end{split}
 	\end{equation*}
 Hence $T$ is angle preserving. \\
-	\item Let $\left\{ x_i \right\}_{i=1}^n$ be such a basis and $\left\{ \lambda_i \right\}_{i=1}^n$ be the numbers in the hypothesis. 
+	\item Let $\left\{ x_i \right\}_{i=1}^n$ be such a basis and $\left\{ \lambda_i \right\}_{i=1}^n$ be the numbers in the hypothesis. For one direction, assume that $\left|\lambda_i\right| = \alpha > 0$ for all $i=1,2,\ldots,n$ (if $\lambda = 0$, then $Tx = 0$ for all $x\in\mathbb{R}^n$). Then since $\left\{x_i\right\}_{i=1}^n$ is a basis, we can write an arbitrary vector $v\in \mathbb{R}^n$ as $$ v = v^1 x_1 + \ldots + v^n x_n $$ so that $$ Tv = v^1 Tx_1 + \ldots + v^n Tx_n = \alpha \left(v^1 x_1 + \ldots + v^n x_n\right) = \alpha v. $$ That is, this $T$ merely scales vectors uniformly in all directions. Then we have $$ \frac{\left\langle Tx, Ty \right\rangle }{\left|Tx\right| \left|Ty\right|} = \frac{\alpha^2 \left\langle x, y\right\rangle}{\alpha^2 \left|x\right|\left|y\right|} = \frac{\left\langle x, y\right\rangle}{\left|x\right|\left|y\right|}  $$ so that $T$ is clearly angle-preserving.
+	
+	Conversely, assume $T$ is angle-preserving. Then we know that it is also norm-preserving. Thus, consider applying $T$ to the basis vectors $x_i$; we have $\left|Tx_i\right| = \left|x_i\right|$, and by the hypothesis, this means that $$\left|x_i\right| = \left|Tx_i\right| = \left|\lambda_i x_i\right| = \left|\lambda_i\right| \left|x_i\right| $$ so that if $\left|x_i\right| \neq 0$, we have $\lambda_i = 1$ for every $i$. \\
+	\item Notice that we have considered angle preserving transformations on $\mathbb{R}^N$ which scale each basis vector uniformly. This makes senses, since these scalings would not affect angles. On the other hand, angle-preserving transformations include rotations as well as scaling (no translations!).
 \end{itemize}
 
 \end{proof}
@@ -183,7 +211,7 @@ Hence $T$ is angle preserving. \\
 
 
 
-\begin{problem}{1.9}
+\begin{problem}{1-9}
 If $0 \leq \theta < \pi$, let $T: \mathbb{R}^2 \rightarrow \mathbb{R}^2$ have the matrix $\left( \begin{array}{rr} \cos \theta & \sin \theta \\ -\sin \theta & \cos \theta \end{array} \right)$. Show that $T$ is angle preserving and if $x\neq 0$, then $\angle \left(x, Tx\right) = \theta $.
 \end{problem}
 
@@ -199,7 +227,6 @@ Let $x = \left(x_1,x_2\right)^T \in \mathbb{R}^2$. Then
 & = \left|x\right|^2
 \end{split}
 \end{equation*}
-\end{proof}
 Thus, $T$ is norm preserving and so also angle preserving. 
 
 To look at the angle between $x$ and $T\left(x\right)$, we must look at the arc cosine of the following quantity:
@@ -214,49 +241,34 @@ Hence, the angle between $x$ and $Tx$ is
 \begin{equation*}
 \angle \left(x,Tx\right) = \arccos \left( \frac{\left\langle x, Tx\right\rangle }{\left|x\right|\left|Tx\right|} \right) = \arccos \left(\cos \theta \right) = \theta 
 \end{equation*}
-
+\end{proof}
 
 
 
  
-\begin{problem}{1.10} %You can use theorem, proposition, exercise, or reflection here.  Modify x.yz to be whatever number you are proving
-
+\begin{problem}{1-10} 
 If $T:\mathbb{R}^m \rightarrow \mathbb{R}^n$ is a linear transformation, show that there is a number $M$ such that $\left| T\left(h\right)\right| \leq M \left|h\right|$ for $h \in \mathbb{R}^m$. \textit{Hint}: Estimate $\left|T\left(h\right)\right|$ in terms of $\left|h\right|$ and the entries in the matrix of $T$.
 \end{problem}
  
 \begin{proof}
 The statement is intuitively obvious: it makes sense that a linear map between two finite-dimensional vector spaces cannot just take a vector anywhere, but instead is bounded above by some scalar multiple of (the magnitude of) that vector. Keep in mind that we can write each component of the matrix-vector product $T\left(h\right) = T h$ as a sum (inner product) of a particular row of $T$ with $h$:
-$$\left[ Th\right]_j = T_{j*} h = \sum_{i=1}^m T_{ji} h_i $$
-Taking the Euclidean magnitude of this product, we have
+$$\left[ Th\right]_j = T_{j*} h = T_{*j}^Th = \left\langle T_{*j}, h\right\rangle $$ With this in hand, the squraed Euclidean norm of the product $Th$ is a sum of squares of these inner products: $$ \left| Th\right|^2 = \sum_{i=1}^n  \left\langle T_{*j}, h\right\rangle^2 $$ We can use the Cauchy-Schwarz inequality to bound the inner product on the right:
 \begin{equation*}
 \begin{split}
-\left| T\left(h\right) \right| & = \left( \sum_{j=1}^n \left[Th\right]_j^2 \right)^{1/2} \\
-& = \left( \sum_{j=1}^n \left( \sum_{i=1}^m T_{ji}h_i \right)^2 \right)^{1/2} \\
-& \leq \left( \sum_{j=1}^n \left( \sum_{i=1}^m \left|T_{ji}\right| \left| h_i \right| \right)^2 \right)^{1/2} \\
+\left| Th\right|^2 & = \sum_{i=1}^n  \left\langle T_{*j}, h\right\rangle^2  \\
+& \leq \sum_{i=1}^n \left( \left|T_{*j}\right|\left|h\right|\right)^2 \\
+& = \sum_{i=1}^n \left|T_{*j}\right|^2 \left|h\right|^2 \\
+& = \left|h\right|^2 \left(\sum_{i=1}^n \left|T_{*j}\right|^2\right) \\
+& = M^2 \left|h\right|^2
 \end{split}
 \end{equation*}
-Note that $\left|h\right|^2 = \left|h_1\right|^2+ \cdots + \left|h_m\right|^2$ and so $\left|h_i\right| < \left|h\right|$ for each $i=1,\ldots,m$. Also, define $\tilde{T_j} = \max \left\{ \left|T_{j1}\right|, \left| T_{j2}\right|,\ldots,\left|T_{jm}\right| \right\}$; that is, $\tilde{T_j}$ is the maximum magnitude of the entries in the $j$th row of $T$. Then
-\begin{equation*}
-\begin{split}
-\left|T\left(h\right)\right| & \leq \left( \sum_{j=1}^n \left(  \sum_{i=1}^m \tilde{T_j} \left|h\right| \right)^2 \right)^{1/2} \\
-& \leq \left( \sum_{j=1}^n  m^2 \left|h\right|^2 \tilde{T_j}^2 \right)^{1/2} \\
-\end{split}
-\end{equation*}
-Since both multiplicands in the innermost sum are constant over the index of summation. Similarly, we can define $\tilde{T} = \max \left\{ \tilde{T_1}, \tilde{T_2}, \ldots, \tilde{T_n} \right\}$; that is, $\tilde{T}$ is the maximum entry magnitude in $T$. Then
-\begin{equation*}
-\begin{split}
-\left|T\left(h\right)\right| & \leq \left( \sum_{j=1}^n m^2 \left|h\right|^2 \tilde{T}^2 \right)^{1/2} \\
-& =m\sqrt{n}\tilde{T} \left|h\right| \\
-= M\left| h\right|
-\end{split}
-\end{equation*}
-where $M = m\sqrt{n}\tilde{T}$ is a constant involving only the dimensions of the mapping and the entries of $T$. Hence, the statement is proven.
+where we have defined $M^2$ as the quantity in parentheses. Then, taking the square root, we have $$ \left|Th\right| \leq M\left|h\right|. $$
 \end{proof}
  
  
  
  
-\begin{problem}{1.11}
+\begin{problem}{1-11}
 If $x,y\in \mathbb{R}^n$ and $z,w\in \mathbb{R}^m$, show that $\left\langle \left(x,z\right),\left(y,w\right) \right\rangle = \left\langle x,y \right\rangle + \left\langle z,w\right\rangle$ and $\left|\left(x,z\right)\right| = \sqrt{\left|x\right|^2+\left|z\right|^2}$. Note that $\left(x,z\right)$ and $\left(y,w\right)$ denote points in $\mathbb{R}^{n+m}$.
 \end{problem}
  
@@ -294,11 +306,11 @@ and, taking the square root of both sides, the statement holds.
  
  
  
- \begin{problem}{1.12} Let $\left(\mathbb{R}^n\right)^*$ denote the dual space of the vector space $\mathbb{R}^n$. If $x\in\mathbb{R}^n$, define $\phi_x \in \left(\mathbb{R}^n\right)^*$ by $\phi_x \left(y\right) = \left\langle x, y\right\rangle$. Define $T:\mathbb{R}^n \rightarrow \left(\mathbb{R}^n\right)^*$ by $T\left(x\right) = \phi_x$. Show that $T$ is a 1-1 linear transformation and conclude that every $\phi \in \left(\mathbb{R}^n\right)^*$ is $\phi_x$ for a unique $x\in \mathbb{R}^n$.
+ \begin{problem}{1-12} Let $\left(\mathbb{R}^n\right)^*$ denote the dual space of the vector space $\mathbb{R}^n$. If $x\in\mathbb{R}^n$, define $\phi_x \in \left(\mathbb{R}^n\right)^*$ by $\phi_x \left(y\right) = \left\langle x, y\right\rangle$. Define $T:\mathbb{R}^n \rightarrow \left(\mathbb{R}^n\right)^*$ by $T\left(x\right) = \phi_x$. Show that $T$ is a 1-1 linear transformation and conclude that every $\phi \in \left(\mathbb{R}^n\right)^*$ is $\phi_x$ for a unique $x\in \mathbb{R}^n$.
 \end{problem}
  
  \begin{proof}
- Given a point $x\in \mathbb{R}^n$, we can define a dual vector space element $\phi_x$ which is (by definition of the dual space) a linear function from $\mathbb{R}^n$ to $\mathbb{R}$. The problem statement defines a mapping $T$ which actually performs this assignment, i.e., it takes a point in $x \in \mathbb{R}^n$ and returns the dual vector $T\left(x\right) = \phi_x$. We want to show that this mapping $T$ assigning dual vectors to vectors in the obvious way, through the inner product, is linear and injective.
+ Given a point $x\in \mathbb{R}^n$, we can define a dual vector space element $\phi_x$ which is (by definition of the dual space) a linear function from $\mathbb{R}^n$ to $\mathbb{R}$. The problem statement defines a mapping $T$ which actually performs this assignment, i.e., it takes a point in $x \in \mathbb{R}^n$ and returns the dual vector $T\left(x\right) = \phi_x$. We want to show that this mapping $T$ assigning dual vectors to vectors in the obvious way, through the inner product, is linear and injective. The last statement of the proof is that of surjectivity, and taken together we are showing that $\mathbb{R}^n$ and $\left(\mathbb{R}^n\right)^*$ are isomorphic (AKA a linear bijection).
  
  First, let $x,y \in \mathbb{R}^n$ and $\alpha, \beta \in \mathbb{R}$. Then $T$ gives
 $$ T\left(\alpha x + \beta y \right) = \phi_{\alpha x + \beta y} $$
@@ -336,7 +348,9 @@ Note that each of the values $\phi\left(e_i\right)$ are constant, independent of
 \begin{equation*}
 \phi\left(z\right) = \left\langle x, z \right\rangle = \phi_x \left(z\right)
 \end{equation*}
-where $x = \left( \phi\left(e_1\right), \phi\left(e_2\right), \ldots, \phi\left(e_n\right) \right)$. Thus we have identified an $x\in \mathbb{R}^n$ giving rise to our arbitrary dual vector $\phi$ through this inner product construction. Uniqueness of this $x$ follows as before, by operating this dual vector on the standard basis vectors.
+where $x = \left( \phi\left(e_1\right), \phi\left(e_2\right), \ldots, \phi\left(e_n\right) \right)$. Thus we have identified an $x\in \mathbb{R}^n$ giving rise to our arbitrary dual vector $\phi$ through this inner product construction. Uniqueness of this $x$ follows as before, by operating this dual vector on the standard basis vectors. (NOTE: we can probably trivialize this part of the proof via some theorem on linear functions and injectivity implying surjectivity.)
+
+We have shown that the function $ T:\mathbb{R}^n \rightarrow \left(\mathbb{R}^n\right)^*$ is a linear bijection, or isomorphism, between $n$-dimensional Euclidean space and its dual space.
 \end{proof}
  
  
@@ -344,11 +358,9 @@ where $x = \left( \phi\left(e_1\right), \phi\left(e_2\right), \ldots, \phi\left(
  
  
  
- \begin{problem}{1.13}
- If $x,y\in \mathbb{R}^n$, then $x$ and $y$ are called perpendicular (or othogonal) if $\left\langle x, y\right\rangle = 0$. If $x$ and $y$ are perpendicular, prove that $\left|x+y\right|^2 = \left|x\right|^2 + \left|y\right|^2$.
+ \begin{problem}{1-13}
+ If $x,y\in \mathbb{R}^n$, then $x$ and $y$ are called perpendicular (or orthogonal) if $\left\langle x, y\right\rangle = 0$. If $x$ and $y$ are perpendicular, prove that $\left|x+y\right|^2 = \left|x\right|^2 + \left|y\right|^2$.
 \end{problem} 
- 
- 
 \begin{proof}
 Since the definition of orthogonality requires the inner product, and the target of our prove involves norms, we can easily prove this proposition by expressing our norm of interest in terms of inner products:
 \begin{equation*}
@@ -359,12 +371,113 @@ Since the definition of orthogonality requires the inner product, and the target
 & = \left|x\right|^2 + \left| y \right|^2\\
 \end{split}
 \end{equation*}
-
 \end{proof}
  
  
  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{1-14}
+Prove that the union of any (even infinite) number of open sets is open. Prove that the intersection of two (and hence of finitely many) open sets is open. Give a counterexample for infinitely many open sets.
+\end{problem}
+\begin{proof} 
+Note that in a general topological space, these properties are axioms of the topology; here, Spivak defines openness in terms of the basis of open rectangles, and leaves us to derive the properties of the topology. Let $U = \cup_{i=1}^{\infty} U_i$ be a union of countably many open sets. To show that it is open, let $x \in U$. Then $x \in U_i$ for all $i=1,2,\ldots,\infty$. By Spivak's definition, there is a rectangle $R_i$ so that $x \in R_i \subset U_i$ for each $i$. Then we have $\cup_{i=1}^{\infty} R_i \subset U$ and this union is certainly a rectangle (maybe an infinite one), so that $U$ is open.
+
+Let $U$ and $V$ be open sets, and let $x \in U\cap V$. Then again by Spivak's definition, there are rectangles $R$ and $R'$ so that $x \in R \subset U$ and $x \in R' \subset V$. Certainly the intersection of two rectangles is a rectangle, and so $x \in R \cap R' \subset U\cap V$ so that the intersection of two open sets is open. By induction, it is easy to see that this works for the intersection of finitely many sets.
+
+The issue with an infinite intersection is that things can get arbitrarily ``small.'' For example consider in $\mathbb{R}$ the sets $$ U= \left\{ \left(-\frac{1}{n}, \frac{1}{n}\right) \, : \, n\in\mathbb{N} \right\}. $$ Clearly each set is open as an open interval, and we have $$ \cap_{U_n \in U} U_n = \left\{ 0 \right\} $$ (this is easy to show). This singleton set is clearly not open, and so this is a counterexample.
+\end{proof}
+
  
+ 
+ 
+ \begin{problem}{1-15}
+ Prove that $\left\{ x\in\mathbb{R}^n \, : \, \left|x-a\right| < r\right\}$ is open (see also Problem 1-27).
+ \end{problem}
+ \begin{proof}
+ This set is the open ball of radius $r$ about $a$, often written as $B_r\left(a\right)$. To show openness, in Spivak's definition, we want to show that for any point $x\in B_r\left(a\right)$, we have some open rectangle $R$ with $x \in R \subset B_r\left(a\right)$.
+ 
+ Let $x \in B_r\left(a\right)$. Note that $x$ and $a$ are both points in $\mathbb{R}^n$, and so have components: $x = \left(x_1,x_2,\ldots, x_n\right)$ and $a=\left(a_1,a_2,\ldots,a_n\right)$. It helps to draw the situation in 1D and 2D to get intuition. Let $$ \delta = r - \left|x-a\right|$$ so that $\delta$ is the radial distance from the point $x$ to the surface of the ball. We can imagine placing a corner of our rectangle halfway along this distance between the point $x$ and the surface of the ball, and this will define a rectangle contained entirely within the ball. To be precise, the body diagonal of the rectangle will be $$ r' = \left|x-a\right| + \frac{\delta}{2} = \frac{r + \left|x-a\right|}{2}$$ To obtain the lengths of the various sides of the rectangle, we need to project onto the various axes. This can be done by using similar triangles. Notice that with have $$ \sin \theta = \frac{x_i}{r} = \frac{x_i'}{r'} $$ and so the position of one coordinate of our rectangle is given by the scaling $x_i ' =\frac{r'}{r} x_i$. Hence, since $r' > r$, we have $x_i ' > x_i$, so that the point $x$ will be enclosed inside the rectangle $$ R = \left[-x_1', x_1'\right] \times\left[-x_2', x_2'\right]\times \cdots \times \left[-x_n', x_n'\right] $$
+ \end{proof}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+\begin{problem}{1-16}
+Find the interior, exterior, and boundary of the sets 
+
+	\begin{align*}
+	& \left\{ x \in \mathbb{R}^n \, : \, \left|x\right| \leq 1 \right\} \\
+	& \left\{ x \in \mathbb{R}^n \, : \, \left|x\right| = 1 \right\} \\
+	& \left\{ x \in \mathbb{R}^n \, : \, \text{each } x^i \text{ is rational} \right\}. \\
+	\end{align*}
+\end{problem}
+\begin{proof}
+The first set is the closed unit ball in $\mathbb{R}^n$, $\overline{B_1\left(0\right)}$. The interior is the open unit ball, $B_1\left(0\right)$, and the exterior is $\mathbb{R}^n - \overline{B_1\left(0\right)}$, i.e., everything but this closed ball. The boundary is the surface of the ball, the set $S^{n-1} = \left\{ x \in \mathbb{R}^n \, : \, \left|x\right| = 1 \right\}$, since every open neighborhood of these points will contain points both inside the ball and points outside of the ball.
+
+The second set is the surface of the ball, descriped in the previous example as $S^{n-1}$. This set has no interior (as a subset of $\mathbb{R}^n$), since every neighborhood of every point will necessarily intersect points outside of this surface. The exterior consists of both the interior of the unit ball as well as the exterior, that is, it is $ B_1\left(0\right) \cup \left(\mathbb{R}^n \setminus \overline{B_1\left(0\right)}\right)$. The surface is its own boundary, as already described.
+
+Though this example is a bit more exotic, it is similar to the previous one. The set is the set of vectors in $\mathbb{R}^n$ with rational components, written here as $\mathbb{Q}^n$. Since the rationals are dense in the reals, any neighborhood about any $x \in \mathbb{Q}^n$ will contain points with real coordinates. Thus, $\mathbb{Q}^n$ is its own boundary, and no points are interior. Similarly, every neighborhood of a real number contains a rational number, so no point $y \notin \mathbb{Q}^n$ is contained in a neighborhood disjoint from $\mathbb{Q}^n$, hence the set has no exterior.
+\end{proof} 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+\begin{problem}{1-19}
+If $A$ is a closed set that contains every rational number $r \in \left[0,1\right]$, show that $\left[0,1\right] \subset A$.
+\end{problem}
+\begin{proof}
+Let $x \in \left[0,1\right]$ arbitrary. If $x$ rational, then $x\in A$. On the other hand, assume $x \notin \mathbb{Q}$. Assume by way of contradiction that $x \notin A$. Then since $A$ closed, there is some open neighborhood $U$ of $x$ which does not intersect $A$. Then $U$ being open means that there is some open interval $V$ with $x \in V \subset U$. Then since $x \in \left[0,1\right]$, the interval $V$ must intersect $\left[0,1\right]$. Since $V$ open, this intersection is also an interval, of the form $\left[0,b\right)$, $\left(b,1\right]$, or $\left(b,c\right)$, depending on if $x=0$, $x=1$, or $x\in \left(0,1\right)$, respectively. In any case, this new interval contains some rational number, since $\mathbb{Q}$ is dense in $\mathbb{R}$, and so we have the neighborhood $U$ of $x$ intersecting a point of $A$. However, this contradicts our assumption that $x$ was in the exterior of $A$. Thus, we must have $x \in A$, i.e., $\left[0,1\right] \subset A$.
+\end{proof} 
+ 
+ 
+ 
+ \begin{problem}{1-20}
+ Prove the converse of Corollary 1-7: a compact subset of $\mathbb{R}^n$ is closed and bounded (see also Problem 1-28).
+ \end{problem}
+ \begin{proof}
+ The proof will rely on the fact that $\mathbb{R}^n$ being a metric space gives us a collection of open sets to work with: the open balls; and the fact that compactness gives us a finite subcollection of open sets, given that we have a collection.
+ 
+ Let $K\subset \mathbb{R}^n$ be compact. Fix $\epsilon>0$ and let $$\mathcal{O} = \left\{ B_{\epsilon}\left(x\right)\,: \, x\in K \right\}.$$ Then $\mathcal{O}$ is an open cover of $K$, and so there is a finite subcollection $$U = \left\{ B_{\epsilon}\left(x_{1}\right), B_{\epsilon}\left(x_{2}\right), \ldots, B_{\epsilon}\left(x_{k}\right) \right\} $$ which also covers $K$.
+ 
+Then for any $x\in K$, we have $x \in B_{\epsilon}\left(x_n\right)$ for some $n \in \left\{1,2,\ldots,k\right\}$. Thus, $\left|x - x_n\right| \leq \epsilon$, and by the triangle inequality we have $\left|x\right| \leq \epsilon + \left|x_n\right|$. More generally, then, given $x \in K$ we have $$ \left|x\right| \leq \epsilon + \max \left\{ \left|x_1\right|,\left|x_2\right|, \ldots, \left|x_n\right| \right\} $$ so that $K$ is bounded.
+
+This same trick gives us a separation from any point not in $K$. For instance, let $y \notin K$. Since $K$ is compact, define $r_x = \left|y-x\right|$ for every $x \in K$ and consider the open balls $B_{r_x/2}\left(x\right)$ which cover $K$. Note that $r_x > 0$ for every $x$, since $y \notin x$ and so the distance is non-zero, so this is well-defined. Then by compactness of $K$, there is a finite subcollection $B_{r_{x_k}/2}\left(x_k\right)$, $k=1,2,\ldots, n$ which covers $K$. Take $\delta = \frac{1}{2}\min_k \left\{ \left|y - {x_k}\right|\right\} $. Then we claim that $B_{\delta}\left(y\right)$ is an open ball which is disjoint entirely from the finite open cover of $K$, so it is also disjoint from $K$.
+
+ \end{proof}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+\begin{problem}{1-22}
+If $U$ is open and $C\subset U$ is compact, show that there is a compact set $D$ such that $C \subset \text{interior} \, D$ and $D\subset U$.
+\end{problem}
+\begin{proof}
+
+\end{proof}
+
+
+
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -377,7 +490,7 @@ If $f:A\rightarrow \mathbb{R}^m$ and $a\in A$, show that $\lim_{x\rightarrow a} 
  
 \begin{proof}
 Assume first that $\lim_{x\rightarrow a} f\left(x\right) = b$.  Let $\epsilon > 0$. By definition of limit, there exists some $\delta' > 0$ such that $\left|x-a\right| < \delta '$ implies $\left|f\left(x\right) - b\right| < \epsilon $. Since 
-$$ \left|f\left(x\right)-b\right|^2 = \sum_{i=1}^n \left| f^i\left(x\right) - b^i \right|^2 $$ which is a sum of positive numbers. Hence, 
+$$ \left|f\left(x\right)-b\right|^2 = \sum_{i=1}^n \left| f^i\left(x\right) - b^i \right|^2 $$ is a sum of positive numbers, we have, 
 $$ \left|f^i \left(x\right) -b^i \right| \leq \left|f\left(x\right)-b\right| $$ for every $i =1,2,\ldots,n$. Thus we have
 $$ \left|x-a\right|< \delta ' \implies \left|f^i \left(x\right)-b^i\right| < \epsilon $$
 That is, $\lim_{x\rightarrow a} f^i\left(x\right) = b^i $.
@@ -398,10 +511,7 @@ Prove that $f:A\rightarrow \mathbb{R}^m$ is continuous at $a$ if and only if eac
  \begin{proof}
  This proposition readily holds from the previous problem, 1-23, if we replace $b$ with $f\left(a\right)$.
  \end{proof}
- 
- 
- 
- 
+
  
 \begin{problem}{1.25}
  Prove that a linear transformation $T:\mathbb{R}^n\rightarrow \mathbb{R}^m$ is continuous. \textit{Hint}: Use Problem 1-10.
@@ -412,7 +522,7 @@ Prove that $f:A\rightarrow \mathbb{R}^m$ is continuous at $a$ if and only if eac
  $$ \left|T\left(h\right)\right| \leq M \left| h\right| \; \text{for} \; h \in \mathbb{R}^n$$
  
 Let $a\in \mathbb{R}^n$ be arbitrary. We want to show that $T$ is continuous as $a$, i.e., that $\lim_{x\rightarrow a} T\left(x\right) = T\left(a\right)$. Let $\epsilon > 0$, arbitrary, and let $M$ be the (positive) number guaranteed by Problem 1-10. Then notice that
-$$ \left| T\left(x\right) - T\left(a\right) \right| = \left| T\left(x-a\right)\right| \leq M \left|x-a\right| $$. With this in hand, let $\delta = \epsilon / M$. Then we have 
+$$ \left| T\left(x\right) - T\left(a\right) \right| = \left| T\left(x-a\right)\right| \leq M \left|x-a\right|.$$ With this in hand, let $\delta = \epsilon / M$. Then we have 
 $$ \left|x-a\right| < \delta \implies \left|T\left(x\right) - T\left(a\right)\right| < M \frac{\epsilon}{M} = \epsilon $$
 Thus we have shown that $\lim_{x\rightarrow a} T\left(x\right) = T\left(a\right)$, that is, $T$ is continuous at $a$. Since $a\in \mathbb{R}^n$ arbitrary, $T$ is continuous everywhere.
  \end{proof}
@@ -429,7 +539,19 @@ Thus we have shown that $\lim_{x\rightarrow a} T\left(x\right) = T\left(a\right)
  
 \begin{proof}
  \begin{itemize}
- 	\item hi
+ 	\item Drawing this set $A$ is very informative for the problem. Straight lines through the origin are of the form $y=mx$. If $m <=0$, the line obviously does not intersect $A$, so we will consider $m > 0$. Then we want an interval in $\mathbb{R}$ about the origin so that so that $y\left(x\right) = mx$ on this interval does not intersect $A$. This problem is worded a little strangely. 
+ 	
+ 	Note that the line intersects $A$ when $ mx = x^2$. Since the origin $x=0$ is not included, we can divide by a factor of $x$ to obtain $m = x$. Thus, the straight line $y=mx$ hits the upper boundary of the set $A$ at $x=m$. We expect that $x \in \left(-m,m\right) \implies \left\{ mx\right\}\cap A = \varnothing$. To see this, consider $0 < x < m$ and we have
+ 	\begin{align*}
+ 		mx - x^2 & = x \left(m -x\right)  > 0 \\
+ 	\end{align*}
+ 	so that the curves do not intersect on $\left(0,m\right)$. The sets obviously do not intersect on $\left(-m,0\right]$ since $A$ is not even defined there.
+ 	
+ 	\item Note that $f$ is the indicator function of the set $A$, and that $th$ is the parametrization of the line through the origin and the point $h$. Thus, with knowledge of the previous part of the problem in hand, we know that if the line has non-positive slope, then it will not intersect $A$, and so $g_h\left(t\right) = 0$ if the slope of the line between $\left(0,0\right)$ and $h$ is negative. Hence, if $h$ is in the second or fourth quadrant, $g \equiv 0$ which is obviously continuous at $0$. 
+ 	
+ 	Next, assume $h$ is in the first or third quadrant, so that the line through $\left(0,0\right)$ and $h$ has positive slope, say $m$. Then from the first part we know that there is some interval about $0$ where the line does not intersect $A$, i.e., where $f=0$. Then we have $\lim_{t\rightarrow 0} g_h\left(t\right) = 0$ since is is identically zero on some small interval about the origin, hence $g_h$ is again continuous at zero in any case. 
+ 	
+ 	On the other hand, note that $f\left(0,0\right) = 0$ since $\left(0,0\right)\notin A$. However, every neighborhood of $\left(0,0\right)$ in $\mathbb{R}^2$ will necessarily include points of $A$, so we can construct a sequence which approaches $\left(0,0\right)$ on which $f$ is always $1$. In particular, consider $\lim_{n\rightarrow \infty} f\left( \frac{1}{n}, \frac{1}{2n^2} \right)$. This sequence $\left(\frac{1}{n}, \frac{1}{2n^2}\right) \subset A$ since $0 < \frac{1}{2n^2} < \frac{1}{n^2} $, and $\lim_{n\rightarrow \infty} \left(\frac{1}{n}, \frac{1}{2n^2}\right) \rightarrow \left(0,0\right)$. However, we have $f\left(\frac{1}{n}, \frac{1}{2n^2}\right) = 1$ for all $n$, so $\lim_{n\rightarrow \infty} f\left(\frac{1}{n}, \frac{1}{2n^2}\right) \neq f\left(0,0\right)$, and so the function $f$ is not continuous at $\left(0,0\right)$.
  
  \end{itemize}
 \end{proof}
@@ -444,25 +566,21 @@ Prove that $\left\{ x\in \mathbb{R}^n: \left|x-a\right| < r \right\}$ is open by
 \end{problem}
  
 \begin{proof}
-Notice that the set of interest is the open ball of radius $r$ about $a$. The function $f$ suggested to us takes a point $x$ and returns the distance of $x$ to $a$. The dependence of the set inclusion on this distance and the function's computation of this distance hint that the two are related somehow. In fact, notice that if we let $D=\left\{ x\in \mathbb{R}^n: \; \left|x-a\right|<r\right\}$, then $f\left(D\right) = \left[0,r\right)$. This is clearly not an open set, but notice that $\left[0,r\right) \subset \left(-\infty,r\right)$ and that $f^{-1}\left(\left(-\infty,r\right)\right) = D$. Hence, if we can show that $f$ is continuous, then $D$ is automatically open, by (the topological) definition of continuity.
+First, we want to show that the function $f$ is continuous. We know that the function is continuous (but not smooth) in $\mathbb{R}^1$. First, consider the simpler function $$ g\left(x\right) = \left|x\right|. $$ Then at an arbitrary point $y\in \mathbb{R}^n$, we have $$ \left|g\left(x\right)-g\left(y\right)\right| = \left| \left|x\right| - \left|y\right|\right| \leq \left| x - y \right| $$ by the reverse triangle inequality. Thus, given arbitrary $\epsilon > 0$, we can take $\left|x-y\right| < \epsilon$ to prove continuity. Thus, we have shown that $g\left(x\right) = \left|x\right|$ is continuous at all $x \in \mathbb{R}^n$. It follows that $f\left(x\right) = \left|x-a\right|$ is also continuous on $\mathbb{R}^n$. 
 
-Let $z\in \mathbb{R}^n$ be arbitrary. Then we want to show that $\lim_{x\rightarrow z} f\left(x\right) = f\left(z\right)$. Let $\epsilon > 0$ be arbitrary as well. Then define $\delta = \epsilon$, and we have, for $\left|x-z\right| < \delta $,
-\begin{equation*}
-\begin{split}
-\left| f\left(x\right) - f\left(z\right) \right| & = \left| \left|x-a\right| - \left|z-a\right| \right| \\
-& \leq \left|x-a-  z + a\right| \\
-& = \left|x-z\right| \\
-& < \delta \\
-& = \epsilon \\
-\end{split}
-\end{equation*}
-where the first inequality is from the reverse triangle inequality. Hence, we have that $f$ is continuous at every point in $\mathbb{R}^n$, and so our conclusion that $D$ is open holds by the (more general topological) definition of continuity: open sets are mapped to by open sets under a continuous map.
-
+We know that by the topological definition of continuity, the preimage of an open set under a continuous function is an open set. Thus, if we can write the open ball $B_r\left(a\right)$ as the preimage of a suitable open set under $f$, then we are done. Let $$ F = \left\{ y \in \mathbb{R} \, \, : \,0 < y < r \right\}=\left(0,r\right)$$ which is certainly an open set. Then $$ f^{-1}\left(F\right) = \left\{ x \in  \mathbb{R}^n \, : \, f\left(x\right) < r \right\} = B_r\left(a\right), $$ so that the ball is open.
 \end{proof}
  
  
  
- 
+\begin{problem}{1-28}
+If $A\subset \mathbb{R}^n$ is not closed, show that there is a continuous function $f:A\rightarrow \mathbb{R}$ which is unbounded. \textit{Hint}: If $x\in \mathbb{R}^n \setminus A$ but $x\notin \text{interior}\, \left(\mathbb{R}^n \setminus A\right)$, let $f\left(y\right) = 1/\left|y-x\right|$.
+\end{problem}
+\begin{proof}
+If $A\subset \mathbb{R}^n$ not closed, then there is some point $x \notin A$ and every neighborhood of $x$ intersects $A$. Since we are in a metric space, we can use the open balls as well as the metric to create a sequence which approaches $x$ but whose function values blow up. As the hint suggests, take for each $n \in \mathbb{N}$ the set $U_n = B_{1/n}\left(x\right)$ and an arbitrary point $y \in U_n$. Define $f\left(y\right) = \left|y-x\right|^{-1}$. Clearly, as $n\rightarrow \infty$ we have $y_n \rightarrow x$ and $f\left(y_n\right) \rightarrow \infty$. Since $f$ is defined on all $y \in A$ (since $x\notin A$), it is continuous as the multiplicative inverse of a non-zero, continuous function.
+
+To be precise, note that since $y_n \in U_n$, we have $\left|x-y_n\right| < 1/n$, so that given $\epsilon > 0$, we can take $N$ so that $ n > N \implies \frac{1}{n} < \epsilon$ and see that $y_n \rightarrow x$. We can use this sequence to show that $f$ is unbounded. Let $M>0$ be arbitrary. Then by sequence convergence, there is some natural $N$ so that $ n>N \implies \left|x-y_n\right| < \frac{1}{M}$. That is, $$ \frac{1}{M} < \frac{1}{\left|x-y_n\right|} = f\left(y_n\right) $$ so that we have points in $A$ at which $f$ is larger than any arbitrary number.
+\end{proof}
  
  
  
@@ -493,14 +611,21 @@ Let $f:\left[a,b\right]\rightarrow \mathbb{R}$ be an increasing function. If $x_
 \end{problem}
 
 \begin{proof}
-Let the hypotheses hold. By definition, the oscillation of $f$ at any point $x_i$ is
-$$ o\left(f,x_i\right) = \lim_{\delta \rightarrow 0} \left[ M\left(a,f,\delta\right) - m\left(a,f,\delta\right)\right]$$ where $M$ and $m$ are the supremum and infimum of $f$, respectively, over the $x$ such that $\left|x-x_i\right|<\delta$. Assume that we have ordered the $\left\{ x_i \right\}_{i=1}^n$ in increasing order. Then the sum in question is
-\begin{equation*}
-\begin{split}
-\sum_{i=1}^n o\left(f,x_i\right) & = \sum_{i=1}^n \lim_{\delta\rightarrow 0} \left[M\left(x_i,f,\delta\right)-m\left(x_i,f,\delta\right)\right] \\
-& = 
-\end{split}
-\end{equation*}
+This proof is mostly a manipulation of the finite sum, similar to that of a telescoping finite series. First, assume that the points $x_i$ are in increasing order. Since each oscillation involves the limit as $\delta \rightarrow 0$, we can assume from the start that the $\delta$-neighborhoods about each $x_i$ are so small as to not intersect. To be precise, we can take $\delta = \frac{1}{2}\min_{i=1,2,\ldots,n-1} \left\{ x_{i+1}-x_i \right\}$. Additionally, we assume that $x_1 \neq a$ and $x_n \neq b$.
+
+Next, since the function $f$ is increasing on $\left[a,b\right]$, we have that $$ M\left(x_i, f, \delta\right) = f\left(x_i + \delta\right).$$ Note that this is the supremum because we assume that $f$ is continuous. Similarly, $$ m\left(x_i,f,\delta\right) = f\left(x_i - \delta\right).$$ Since we chose $\delta$ to make the intervals disjoint, we have $$ M\left(x_i, f,\delta\right) \leq m\left(x_{i+1},f,\delta\right)$$ for all $i=1,2,\ldots, n$. Then looking at the sum, we have 
+\begin{align*}
+\sum_{i=1}^n o\left(f,x_i\right) & = \sum_{i=1}^n \lim_{\delta\rightarrow 0} \left[ M\left(x_i,f,\delta\right) - m\left(x_i,f,\delta\right)\right] \\ 
+& = \lim_{\delta\rightarrow 0} \sum_{i=1}^n \left[ f\left(x_i + \delta\right) - f\left(x_i - \delta\right)\right] \\
+& = \lim_{\delta\rightarrow 0} \left[ f\left(x_n + \delta\right) - f\left(x_1 - \delta\right) \right] + \lim_{\delta\rightarrow 0} \sum_{i=1}^{n-1} \left[ -f\left(x_{i+1} - \delta\right) + f\left(x_i + \delta\right)\right] \\
+\end{align*}
+Notice that the terms being summed are each negative. We will replace this sum by the quantity $-B$, $B>0$, to indicate this. Since $f$ is not assumed to be continuous, we cannot simply take these limits. If it were possible, the entire quantity would be zero and the theorem would be trivially proven. In general, since we assumed that $x_n \neq b$ and $x_1 \neq a$, we have $$ \lim_{\delta\rightarrow 0} f\left(x_n+\delta\right) = \lim_{h\rightarrow x_n^+} f\left(h\right) \leq f\left(b\right) $$ 
+$$ \lim_{\delta\rightarrow 0} f\left(x_1-\delta\right) = \lim_{h\rightarrow x_1^-} f\left(h\right) \geq f\left(a\right)  $$
+Thus we have 
+$$ \sum_{i=1}^n o\left(f,x_i\right) \leq f\left(b\right) - f\left(a\right) - \lim_{\delta \rightarrow 0} B \leq f\left(b\right) - f\left(a\right), $$ proving the theorem. 
+
+Lastly, we consider the situation where, for instance, $x_1 = a$. In this case, by the definition of the quantities $M$ and $m$, and the monotonicity of $f$, we have $$ M\left(x_1, f,\delta\right) = f\left(a+\delta\right)$$ $$ m\left(x_1,f,\delta\right) = f\left(a\right) $$ and the rest of the proof proceeds similarly, but we do not even need to worry about the one-sided limits that we ended up taking (so this is a little easier).
+
 \end{proof} 
  
  
@@ -511,6 +636,11 @@ $$ o\left(f,x_i\right) = \lim_{\delta \rightarrow 0} \left[ M\left(a,f,\delta\ri
  
  
  
+ 
+ 
+ 
+ 
+ \newpage
 \section*{Chapter 2}
 
 \begin{problem}{2.1}
@@ -564,10 +694,10 @@ For the other direction, assume there is a $g$ such that $f\left(x,y\right)=g\le
 $$ f\left(x,y_1\right) = g\left(x\right) = f\left(x,y_2\right) $$ and so $f$ is independent of the second variable.
 
 We wish to determine the derivative of such an $f$ in terms of the univariate function $g$. Our experience with partial derivatives from calculus 3 tells us that we should expect the derivative with respect to the second variable is zero, since the function doesn't change as we vary it. Also, the derivative with respect to the first variable is likely the derivative of the univariate function. In all, we guess that
-$$ f'\left(a,b\right) = \left(g'\left(a\right),0\right)^T $$ Let us use this in the definition of derivative to verify that we obtain a zero limit:
+$$ f'\left(x,y\right) = \left[g'\left(x\right),0\right] $$ Let us use this in the definition of derivative to verify that we obtain a zero limit:
 \begin{equation*} \begin{split}
-\lim_{\left(h,k\right)\rightarrow \left(0,0\right)} \frac{\left| f\left(a+h,b+k\right)-f\left(a,b\right)-f'\left(a,b\right) \left(h,k\right)\right|}{\left| \left(h,k\right)\right|} & = \lim_{\left(h,k\right)\rightarrow \left(0,0\right)} \frac{\left| g\left(a+h\right) - g\left(a\right) - g'\left(a\right) \left(h\right)\right|}{\left|\left(h,k\right)\right|} \\
-& \leq \lim_{\left(h,k\right)\rightarrow \left(0,0\right)} \frac{\left| g\left(a+h\right) - g\left(a\right) - g'\left(a\right) \left(h\right)\right|}{\left|h\right|} \\
+\lim_{\left(h,k\right)\rightarrow \left(0,0\right)} \frac{\left| f\left(x+h,y+k\right)-f\left(x,y\right)-f'\left(x,y\right) \left(h,k\right)\right|}{\left| \left(h,k\right)\right|} & = \lim_{\left(h,k\right)\rightarrow \left(0,0\right)} \frac{\left| g\left(x+h\right) - g\left(x\right) - g'\left(x\right) \left(h\right)\right|}{\left|\left(h,k\right)\right|} \\
+& \leq \lim_{\left(h,k\right)\rightarrow \left(0,0\right)} \frac{\left| g\left(x+h\right) - g\left(x\right) - g'\left(x\right) \left(h\right)\right|}{\left|h\right|} \\
 & = 0 \\
 \end{split}\end{equation*}
 where the last equality holds if $g$ is differentiable at $a$. Thus, the original difference quotient must be zero, confirming that the derivative of $f$ at $\left(a,b\right)^T$ is, indeed, $\left(g'\left(a\right),0\right)^T$.
@@ -744,6 +874,9 @@ Conversely, assume that the component functions are differentiable. Then we can 
 \end{split}\end{equation*}
 Taking the limit of both sides as $h\rightarrow 0$, the right-hand side goes to zero since we assumed $f^1$ and $f^2$ are differentiable at $a$. Thus, the limit of the left-hand side is zero, and this is the definition of the differentiability of $f$ at $a$. Also, the derivative we used was exactly the one identified in the other direction of this proof.
 \end{proof}
+
+
+
 
 
 \begin{problem}{2.9}

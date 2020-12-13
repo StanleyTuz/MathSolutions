@@ -478,6 +478,543 @@ The dictionary order is an order relation.
 
 
 
+
+\newpage
+\section*{Chapter 2. Topological Spaces and Continuous Functions}
+
+\begin{problem}{13.1}
+Let $X$ be a topological space; let $A$ be a subset of $X$. Suppose that for each $x\in A$ there is an open set $U$ containing $x$ such that $U \subset A$. Show that $A$ is open in $X$.
+\end{problem}
+\begin{proof}
+	For every $x\in A$, take $U_x$ to be the open set containing $x$ and inside $A$. Then take $U = \cup_{x\in A} U_x$ (note that this may even be an uncountable union). We certainly have $U$ open as an arbitrary union of open sets. Then we have $U=A$, and this is easy to see by our definition of $U$. Thus, $A$ is open.
+\end{proof}
+
+\begin{problem}{13.2}
+	Consider the nine topologies on the set $X=\left\{a,b,c\right\}$ indicated in Example 1 of \S12. Compare them; that is, for each pair of topologies, determine whether they are compatible, and if so, which is the finer.
+\end{problem}
+\begin{proof}
+It helps to write out the topologies as sets:
+\begin{enumerate}[label=(\alph*)]
+	\item $\mathcal{T}_a=\left\{ \varnothing, X \right\}$
+	\item $\mathcal{T}_b=\left\{ \varnothing, X, \left\{a\right\}, \left\{a,b\right\} \right\}$
+	\item $\mathcal{T}_c=\left\{ \varnothing, X, \left\{b\right\}, \left\{a,b\right\},\left\{b,c\right\} \right\}$
+	\item $\mathcal{T}_d=\left\{ \varnothing, X, \left\{b\right\} \right\}$
+	\item $\mathcal{T}_e=\left\{ \varnothing, X, \left\{a\right\}, \left\{b,c\right\} \right\}$
+	\item $\mathcal{T}_f=\left\{ \varnothing, X, \left\{b\right\}, \left\{c\right\}, \left\{a,b\right\},\left\{b,c\right\} \right\}$
+	\item $\mathcal{T}_g=\left\{ \varnothing, X, \left\{a,b\right\} \right\}$
+	\item $\mathcal{T}_h=\left\{ \varnothing, X, \left\{a\right\}, \left\{b\right\}, \left\{a,b\right\} \right\}$
+	\item $\mathcal{T}_i=\left\{ \varnothing, X, \left\{a\right\}, \left\{b\right\}, \left\{c\right\}, \left\{a,b\right\},\left\{a,c\right\}, \left\{b,c\right\} \right\} = 2^X$
+\end{enumerate}
+Clearly $\mathcal{T}_a$ is the indiscrete topology and is the coarsest possible topology on $X$.  Also of note, $\mathcal{T}_i$ is the discrete topology and is the finest possible topology. I will not go through the exercise of comparing the remaining topologies, but it is rather straightforward.
+\end{proof}
+
+\begin{problem}{13.3}
+	Show that the collection $\mathcal{T}_c$ given in Example 4 of \S12 is a topology on the set $X$. Is the collection $$ \mathcal{T}_{\infty} = \left\{ U \, \middle| \, X\setminus U \text{ is infinite or empty or all of } X \right\} $$ a topology on $X$?
+\end{problem}
+\begin{proof}
+	Recall that $$\mathcal{T}_c = \left\{ U\subset X \, \middle| \, X\setminus U \text{ is countable or is all of } X \right\}.$$ Certainly $X\setminus X=\varnothing$ is countable vacuously, and $X\setminus \varnothing = X$. Thus, $X,\varnothing \in \mathcal{T}_c$. Next, let $U_{\alpha} \in \mathcal{T}_c$ for all $\alpha$ in some indexing set $A$ (maybe uncountable). If any $U_{\alpha} = \varnothing$, then they contribute nothing to the union. If $U_{\alpha} = \varnothing$ for all $\alpha \in A$, then the union itself is $\varnothing$, whose complement is $X$, and so the union of the $U_{\alpha}$ is open. On the other hand, assume that at least one of the $U_{\alpha}$ is nonempty, say $U_{\beta}$. Then $$ X\setminus \cup_{\alpha \in A} U_{\alpha} = \cap_{\alpha \in A} X\setminus U_{\alpha} \subseteq X\setminus U_{\beta} $$ where the last set inclusion holds because we are taking an intersection. Since $U_{\beta}$ is nonempty, $X\setminus U_{\beta}$ is countable (if not finite); thus $X\setminus \cup_{\alpha \in A}U_{\alpha}$ is countable as a subset of $X\setminus U_{\beta}$, and so $\cup_{\alpha \in A}U_{\alpha} \in \mathcal{T}_c$.
+	
+	Last, let $U_{\alpha} \in \mathcal{T}_c$ for all $\alpha$ in some finite set $A$. Then if any $U_{\alpha} = \varnothing$, then $$ \cap_{\alpha \in A} U_{\alpha} = \varnothing, $$ which has complement all of $X$, and so this intersection is in $\mathcal{T}_c$. On the other hand, if all $U_{\alpha}$ are nonempty, then $$ X\setminus \cap_{\alpha \in A} U_{\alpha} = \cup_{\alpha \in A} X \setminus U_{\alpha} $$ and each of the elements in the finite --- and thus countable --- union  on the right-hand side is countable, so this is a countable union of countable sets, and is known to be countable. Thus, $\cap_{\alpha \in A} U_{\alpha} \in \mathcal{T}_c$. We have shown that $\mathcal{T}_c$ is indeed a topology on set $X$. 
+	
+	 
+	
+\end{proof}
+
+
+
+
+\begin{problem}{13.4}
+\begin{enumerate}[label=(\alph*)]
+	\item If $\left\{\mathcal{T}_a\right\}$ is a family of topologies on $X$, show that $\cap \,\mathcal{T}_{\alpha}$ is a topology on $X$. Is $\cup\, \mathcal{T}_{\alpha}$ a topology on $X$?
+	\item Let $\left\{\mathcal{T}_{\alpha}\right\}$ be a family of topologies on $X$. Show that there is a unique smallest topology on $X$ containing all the collections $\mathcal{T}_{\alpha}$, and a unique largest topology contained in all $\mathcal{T}_{\alpha}$.
+	\item If $X=\left\{a,b,c\right\}$, let $$ \mathcal{T}_1=\left\{\varnothing, X, \left\{a\right\},\left\{a,b\right\}\right\} \text{   and   } \mathcal{T}_2=\left\{\varnothing, X, \left\{a\right\},\left\{b,c\right\}\right\}$$ Find the smallest topology containing $\mathcal{T}_1$ and $\mathcal{T}_2$, and the largest topology contained in $\mathcal{T}_1$ and $\mathcal{T}_2$.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item Certainly $\varnothing$ and $X$ are in $\cap \, \mathcal{T}_{\alpha}$ since they are necessarily in each $\mathcal{T}_{\alpha}$. Let $\left\{U_{\beta}\right\}_{\beta \in B}$ be an arbitrary collection of elements of $\cap \, \mathcal{T}_{\alpha}$. Then $\left\{U_{\beta}\right\}_{\beta \in B} \subseteq \mathcal{T}_{\alpha}$ for each $\alpha$. Thus, $\cup_{\beta \in B} U_{\beta} \in \mathcal{T}_{\alpha}$ for each $\alpha$, and so it is in the intersection $\cap\, \mathcal{T}_{\alpha}$. Similarly, assume $B$ is finite and then $\cap_{\beta \in B} U_{\beta} \in \mathcal{T}_{\alpha}$ for each $\alpha$, and so it is in $\cap\, \mathcal{T}_{\alpha}$. Hence, the intersection is a topology on $X$. {\color{red}It is also obviously the largest (finest) topology contained within all of the $\mathcal{T}_{\alpha}$.}
+	
+	On the other hand, the union of topologies is not, in general, a topology. For example, consider $X=\left\{a,b,c\right\}$ with topologies $\mathcal{T}_1 = \left\{\varnothing, X, \left\{a\right\}\right\}$ and $\mathcal{T}_2 = \left\{\varnothing, X, \left\{b\right\}\right\}$; then $\mathcal{T}_1 \cup \mathcal{T}_2 = \left\{\varnothing, X, \left\{a\right\}, \left\{b\right\}\right\}$ is not a topology, since $\left\{a\right\}\cup\left\{b\right\} = \left\{a,b\right\} $ is not open.
+	
+	\item In the previous part of this exercise, we claimed that the largest topology contained in all $\mathcal{T}_{\alpha}$ is the intersection $\cap \, \mathcal{T}_{\alpha}$. To show this, assume that there is some other topology $\mathcal{T}'$ which is contained in each $\mathcal{T}_{\alpha}$ and is larger than $\cap \,\mathcal{T}_{\alpha}$. Then there is some open set $U \in \mathcal{T}' $ but $U \notin \cap_{\alpha} \mathcal{T}_{\alpha}$. But then since $\mathcal{T}' \subset \mathcal{T}_{\alpha}$ for all $\alpha$, $U \in \cap_{\alpha} \mathcal{T}_{\alpha}$; this is a contradiction, and so $\cap \, \mathcal{T}_{\alpha}$. Hence the claim is proven. 
+	
+	Next, we want the smallest topology on $X$ containing all $\mathcal{T}_{\alpha}$. Note that the union $\cup \, \mathcal{T}_{\alpha}$ contains all of the topologies, but we know from the previous part that it is not generally a topology, since it is not guaranteed to be closed under arbitrary unions and finite intersections. With this in mind, we define $\mathcal{T}$ as the collection of all arbitrary unions and finite intersections of elements of $\cup \, \mathcal{T}_{\alpha}$. This is certainly a topology on $X$, and contains each of the $\mathcal{T}_{\alpha}$; why is it the smallest such topology? Assume there is some topology $\mathcal{T}'$ which contains each $\mathcal{T}_{\alpha}$ and is smaller than $\mathcal{T}$. Then there is some element $U\in \mathcal{T}$ with $U \notin \mathcal{T}'$. Then $U$ is either an arbitrary union or finite intersection of elements of $\cup \, \mathcal{T}_{\alpha}$. That means that this particular union or finite intersection of elements is missing from $\mathcal{T}'$, and so $\mathcal{T}'$ cannot be a true topology. Thus, our construction $\mathcal{T}$ is the smallest topology containing all $\mathcal{T}_{\alpha}$. {\color{red}Later, this is referred to as the topology generated by the subbasis $\left\{\mathcal{T}_{\alpha}\right\}$.}
+	
+	\item From the previous part of the problem, the smallest topology containing the two topologies is $$ \left\{ \varnothing, X, \left\{a\right\}, \left\{b\right\}, \left\{a,b\right\}, \left\{ a,b,c\right\}\right\} $$ and the largest topology contained in both is $$ \left\{ \varnothing, X, \left\{a\right\} \right\}. $$
+\end{enumerate}
+\end{proof}
+
+
+
+\begin{problem}{13.5}
+Show that if $\mathcal{A}$ is a basis for a topology on $X$, then the topology generated by $\mathcal{A}$ equals the intersection of all topologies on $X$ that contain $\mathcal{A}$. Prove the same if $\mathcal{A}$ is a subbasis.
+\end{problem}
+
+\begin{problem}{13.6}
+Show that the topologies of $\mathbb{R}_l$ and $\mathbb{R}_K$ are not comparable.
+\end{problem}
+\begin{proof}
+The first observation we make is that $\left[1,2\right)$, for example, is open in $\mathbb{R}_l$ but is not open in $\mathbb{R}_K$, since we cannot find an open interval or ``$K$-set'' about the point $1$. Thus,  $\mathbb{R}_l\not\subseteq \mathbb{R}_K$.
+
+Conversely, notice that the set $\left(-1,1\right)-K$ is open in $\mathbb{R}_K$, as it is a basis element, but it is not open in $\mathbb{R}_l$ since $0$ is contained in the set, but any half-open interval containing $0$ necessarily contains some points greater than zero. In particular, let $\left[a,b\right)$ be a half-open interval containing $0$. Then $a\leq 0$, and $b>0$. But then there is some $n\in \mathbb{Z}_+$ so that $0<\frac{1}{n} < b$ (this is the Archimedean property of the integers). Then this point is in $K$, and so it is removed from the set $\left(-1,1\right)-K$; since it is present in $\left[a,b\right)$, we have $\left[a,b\right) \not\subseteq \left(-1,1\right)-K$. Hence, $\mathbb{R}_K \not\subseteq \mathbb{R}_l$.
+
+Since neither topology is contained in the other, the two are not comparable.   
+\end{proof}
+
+
+\begin{problem}{13.7}
+	Consider the following topologies on $\mathbb{R}$:
+
+\end{problem}
+
+
+\begin{problem}{13.8}
+\begin{enumerate}[label=(\alph*)]
+	\item Apply Lemma 13.2 to show that the countable collection $$ \mathcal{B} = \left\{\,\left(a,b\right)\, \middle| \, a<b,\, a \text{ and } b \text{ rational}\,\right\}$$ is a basis that generates the standard topology on $\mathbb{R}$.
+	\item Show that the collection $$ \mathcal{C} = \left\{ \, \left[a,b\right) \, \middle| \, a<b, \, a \text{ and } b \text{ rational}\,\right\}$$ is a basis that generates a topology different from the lower limit topology on $\mathbb{R}$.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item Lemma 13.2 states that a collection of open sets $\mathcal{C}$ of $X$ is a basis for a given topology on $X$ if for every open set $U\subset X$ and $x\in U$ there is some $C \in \mathcal{C}$ so that $x \in C \subset U$. Hence, let $U$ be an arbitrary open set in $\mathbb{R}$ and let $x \in U$. Since we know the standard topology on $\mathbb{R}$ is generated by open intervals, there is some open interval, say $\left(c,d\right)$, so that $x \in \left(c,d\right) \subset U$. Next, since rationals are dense in the reals, there exist some $a,b\in \mathbb{Q}$ with $c < a < x$ and $x < b < d$, so that $x \in \left(a,b\right) \subset \left(c,d\right)\subset U$. Since $\left(a,b\right) \in \mathcal{B}$, the use of Lemma 13.2 completes the proof.
+	
+	\item The lower limit topology is generated by the basis of half-open intervals with real endpoints. Then the half-open intervals with real endpoints, themselves, are open sets. In particular, $\left[\sqrt{2},2\right)$ is open in this topology. However, this set is not open in the topology $\mathcal{C}$, since the point $\sqrt{2}\in \left[\sqrt{2},2\right)$ can not be enclosed within $\left[\sqrt{2},2\right)$ by a half-open interval with rational endpoints. Thus, the two topologies are not the same. {\color{red}In fact, $\mathcal{C}$ generates a subset of the lower limit topology.}
+\end{enumerate}
+\end{proof}
+
+
+
+
+
+
+
+\begin{problem}{17.1}
+Let $\mathcal{C}$ be a collection of subsets of the set $X$. Suppose that $\varnothing$ and $X$ are in $\mathcal{C}$, and that finite unions and arbitrary intersections of elements of $\mathcal{C}$ are in $\mathcal{C}$. Show that the collection $ \mathcal{T} = \left\{ \, X-C \, \middle| \, C \in \mathcal{C}\,\right\}$ is a topology on $X$.
+\end{problem}
+{\color{red}Note that if we have defined a topology via some open sets, the associated closed sets satisfy the above. This is going in the other direction: if we have a collection of ``closed'' sets, the complements constitute a topology.}\\
+
+\begin{proof}
+	The proof involves careful applications of DeMorgan's laws. First, $\varnothing, X \in \mathcal{T}$ since they are in $\mathcal{C}$ and $X-X=\varnothing$ and $X-\varnothing=X$.
+	
+	Next, let $\left\{ X-C_{\alpha}\right\}_{\alpha}$ be an arbitrary subset of $\mathcal{T}$. Then we have $$ \cup_{\alpha} \left(X-C_{\alpha}\right) = \cup_{\alpha} \left(X\cap C^c_{\alpha}\right) = X \cap \left( \cup_{\alpha}  C^c_{\alpha}\right). $$ Since $C_{\alpha}$ closed for every $\alpha$, $C_{\alpha}^c$ is open and the arbitrary union of these is open, by the axioms for a topology. Thus we have an arbitrary union of elements of $\mathcal{T}$ written as an intersection of two open sets, and thus open. So $\mathcal{T}$ is closed under arbitrary unions.
+	
+	Last, let $\left\{ X-C_{\alpha}\right\}_{\alpha}$ be an arbitrary finite subset of $\mathcal{T}$. Then $$ \cap_{\alpha} \left(X-C_{\alpha}\right) = \cap_{\alpha} \left( X\cap C_{\alpha}^c \right) = X \cap \left(\cap_{\alpha} C^c_{\alpha}\right). $$ Then since $C_{\alpha}$ closed, $C_{\alpha}^c$ open and so the finite intersection of these is open. Then we have written an arbitrary finite intersection of sets in $\mathcal{T}$ as an intersection of open sets, so $\mathcal{T}$ is closed under finite intersections. The topology axioms have been demonstrated.
+\end{proof}
+
+
+\begin{problem}{17.2}
+Show that if $A$ is closed in $Y$ and $Y$ is closed in $X$, then $A$ is closed in $X$.
+\end{problem}
+\begin{proof}
+Assume $A$ closed as a subset of $Y$. Then we know that $A$ can be written as $A=Y\cap C$ for some $C\subset X$ closed. Then if $Y$ also closed, we have $A$ as the (finite) intersection of closed sets in $X$, so $A$ is closed in $X$.
+\end{proof}
+
+
+
+\begin{problem}{17.4}
+	Show that if $U$ is open in $X$ and $A$ is closed in $X$, then $U-A$ is open in $X$, and $A-U$ is closed in $X$.
+\end{problem}
+\begin{proof}
+	Since $U$ open, $X-U$ is closed; since $A$ closed, $X-A$ is open. Then $U-A = U\cap \left(X-A\right)$, which is the intersection of open sets, and is open. Similarly, $A-U = A \cap \left(X-U\right)$ which is the intersection of closed sets, and is closed.
+\end{proof}
+
+
+\begin{problem}{17.5}
+Let $X$ be an ordered set in the order topology. Show that $\overline{\left(a,b\right)}\subset \left[a,b\right]$. Under what conditions does equality hold?
+\end{problem}
+\begin{proof}
+	Recall that in the order topology is generated by the basis of open intervals along with the half-open intervals containing the smallest and largest elements of $X$, if those exist. Let $\left(a,b\right)$ be some set in $X$. Then we can write $$ \left[a,b\right] = X-\left(\left(-\infty, a\right)\cup\left(b,\infty\right) \right) $$ where ``$\pm\infty$'' represents the smallest and largest values in $X$, if those exist. Then $\left[a,b\right]$ is clearly closed since it is the complement of the open set $\left(-\infty,a\right)\cup\left(b,\infty\right)$ (open since any point can be enclosed in an open interval). Since $\overline{\left(a,b\right)}$ is the intersection of all closed sets containing $\left(a,b\right)$, we have $\overline{\left(a,b\right)} \subset \left[a,b\right]$.
+	
+	Equality will hold if $\left[a,b\right] \subset \overline{\left(a,b\right)}$. Certainly we have $\left(a,b\right) \subset \overline{\left(a,b\right)}$, by definition of closure. Thus, equality holds if both $x=a$ and $x=b$ are limit points of $\left(a,b\right)$. This means that, for example, every open interval about $a$ must intersect $\left(a,b\right)$ at some point greater than $a$. This is equivalent to saying that $a$ has no immediate successor in $X$: if $a$ has immediate successor $y$, then we can take $\left(-\infty,y\right)$ as an open neighborhood of $a$ which does not intersect $\left(a,b\right)$ at any point other than $a$. Thus, $a$ and $b$ can have no immediate successor and predecessor, respectively.
+\end{proof}
+
+
+\begin{problem}{17.6}
+Let $A$, $B$, and $A_{\alpha}$ denote subsets of a space $X$. Prove the following:
+\begin{enumerate}[label=(\alph*)]
+	\item If $A\subset B$, then $\overline{A} \subset \overline{B}$.
+	\item $\overline{A\cup B} = \overline{A}\cup \overline{B}$.
+	\item $ \overline{\cup \,A_{\alpha}} \supset \cup\, \overline{A_{\alpha}}$; give an example where equality fails.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item Let $A\subset B$. Then $\overline{B}$ is a closed set containing $B$, so it also contains $A$. Hence, since $\overline{A}$ is the intersection of all closed sets containing $A$, we have $\overline{A} \subset \overline{B}$.
+	\item For $A,B\subset X$, we have $A\subset \overline{A}$ and $B\subset \overline{B}$, so that $A\cup B \subset \overline{A}\cup \overline{B}$, and $\overline{A}\cup\overline{B}$ is closed as a finite union of closed sets. Then for the same reason as in (\textit{a}), we have $\overline{A\cup B} \subset \overline{A}\cup\overline{B}$.
+	
+	Conversely, let $E$ be a closed set containing $A\cup B$. Then $E$ is a closed set containing $A$ and $B$, and so $\overline{A} \subset E$ and $\overline{B}\subset E$. 	
+	\item This is the generalization of part (\textit{b}) to arbitrary (maybe uncountable) unions. The proof 
+\end{enumerate}
+\end{proof}
+
+
+
+
+\begin{problem}{17.10}
+Show that every order topology is Hausdorff.
+\end{problem}
+\begin{proof}
+Let $X$ be a set with the order topology, and choose $x,y \in X$, distinct. Assume without loss of generality that $x < y$, which is possible since the set is ordered. Then if there is some element $z$ between $x$ and $y$, we can take $U=\left(-\infty,z\right)$ and $V=\left(z,\infty\right)$ as disjoint open neighborhoods of $x$ and $y$, respectively.
+
+On the other hand, if $y$ is the immediate successor of $x$, we can take $U=\left(-\infty,y\right)$ and $V=\left(x,\infty\right)$ as similar disjoint open neighborhoods of $x$ and $y$, respectively, so that $X$ is Hausdorff.
+\end{proof}
+
+
+\begin{problem}{17.11}
+Show that the product of two Hausdorff spaces is Hausdorff.
+\end{problem}
+\begin{proof}
+Let $\left(X,\mathcal{T}_X\right)$ and $\left(Y,\mathcal{T}_Y\right)$ be two Hausdorff spaces, and let $X\times Y$ be the associated product topological space. Then given distinct points $\left(x,y\right), \left(s,t\right) \in X\times Y$, we have either $x\neq s$, $y\neq t$, or both. First, assume that $x\neq s$ but $y=t$. Then since $X$ is Hausdorff, we have disjoint open sets $U,V\subset X$ so that $x\in U$ and $s\in V$; then $\left(x,y\right) \subset U\times Y$ and $\left(s,t\right)\subset V\times Y$ which are disjoint open sets in the product topology (basis elements). The case of $x=s$ but $y\neq t$ is treated similarly. 
+
+Lastly, if $x\neq s$ and $y\neq t$, then we have open sets $U_x, V_x \subset X$ and $U_y,V_y \subset Y$ with $x \in U_x, s\in V_x, U_x \cap V_x = \varnothing$ and $y \in U_y, t\in V_y, U_y\cap V_y = \varnothing$. Then $\left(x,y\right) \in U_x \times U_y $ and $\left(s,t\right) \in V_x \times V_y $ are disjoint open sets in the product topology. Thus, in any case we have the product topology Hausdorff.
+\end{proof}
+
+
+\begin{problem}{17.12}
+Show that a subspace of a Hausdorff space is Hausdorff.
+\end{problem}
+\begin{proof}
+Let $X$ be a Hausdorff space with subspace $Y$. Then let $x,y \in Y$. Then since $Y\subset X$, there are open sets $U,V\subset X$ with $x\in U, y\in V$, and $U \cap V = \varnothing$. Then the sets $Y\cap U$ and $Y\cap V$ are open in the subspace topology on $Y$ and are disjoint open neighborhoods of $x$ and $y$, respectively, in $Y$. Hence, $Y$ is also Hausdorff. 
+\end{proof}
+
+
+\begin{problem}{17.13}
+Show that $X$ is Hausdorff if and only if the diagonal $\Delta = \left\{\, x\times x\, \middle| \, x\in X \, \right\}$ is closed in $X \times X$.
+\end{problem}
+\begin{proof}
+Assume $X$ is Hausdorff and let $y \times z \notin \Delta$, i.e., $y\neq z$ for $y,z \in X$. Then there are open sets $U,V \subset X$ with $y\in U, z\in V,$ and $U\cap V = \varnothing$. Then there is no $s\in X$ in both $U$ and $V$. Hence $y \times Z \subset U\times V$, open, and $\left(U\times V \right)\cap \Delta = 0$.
+
+Conversely, if $\Delta$ is closed, then for any $y\times z \notin \Delta$, there is an open neighborhood $W$ of $y\times z$ which does not intersect $\Delta$, so $x \times x \in W$ for no $x \in X$. Then since $W$ open, we have by definition of the product topology open sets $U,V\subset X$ with $y \in U$, $z \in V$. Then $U $ and $V$ are disjoint since if $x \in U\cap V$, then $x\times x \in W$ and we already ruled this out. Thus, we have separated any arbitrary distinct $y,z \in X$ by disjoint open sets.
+\end{proof}
+
+
+
+\begin{problem}{17.14}
+	In the finite complement topology on $\mathbb{R}$, to what point or points does the sequence $x_n = 1/n$ converge?
+\end{problem}
+\begin{proof}
+	Recall that a sequence $\left(x_n\right)$ converges to limit $x$ if every open neighborhood of $x$ contains all $\left(x_n\right)$ for $n>N$ for some $N\in \mathbb{N}$. This depends on the definition of open sets in our space. In the finite complement topology, the open sets are those with finite complement, or complement which is all of $X$.
+	
+	With this in mind, let $x$ be an arbitrary point of $\mathbb{R}$ and let $U$ be an open set containing $x$. Then $U$ has finite complement, so a finite number of the $x_n$ are in this complement, i.e., $U$ contains all but finitely many elements of the sequence. Hence, we have some $N$ for which $x_n \in U$ for $n>N$, i.e., $\left(x_n\right)$ converges to every point in $\mathbb{R}$ in the finite complement topology.
+\end{proof}
+
+
+\begin{problem}{17.15}
+	Show the $T_1$ axiom is equivalent to the condition that for each pair of points of $X$, each has a neighborhood not containing the other.
+\end{problem}
+\begin{proof}
+	Let $X$ be $T_1$, i.e., finite point subsets of $X$ are closed, and let $x,y \in X$ be distinct points. Then, in particular, $\left\{x\right\}$ and $\left\{y\right\}$ are closed. Then $X\setminus \left\{x\right\}$ is an open set containing $y$ and not $x$, and $X\setminus \left\{x\right\}$ is an open set containing $x$ and not $y$.
+	
+	Conversely, assume that for each pair of points of $X$, each has a neighborhood not containing the other. Let $F= \left\{x_1,x_2,\ldots,x_n\right\}$ be a finite point set in $X$. Then let $y \notin F$. Then by our hypothesis, for each $x_i\in F$ we have some neighborhood $U_{i}$ containing $y$ which does not contain $x_i$. Then $U = \cap_{i=1}^n U_i$ is an open set containing $y$ which does not intersect $F$, so $F$ is closed.
+\end{proof}
+
+
+
+\subsection*{Continuous Functions}
+
+\begin{problem}{18.1}
+	Prove that for functions $f:\mathbb{R}\rightarrow \mathbb{R}$, the $\epsilon$-$\delta$ definition of continuity implies the open set definition.
+\end{problem}
+\begin{proof}
+	Let $f:\mathbb{R}\rightarrow \mathbb{R}$ be continuous according to the $\epsilon$-$\delta$ definition and let $V\subset f\left(X\right)$ be some open set. Then let $y\in V$ be arbitrary, and consider $x \in f^{-1}\left(V\right)$. Then $f\left(x\right)=y \in V$, and so there is some basis element $\left(y-\epsilon,y+\epsilon\right) \subset V$ containing $y$ (we can take this interval to be symmetric by restricting $\epsilon$ to be small enough). Then by continuity of $f$, we have some $\delta >0$ with $f\left(\left(x-\delta,x+\delta\right)\right) \subset \left(y-\epsilon,y+\epsilon\right) \subset V$; that is, $\left(x-\delta, x+\delta\right) \subset f^{-1}\left(V\right)$. This completes the proof: $f$ is continuous in the topological space sense.
+\end{proof}
+
+
+\begin{problem}{18.2}
+	Suppose that $f:X\rightarrow Y$ is continuous. If $x$ is a limit point of the subset $A$ of $X$, is it necessarily true that $f\left(x\right)$ is a limit point of $f\left(A\right)$?
+\end{problem}
+\begin{proof}
+	This is not true. For example, the constant function $f\left(x\right)=y_0$ for all $x\in X$ is certainly continuous, but no open neighborhood of $\left\{y_0\right\}$ in $Y$ will contain any other point of $\left\{y_0\right\}$ (there is no other point).
+\end{proof}
+
+
+\begin{problem}{18.3}
+Let $X$ and $X'$ denote a single set in the two topologies $\mathcal{T}$ and $\mathcal{T}'$, respectively. Let $i:X'\rightarrow X$ be the identity function.
+\begin{enumerate}[label=(\alph*)]
+	\item Show that $i$ is continuous $\iff$ $\mathcal{T}'$ is finer than $\mathcal{T}$.
+	\item Show that $i$ is a homeomorphism $\iff$ $\mathcal{T}'=\mathcal{T}$.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item Assume $i$ is continuous. Then $U \in \mathcal{T} \implies i^{-1}\left(U\right)=U \in \mathcal{T}'$, so $\mathcal{T}\subseteq \mathcal{T}'$. Conversely, if $\mathcal{T}'\supseteq \mathcal{T}$, then $U \in \mathcal{T}' \implies U \in \mathcal{T}$, so that $i^{-1}\left(U\right) = U \in \mathcal{T}$, hence $i$ is continuous.
+	\item This is obvious from part (\textit{a}) applied to both $i$ and $i^{-1}$.
+\end{enumerate}
+\end{proof}
+
+
+
+\begin{problem}{18.4}
+Given $x_0 \in X$ and $y_0\in Y$, show that the maps $f:X\rightarrow X\times Y$ and $g:Y\rightarrow X\times Y$ defined by $$ f\left(x\right) = x\times y_0 \text{   and   } g\left(y\right) = x_0 \times y $$ are imbeddings.
+\end{problem}
+\begin{proof}
+Recall that a topological imbedding is a function which is a homeomorphism onto its image. Consider the function $f$ defined above. Then the image of $f$ is clearly $f\left(X\right) = X \times \left\{y_0\right\} \subset X \times Y$. Let $f\left(x_1\right) = f\left(x_2\right)$; then $x_1 \times y_0 = x_2 \times y_0$ which is true if and only if $x_1 = x_2$, by definition of Cartesian products. Thus, $f$ is injective. Next, let $z \in X \times \left\{y_0\right\}$ be an arbitrary element in the image of $X$ under $f$. Then again by definition of Cartesian product, we have $z = x \times y_0$ for some $x \in X$, and so we have $f\left(x\right) = x\times y_0 = z$, and so $f$ is also surjective. Hence, $f$ is a bijection, and has an inverse defined on $f\left(X\right)$.
+
+We must show that $f$ and its inverse $f^{-1}$ are both continuous. Let $U$ be open in $X\times \left\{y_0\right\}$ and pick $z \in f^{-1}\left(U\right)$. Then $f\left(z\right) \in U \subset X\times \left\{y_0\right\}$, so $z= x\times y_0$ for some $x\in X$. Since $U$ open, there is some basis element $B_x \times B_y$ about $z$ which is contained in $U$, and where $B_x$ open in $X$ and $B_y$ open in $Y$ (this is by definition of the basis for the product topology). But then we must have $f^{-1}\left(B_x \times B_y\right) = B_x \subset f^{-1}\left(U\right)$, open, and $x \in B_x$. Hence, we have shown that $f$ is continuous. Analogously, $g$ is continuous as well.
+
+Last, the inverse of $f$ is $f^{-1}\left(x\times y_0\right) = x$ which can be written as $f^{-1} = \pi_1$, the projection function onto the first component, which we know to be a continuous function on any product space. Similarly, $g^{-1} = \pi_2$ is continuous. Thus, both $f$ and $f^{-1}$ are continuous as maps between $X$ and $f\left(X\right)$, and so $f$ (and $g$) are topological imbeddings.
+\end{proof}
+
+
+
+\begin{problem}{18.5}
+Show that the subspace $\left(a,b\right)$ of $\mathbb{R}$ is homeomorphic with $\left(0,1\right)$ and the subspace $\left[a,b\right]$ of $\mathbb{R}$ is homeomorphic with $\left[0,1\right]$.
+\end{problem}
+\begin{proof}
+	We can easily provide the homeomorphism $f:\left(a,b\right) \rightarrow \left(0,1\right)$ as $$ f\left(x\right) = \frac{x-a}{b-a} $$ which has inverse $$ f^{-1}\left(y\right) = a + y\cdot (b-a), $$ both clearly continuous as linear functions in the $\epsilon$-$\delta$ definition. The same functions work in the second case, extended easily to the domains inclusive of the endpoints.
+\end{proof}
+
+\begin{problem}{18.6}
+	Find a function $f:\mathbb{R}\rightarrow \mathbb{R}$ that is continuous at precisely one point.
+\end{problem}
+\begin{proof}
+	From some minor familiarity with analysis, an example that springs to mind is the function $$f\left(x\right) = \left\{ \begin{array}{rl}
+	x^2, & x \text{ rational} \\
+	0, & x \text{ not rational}
+\end{array}	 \right. $$
+Consider $x \neq 0$. Then if $x$ rational, $f\left(x\right)=x^2 >0 $ and so we can take $\epsilon$ so that $0 < \epsilon < x^2$. But then any neighborhood $\left(x-\delta,x+\delta\right)$ will contain an irrational number $x'$ so that $\left|x'-x\right|<\delta$ but $\left| f\left(x'\right) -f\left(x\right)\right| = x^2 > \epsilon$. Since this holds for any $\delta$ we choose, $f$ cannot be continuous at any nonzero rational $x$. On the other hand, we can similarly show that $x$ cannot be continuous at any nonzero irrational $x$.
+
+At $x=0$, we have $f\left(x\right)=0$, and given $\epsilon>0$ we may take $\delta = \epsilon^{1/2}$ so that $$ \left|x'-0\right| < \epsilon^{1/2} \implies \left|f\left(x'\right) - f\left(0\right)\right| = \left|f\left(x'\right)\right| < \epsilon $$ so that $f$ is continuous at $0$, which is only a single point.
+\end{proof}
+
+
+\begin{problem}{18.7}
+\begin{enumerate}[label=(\alph*)]
+	\item Suppose that $f:\mathbb{R}\rightarrow \mathbb{R}$ is ``continuous from the right,'' that is, $$ \lim_{x\rightarrow a^+} f\left(x\right) = f\left(a\right), $$ for each $a\in \mathbb{R}$. Show that $f$ is continuous when considered as a function from $\mathbb{R}_l$ to $\mathbb{R}$.
+	\item Can you conjecture what functions $f:\mathbb{R}\rightarrow \mathbb{R}$ are continuous when considered as maps from $\mathbb{R}$ to $\mathbb{R}_l$? As maps from $\mathbb{R}_l$ to $\mathbb{R}_l$? We shall return to this question in Chapter 3.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item Let $U\in \mathbb{R}$ be an open set and consider arbitrary $x \in f^{-1}\left(U\right)$. Then $f\left(x\right) \in U$ and so there is some basis element $\left(f\left(x\right)-\epsilon, f\left(x\right)+\epsilon\right) \subset U$ containing $f\left(x\right)$. Recall that the limit hypothesis is that for any $\epsilon>0$ we have some $\delta>0$ with $$ 0\leq x'-x < \delta \implies \left|f\left(x'\right)-f\left(x\right)\right|<\epsilon. $$ Then since $f$ is right-continuous at $x$, we have a $\delta>0$ with $x\leq x' < x'+\delta \implies f\left(x'\right) \in \left(f\left(x\right)-\epsilon, f\left(x\right)+\epsilon\right) \subset U$, i.e., $\left[x,x+\delta\right)\subset f^{-1}\left(U\right)$, which is open in $\mathbb{R}_l$. Hence, $f$ is continuous in the topological sense. The converse is also very clearly true.
+	
+	\item 
+\end{enumerate}
+\end{proof}
+
+
+
+\begin{problem}{18.8}
+	Let $Y$ be an ordered set in the order topology. Let $f,g:X\rightarrow Y$ be continuous.
+	\begin{enumerate}[label=(\alph*)]
+		\item Show that the set $\left\{ x\, \middle| \, f\left(x\right)\leq g\left(x\right)\right\}$ is closed in $X$.
+		\item Let $h:X\rightarrow Y$ be the function $$ h\left(x\right) = \min \left\{f\left(x\right),g\left(x\right) \right\}.$$ Show that $h$ is continuous. [\textit{Hint}: Use the pasting lemma.]
+	\end{enumerate}
+\end{problem}
+\begin{proof}
+		\begin{enumerate}[label=(\alph*)]
+			\item Let $x$ not be in the set so that $f\left(x\right) > g\left(x\right)$. We can write this differently as $h\left(x\right)>0$ where $h:=f-g$ is clearly continuous. Then since $h$ continuous at $x$, there is some open neighborhood $U\subset X$ of $x$ so that $h>0$ on $U$ (this is a classic theorem in analysis and is easy to prove via the limit definition of continuity). Then the set $U$ is a neighborhood of $x$ which does not intersect the set of interest, and so that set is closed in $X$.
+			\item We can write the function $h$ as $$ h\left(x\right) = \left\{ \begin{array}{rl} f\left(x\right), & f\left(x\right) \geq g\left(x\right) \\ g\left(x\right), & g\left(x\right) \geq f\left(x\right) \end{array}\right. .$$ Letting $A=\left\{ x \in X \, \middle| \, f\left(x\right) \geq g\left(x\right)\right\}$ and $B=\left\{ x \in X \, \middle| \, g\left(x\right) \geq f\left(x\right)\right\}$, we have $f|A:A\rightarrow Y$ and $g|B:B\rightarrow Y$ continuous as continuous functions on restricted domains; $f$ and $g$ certainly agree on the intersection, which is the set of points where $f\left(x\right) = g\left(x\right)$. Hence, the pasting lemma applies and so $h$ as defined is continuous.
+		\end{enumerate}
+\end{proof}
+
+
+
+
+
+\begin{problem}{18.9}
+	Let $\left\{A_{\alpha}\right\}$ be a collection of subsets of $X$; let $X=\cup_{\alpha}A_{\alpha}$. Let $f:X\rightarrow Y$; suppose that $f|A_{\alpha}$ is continuous for each $\alpha$.
+	\begin{enumerate}[label=(\alph*)]
+		\item Show that if the collection $\left\{A_{\alpha}\right\}$ is finite and each set $A_{\alpha}$ is closed, then $f$ is continuous.
+		\item Find an example where the collection $\left\{A_{\alpha}\right\}$ is countable and each $A_{\alpha}$ is closed, but $f$ is not continuous.
+	\end{enumerate}
+\end{problem}
+\begin{proof}
+	\begin{enumerate}[label=(\alph*)]
+		\item Let $V\subset Y$ be closed and consider $f^{-1}\left(V\right) \subset X$. Then we have $f^{-1}\left(V\right) = \cup_{\alpha \in A} \left(  f^{-1}\left(V\right) \cap A_{\alpha} \right)$ since $X$ has this decomposition. But notice that $f^{-1}\left(V\right)\cap A_{\alpha} = \left( f|A_{\alpha}\right)^{-1}\left(V\right)$. Thus, each $f^{-1}\left(V\right) \cap A_{\alpha} $ is closed because it is the preimage of a closed set under a continuous function. Then $f^{-1}\left(V\right)$ is a finite union of closed sets, so it is closed, and so $f$ is continuous.
+		\item 
+	\end{enumerate}	
+\end{proof}
+
+\begin{problem}{18.10}
+	Let $f:A\rightarrow B$ and $g:C\rightarrow D$ be continuous functions. Let us define a map $f\times g: A\times C \rightarrow B\times D$ by the equation $$ \left(f\times g\right)\left(a\times c\right) = f\left(a\right)\times g\left(c\right).$$ Show that $f\times g$ is continuous.
+\end{problem}
+{\color{red}Note that this is not exactly the situation in Theorem 18.4; in that case, both $f$ and $g$ have the same domain, and so the function is closer to a vector-valued function. Here, the functions take different domains.}\\
+
+\begin{proof}
+	Let $U$ be an open subset of $B\times D$ and consider $\left(f\times g\right)^{-1}\left(U\right)$. To show that $f\times g$ is continuous, let $x \times y \in \left(f\times g\right)^{-1}\left(U\right) \subseteq A\times C$. Then $\left(f\times g\right)\left(x\times y\right) \in U\subset B\times D$, and since $U$ is open, there is some basis element, say $B_B \times B_D$, where $B_B$ open in $B$ and $B_D$ open in $D$, so that $$ \left(f\times g\right)\left(x\times y\right) \in B_B \times B_D \subset U.$$ Then $x \in f^{-1}\left(B_B\right)$ and $y \in g^{-1}\left(B_D\right)$ and both are open in $A$ and $C$, respectively, since $f$ and $g$ are continuous. Then there are basis elements $B_A$ and $B_C$ of $A$ and $C$, respectively, so that $$ x \in B_A \subset f^{-1}\left(B_B\right)$$ and $$ y \in B_C \subset g^{-1}\left(B_D\right). $$
+	
+	
+	Then we have $$ x\times y \in B_A \times B_C \subset f^{-1}\left(B_B\right) \times g^{-1}\left(B_D\right) \subset \left(f\times g\right)^{-1}\left(U\right) $$ so that $\left(f\times g\right)^{-1}\left(U\right)$ is open, and so $f\times g$ is continuous.
+\end{proof}\\
+
+{\color{red}The following is an alternate, more elegant proof. We eschew open sets in favor of basis elements, since we can always find some basis elements in any open sets. The proof is the same as the one above, but with most detail left to the imagination (and previous experience).}\\
+
+\begin{proof}
+Let $U\times V$ be a basis element of $B\times D$. Then we have $$ \left(f\times g\right)^{-1}\left(U\times V\right) = f^{-1}\left(U\right)\times g^{-1}\left(V\right)$$ by definition of $f\times g$. This is a product of open sets, since $f$ and $g$ are continuous, and so is open in the product topology on $A\times C$. Since the preimage of any basis element is open, the function is continuous.
+\end{proof}
+
+
+
+
+
+\begin{problem}{18.11}
+	Let $F:X\times Y \rightarrow Z$. We say that $F$ is continuous in each variable separately if for each $y_0 \in Y$, the map $h:X\rightarrow Z$ defined by $h\left(x\right) = F\left(x\times y_0\right)$ is continuous, and for each $x_0$ in $X$, the map $k:Y\rightarrow Z$ defined by $k\left(y\right) = F\left(x_0 \times y\right)$ is continuous. Show that if $F$ is continuous, then $F$ is continuous in each variable separately.
+\end{problem}
+\begin{proof}
+	Let $U \subset Z$ be open and consider $x \in h^{-1}\left(U\right)$. Then $h\left(x\right) = F\left(x\times y_0\right) \in U$, and so there is a basis set $V$ so that $F\left(x\times y_0\right) \in V \subset U$. By continuity of $F$, $F^{-1}\left(V\right)$ open in $X\times Y$ and contains the point $x\times y_0$. Then there are basis elements $U_X$ and $U_Y$ so that $x\times y_0 \in U_X \times U_Y \subset F^{-1}\left(V\right)$. In particular, $x \in U_X$ and $U_X \subset h^{-1}\left(U\right)$. Why? Because if $x' \in U_X$, then $x' \times y_0 \in F^{-1}\left(V\right)$ so that $F\left(x' \times y_0\right) = h\left(x'\right) \in V \subset U$. Hence we have an open set about $x$ and in $h^{-1}\left(U\right)$, so $h$ is continuous. The function $k$ is continuous by symmetry.
+\end{proof}
+
+
+
+
+
+
+\begin{problem}{18.12}
+Let $F:\mathbb{R}\times \mathbb{R} \rightarrow \mathbb{R}$ be defined by the equation $$ F\left(x\times y\right) = \left\{ \begin{array}{ll}
+xy/\left(x^2+y^2\right) & \text{if }x\times y \neq 0\times 0.\\
+0 & \text{if }x\times y = 0 \times 0.
+\end{array}\right. $$	
+\begin{enumerate}[label=(\alph*)]
+	\item Show that $F$ is continuous in each variable separately.
+	\item Compute the function $g:\mathbb{R}\rightarrow \mathbb{R}$ defined by $g\left(x\right)=F\left(x\times x\right)$.
+	\item Show that $F$ is not continuous.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item First, fix $y=y_0$ and consider $f_1\left(x\right) = F\left(x\times y_0\right)$. if $y_0=0$, then $f_1$ is identically zero and so is continuous as a constant function. On the other hand, assume $y_0\neq 0$. Then when $x\neq 0$, we have $f_1\left(x\right) = x y_0 / \left(x^2 + y_0^2\right)$ which is continuous as the ratio of continuous functions (polynomials in $x$). Then since $$ \left| f_1\left(x\right) - 0\right| = \left| \frac{xy_0}{x^2+y_0^2} \right| < \left| x \right| \left| y_0\right|^{-1} $$ which can certainly be made as small as possibly by judicious choice of a bound on $x$, i.e., $f_1$ is continuous at zero. Hence, $F$ is continuous in the first variable. By symmetry, we can easily see that $F$ is continuous in both variables, separately.
+	\item Define $g\left(x\right)=F\left(x\times x\right)$. It is straightforward to compute that $$ g\left(x\right) = \left\{ \begin{array}{ll}
+	\frac{1}{2} & \text{if }x\neq 0 \\
+	0 & \text{if }x = 0 \\
+	\end{array}\right. $$
+	\item It is obvious that $g$ has a point discontinuity at $x=0$. To prove it, let $\epsilon = \frac{1}{4}$ and notice that any neighborhood of $x=0$ will contain some nonzero points. More specifically, we have found an $\epsilon>0$ and an $x$ so that $$ x' \in \left(-\delta,\delta\right)  \text{ but } \left|g\left(x'\right)-g\left(0\right)\right| = \frac{1}{2} > \frac{1}{4}  $$ for any $\delta>0$. Hence, $g$ discontinuous at $x=0$. 
+	
+	{\color{red}A more topological argument would be that the set $\left\{\frac{1}{2}\right\}$ is closed in the range, but $F^{-1}\left(\left\{\frac{1}{2}\right\}\right)= \left\{ x\times x\, \middle| \, x \neq 0 \right\}$ is not closed in $\mathbb{R}\times \mathbb{R}$.} 
+\end{enumerate}
+\end{proof}
+
+
+\begin{problem}{18.13}
+Let $A\subset X$; let $f:A\rightarrow Y$ be continuous; let $Y$ be Hausdorff. Show that if $f$ may be extended to a continuous function $g:\overline{A}\rightarrow Y$, then $g$ is uniquely determined by $f$.
+\end{problem}
+{\color{red}Note that this includes the special case where $\overline{A}=X$ for some set $X$, i.e., where $A$ is dense in $X$. This case states that if a continuous function on a dense subset can be continuously extended to the closure, then the function is uniquely determined by its values on that dense subset.
+
+My original idea for the proof involved taking any limit point and obtaining a sequence of points limiting toward that limit point and showing that the value of $g$ must be uniquely determined by such a sequence, but this doesn't quite hold since we don't know that such a sequence exists. In a metric space, we could construct it.}\\
+
+\begin{proof}
+	Assume that $g$ and $h$ disagree on some point $x \in \overline{A}$. We must have $x$ a limit point of $A$, since otherwise $x\in A$ and $g$ and $h$ certainly agree there. Then since $g\left(x\right)\neq h\left(x\right)$ and $Y$ is Hausdorff, we can find open neighborhoods $U$ and $V$ of $g\left(x\right)$ and $h\left(x\right)$, respectively, which do not intersect. Then the preimage $g^{-1}\left(U\right)$ and $h^{-1}\left(V\right)$ are both open neighborhoods of $x$ since $g,h$ are continuous. Then $g^{-1}\left(U\right)\cap h^{-1}\left(V\right)$ is also an open neighborhood of $x$. Then since $x$ is a limit point of $A$, there is some point $a\in A$ in this intersection, i.e., $g\left(a\right)=h\left(a\right)$. But $g\left(a\right) \in U$ and $h\left(a\right) \in V$, assumed disjoint. This is a contradiction.
+\end{proof}\\
+
+
+\begin{proof}
+	Let $x$ be an arbitrary point in $\overline{A}$. Assume that there are functions $g,h:\overline{A}\rightarrow Y$ which are continuous extensions of $f$. Then set $$ S = \left\{ x\in \overline{A} \, \middle| \, g\left(x\right)=h\left(x\right) \right\}. $$ By definition, $S \subseteq \overline{A}$, and $A \subseteq S$ since $g$ and $h$ must agree on $A$; put concisely, $$ A \subseteq S \subseteq \overline{A}.$$ The goal is to show that $S$ is exactly $\overline{A}$.
+	
+	Note that we can write $S$ as the diagonal set $$ \Delta = \left\{ \left(y,y\right) \, \middle| \, y \in Y\right\}$$ Think of $g$ and $h$ as coordinates in $Y$, written as the function $$ \phi\left(x\right) = \left(g\left(x\right),h\left(x\right)\right) \in Y $$ Then $$ S = \phi^{-1}\left(\Delta\right).$$ We know from a previous exercise that $\Delta$ is a closed set since $Y$ is a Hausdorff space, so $\overline{\Delta}=\Delta$; we also know from Theorem 18.4 that $\phi$ is continuous, so that $\phi^{-1}\left(\Delta\right)=S$ is closed, hence $\overline{S}=S$. But then $A \subseteq S \subseteq \overline{S}$, and so $\overline{S}$ is a closed set containing $A$, and $\overline{A}$ is the intersection of all such sets, so $\overline{A}\subseteq \overline{S}=S$. Hence, we have shown that $\overline{A}=S$, so that $h$ and $g$ agree on all of $\overline{A}$.
+\end{proof}
+
+
+
+
+
+
+\begin{problem}{19.4}
+	Show that $\left(X_1\times \cdots \times X_{n-1}\right) \times X_n$ is homeomorphic with $X_1 \times \cdots \times X_n$.
+\end{problem}
+{\color{red}This statement is important because it asserts that parenthesis can be ignored from the topological aspect. Note that this proof is only carried out for finite Cartesian product spaces, and that in these cases the box and the product topology are the same.}\\
+
+\begin{proof}
+	It is possible to build this homeomorphism by looking at the elements of the product spaces as functions, but it is not so enlightening. Instead, we treat them as tuples to obtain a cleaner proof. The homeomorphism is $\phi: \left(X_1\times \cdots \times X_{n-1}\right)\times X_n \rightarrow X_1 \times \cdots \times X_n$ as  $$ \phi\left(\left(x_1,\ldots,x_{n-1}\right),x_n\right) = \left(x_1,\ldots,x_{n-1}, x_n\right).$$ It is certainly a bijection (since it is nearly the identity function, it is easy to show). The inverse is easy to write down as well: $$ \phi^{-1}\left(\left(x_1,\ldots,x_n\right)\right) = \left(\left(x_1,\ldots,x_{n-1}\right),x_n\right).$$ 
+	
+	To show continuity, let $U$ be open in $X_1\times \cdots \times X_n$. Then if $x\in \phi^{-1}\left(U\right)$, then $\phi\left(x\right) \in U$ and so there is an open set $U_i$ for each $i$ so that $$ \phi\left(x\right) = \left(x_1,\ldots,x_n\right) \in U_i \times \ldots \times U_n \subset U $$ In particular, we have $$\left(x_1,\ldots,x_{n-1}\right) \in U_1 \times \ldots U_{n-1} $$ and $$ x_n \in U_n,$$ so that $$\phi^{-1}\left(\left(x_1,\ldots,x_n\right)\right) = \left(\left(x_1,\ldots,x_{n-1}\right),x_n\right) \in \left(U_1\times \ldots \times U_{n-1}\right) \times U_n \subset U$$, hence $\phi^{-1}\left(U\right)$ is open and so $\phi$ is continuous. A similar computation shows that $phi^{-1}$ is also continuous, and so $\phi$ is a homeomorphism between the two product spaces.
+\end{proof}
+
+
+\begin{problem}{19.5}
+	One of the implications stated in Theorem 19.6 holds for the box topology. Which one?
+\end{problem}
+\begin{proof}
+	The counterexample given in Example 2 demonstrates a function into an infinite Cartesian product space which has continuous components but is not itself continuous, in the box topology. Hence, by process of elimination we know that the previous direction must be the one which holds: a continuous function into the product space will have continuous components.
+	
+	In fact, let $f:A\rightarrow \prod_{\alpha \in J} X_{\alpha}$ be as in the theorem hypothesis and consider some $\beta \in J$. Let $U_{\beta}\subset X_{\beta}$ be open. Then given $x_{\beta} \in U_{\beta}$, we have a basis element $s$ with  $$ \pi_{\beta}^{-1}\left(U_{\beta}\right) = X_1 \times \cdots \times U_{\beta} \times \cdots $$ This is a subbasis element 
+\end{proof}
+
+
+
+
+\begin{problem}{20.1}
+	\begin{enumerate}[label=(\alph*)]
+		\item In $\mathbb{R}^n$, define $$ d'\left(x,y\right) = \left|x_1-y_1\right| + \cdots + \left|x_n-y_n\right|.$$ Show that $d'$ is a metric that induces the usual topology of $\mathbb{R}^n$. Sketch the basis elements under $d'$ when $n=2$.
+		
+		\item More generally, given $p\geq 1$, define $$d'\left(x,y\right) = \left[ \sum_{i=1}^n \left|x_i - y_i\right|^p \right]^{1/p} $$ for $x,y\in \mathbb{R}^n$. Assume that $d'$ is a metric. Show that it induces the usual topology on $\mathbb{R}^n$.
+	\end{enumerate}
+\end{problem}
+\begin{proof}
+	\begin{enumerate}[label=(\alph*)]
+		\item We first must show that $d'$ is a metric. It is clearly non-negative-valued, and assigns zero only when each of the terms in the sum are zero, i.e., when $x=y$. It is also clearly symmetric thanks to the symmetry of the absolute values. It also satisfies the triangle inequality, since \begin{align*}
+		d'\left(x,y\right) & = \sum_{i=1}^n \left|x_i - y_i\right| \\
+		& = \sum_{i=1}^n \left|\left(x_i - z_i\right) + \left(z_i-y_i\right)\right| \\
+		& \leq \sum_{i=1} \left|x_i - z_i\right| + \sum_{i=1}^n \left|z_i -y_i\right| \\ 
+		& = d'\left(x,z\right) + d'\left(z,y\right)
+		\end{align*}
+	\end{enumerate}
+	Thus, $d'$ is a metric on $\mathbb{R}^n$.
+	
+	To show that it induces the same topology on $\mathbb{R}^n$ as the standard Euclidean metric, we need to show that exactly the same sets are open in both topologies. The most straightforward way is to show that the basis elements, i.e., open balls, contain one another (this is the content of Lemma 20.2). {\color{red}In particular, the lemma concerns open balls centered at the same point!} To start, let $B_{d}\left(x,\delta\right)$ be a basis element in the topology induced by the metric $d$. If we take $\epsilon = \delta / \sqrt{n}$, then we can show that $B_{d'}\left(x,\epsilon\right) \subset B_{d}\left(x,\delta\right)$. Let $y \in B_{d'}\left(x,\epsilon\right)$; then $$ d'\left(x,y\right) = \sum_{i=1}^n \left|x_i - y_i \right| < \epsilon/\sqrt{n} $$ so that, in particular, $$ \left|x_i - y_i\right| < \epsilon/\sqrt{n}$$ for every $i$. Then \begin{align*}
+	d\left(x,y\right)^2 & = \sum_{i=1}^n \left|x_i - y_i\right|^2\\
+	& \leq \sum_{i=1}^n \epsilon^2 / n \\
+	& = \epsilon^2
+	\end{align*}
+	so that $d\left(x,y\right) < \epsilon$, i.e., $y \in B_{d}\left(x,\epsilon\right)$. Thus, the topology induced by $d$ is finer. 
+	
+	Conversely, consider $B_{d'}\left(x,\delta\right)$. Now, take $\delta = \epsilon/n$. Then if $y \in B_{d}\left(x,\delta\right)$, then $$ d\left(x,y\right) = \left(\sum_{i=1}^n \left|x_i-y_i\right|^2\right)^{1/2} < \delta $$ so that $$ \left|x_i - y_i\right| < \delta = \epsilon/n $$ for all $i$. Then
+\begin{align*}		
+	d'\left(x,y\right) & = \sum_{i=1}^n \left|x_i-y_i\right| \\
+	& < \sum_{i=1}^n \epsilon/n \\
+	& = \epsilon
+\end{align*}
+so that now we have the topology induced by $d'$ the finer. Taken together, the topologies are equal.
+
+	\item The process for this new metric is similar to the previous part of the problem. On the first hand, let $B_d\left(x,\epsilon\right)$ be some open ball in the $d$-induced metric topology on $\mathbb{R}^n$. Then we again have \begin{align*}
+	\left|x_j-y_j\right|^p & \leq \sum_{i=1}^n \left|x_i - y_i\right|^p \\
+	&  = d'\left(x,y\right)^p
+	\end{align*} for any $x,y\in \mathbb{R}^n$ so that $$ \left|x_j - y_j\right| \leq d'\left(x,y\right)$$ which is the same as in the case of $p=1$. Hence, if we choose $\delta = \epsilon/\sqrt{n}$, we can take $y \in B_{d'}\left(x,\delta\right)$ and then we have $$ \left|x_j - y_j\right| \leq d'\left(x,y\right) < \epsilon/\sqrt{n} $$ for every $j=1,\ldots,n$, and so
+	\begin{align*}
+	d\left(x,y\right)^2 & = \sum_{i=1}^n \left|x_i - y_i\right|^2 \\
+	& <\sum_{i=1}^n \epsilon^2 / n \\
+	& = \epsilon^2
+	\end{align*}
+	so that $d\left(x,y\right)<\epsilon$ and we have $y \in B_d\left(x,\epsilon\right)$. We have shown that $B_{d'}\left(x,\delta\right) \subseteq B_d\left(x,\epsilon\right)$, so that the $d'$-induced metric topology is finer than the standard metric topology on $\mathbb{R}^n$.
+	
+	Conversely, let $B_{d'}\left(x,\epsilon\right)$ be an arbitrary open $d'$-ball. Then we can take $\delta = \epsilon/n^{1/p}$ (as in part (\textit{a})) to obtain a ball $B_{d}\left(x,\delta\right)$ which is inside the former ball. This is true since if $y \in B_{d}\left(x,\delta\right)$, the
+	\begin{align*}
+		d'\left(x,y\right)^p & = \sum_{i=1}^n \left|x_i-y_i\right|^p \\
+		& < n \delta^p \\
+		& = \epsilon^p
+	\end{align*}
+	so that $d'\left(x,y\right) < \epsilon$, i.e., $B_d\left(x,\delta\right) \subseteq B_{d'}\left(x,\epsilon\right)$. Then the $d$-induced topology is finer than the $d'$-induced one. By showing both directions, the topologies are the same.
+\end{proof}
+
+
+
+
+
+
+
+
+
+\begin{problem}{20.4}
+	Let $X$ be a metric space with metric $d$.
+	\begin{enumerate}[label=(\alph*)]
+		\item Show that $d:X\times X \rightarrow \mathbb{R}$ is continuous.
+		\item Let $X'$ denote a space having the same underlying set as $X$. Show that if $d:X'\times X' \rightarrow \mathbb{R}$ is continuous, then the topology of $X'$ is finer than the topology of $X$.
+	\end{enumerate}
+\end{problem}
+\begin{proof}
+	\begin{enumerate}[label=(\alph*)]
+		\item Let $U\subset \mathbb{R}$ be an open set. Then we must show that $$d^{-1}\left(U\right) = \left\{ \left(x,y\right) \in X\times X \, \middle| \, d\left(x,y\right) \in U \right\}$$ is an open set. Let $\left(x,y\right)\in U$; then $d\left(x,y\right) \in U$. Say $u = d\left(x,y\right)$; then there is some open interval $\left(u-\epsilon, u+\epsilon\right) \subset U$. Then take $x'\times y' \in  B_d\left(x,\epsilon/2\right)\times B_d\left(y,\epsilon/2\right)$. We want to show that $d\left(x',y'\right) \in \left(u-\epsilon,u+\epsilon\right)$. From the triangle equality, $$ d\left(x',y'\right) \leq d\left(x',x\right) + d\left(y,y'\right) < \epsilon $$ so that $$ \left|d\left(x',y'\right)-u\right| < \epsilon $$ and so $d\left(x',y'\right)\in U$. We have shown that  $B_d\left(x,\epsilon/2\right)\times B_d\left(y,\epsilon/2\right) \subseteq d^{-1}\left(U\right)$, and this set is clearly open as the product of two basis elements. Thus, $d$ is continuous.
+		\item Let $U$ be open in the topology on $X$. 
+	\end{enumerate}
+\end{proof}
+
+
+
+
+
+
+
+
+
 % --------------------------------------------------------------
 %     You don't have to mess with anything below this line.
 % --------------------------------------------------------------

@@ -1,4 +1,12 @@
-\contentsline {chapter}{\numberline {1}Sequences}{2}% 
-\contentsline {section}{\numberline {1.1}Subsequences}{3}% 
-\contentsline {chapter}{\numberline {2}Continuity}{5}% 
-\contentsline {chapter}{\numberline {3}The Derivative}{9}% 
+\contentsline {chapter}{\numberline {1}Continuity}{2}% 
+\contentsline {chapter}{\numberline {2}The Derivative}{6}% 
+\contentsline {section}{\numberline {2.1}Local Properties}{6}% 
+\contentsline {section}{\numberline {2.2}The Mean-value Theorem}{8}% 
+\contentsline {section}{\numberline {2.3}Taylor's Theorem}{10}% 
+\contentsline {chapter}{\numberline {3}Integration}{11}% 
+\contentsline {section}{\numberline {3.1}Darboux Integral (Green-blue)}{11}% 
+\contentsline {section}{\numberline {3.2}Riemann Integral (Red)}{11}% 
+\contentsline {section}{\numberline {3.3}Riemann-Stieltjes Integral}{12}% 
+\contentsline {section}{\numberline {3.4}Lebesgue Integral}{12}% 
+\contentsline {chapter}{\numberline {4}Fundamental Theorems}{13}% 
+\contentsline {section}{\numberline {4.1}Fundamental Theorem of Calculus}{13}% 

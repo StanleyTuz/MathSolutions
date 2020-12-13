@@ -254,8 +254,28 @@ Suppose $a\in \mathbb{R}^k$, $b\in \mathbb{R}^k$. Find $c\in \mathbb{R}^k$ and $
 Prove that the empty set is a subset of every set.
 \end{problem}
 \begin{proof}
-The empty set $\varphi$ is a subset of another set $E$ if $x \in \varphi \implies x \in E$. Since $\varphi$ contains no elements, the statement is vacuously true (the antecedent can never be satisfied).
+The empty set $\varnothing$ is a subset of another set $E$ if $x \in \varnothing\implies x \in E$. Since $\varnothing$ contains no elements, the statement is vacuously true (the antecedent can never be satisfied).
 \end{proof}
+
+
+
+\begin{problem}{2.2}
+A complex number $z$ is said to be \textit{algebraic} if there are integers $a_0,\ldots,a_n$, not all zero, such that $$ a_0 z^n + a_1 z^{n-1} + \cdots + a_{n-1} z + a_n = 0.$$ Prove that the set of all algebraic numbers is countable. \textit{Hint}: For every positive integer $N$ there are only finitely many equations with $$ n + \left|a_0\right| + \left|a_1\right| + \cdots + \left|a_n\right| = N.$$
+\end{problem}
+
+
+
+\begin{problem}{2.3}
+Prove that there exist real numbers which are not algebraic.
+\end{problem}
+\begin{proof}
+From problem 2.2 we know that the set of algebraic numbers are countable. If all real numbers were algebraic, then the real numbers would be countable. However, we know that this is not the case. Hence, there must be non-algebraic real numbers.
+\end{proof}
+
+
+
+
+
 
 
 
@@ -317,8 +337,24 @@ Show, by an example, that this inclusion can be proper.
 \end{enumerate}
 
 
-Interesting things happen when we take an infinite union, however. It is possible to have a countable union of closures which are a proper subset of the closure of the union. How?
+Interesting things happen when we take an infinite union, however. It is possible to have a countable union of closures which are a proper subset of the closure of the union. How? 
+
+Let $A_i = \left(\frac{1}{n},1\right)$. Then note that $B=\cup_{i=1}^{\infty} A_i = \left(0,1\right)$ and that $\overline{A_i} = \left[\frac{1}{n},1\right]$. However, $\cup_{i=1}^{\infty} \overline{A_i} = \left(0,1\right]$; $0$ is not included since if it were, this implies that $0\in \left[\frac{1}{n},1\right]$ for some $n\in \mathbb{N}$, which is certainly not true. However, $\overline{B} = \left[0,1\right]$, and so the union of the closures is contained within the closure of the unions.
 \end{proof}
+
+
+
+
+\begin{problem}{2.8}
+Is every point of every open set $E \subset \mathbb{R}^2$ a limit point of $E$? Answer the same question for closed sets in $\mathbb{R}^2$.
+\end{problem}
+\begin{proof}
+Every point of an open set in $E\subset \mathbb{R}^2$ is a limit point of $E$. Let $x\in E$. Then since $E$ open, there is an open ball neighborhood (i.e., a basis element) about $x$, say $B_r\left(x\right)$, so that $x\in B_r\left(x\right) \subset E$ for some radius $r>0$. Then we have some $y\neq x$ in $B_r\left(x\right) \subset E$, so we have $x$ a limit point of $E$. {\color{red}Note that the metric space is what allows us to provide the balls. These may not exist in a general space. For example, in the discrete topology, no points are limit points!}
+
+This is certainly not true for closed sets. For example, the set $\left\{\left(1,2\right)\right\}\subset \mathbb{R}^2$ is closed but contains no limit points.
+\end{proof}
+
+
 
 
 
@@ -373,9 +409,16 @@ Prove that this is a metric. Which subsets of the resulting metric space are ope
 \begin{proof}
 In order for this to be a metric, it must be non-negative and $d\left(p,q\right) = 0$ only when $p=q$. This is obviously true from the definition of $d$. It is also very clearly symmetric. The final condition is that the triangle inequality must hold for every combination of points $x,y,z \in X$. First, if $x=z$, then $d\left(x,z\right) =0 \leq d\left(x,y\right) + d\left(y,z\right)$ since the right hand side is at least $0$. On the other hand, if $x\neq z$, then $d\left(x,z\right)=1$. If $y\in X$ is such that $y\neq x$ and $y\neq z$, then $d\left(x,y\right) + d\left(y,z\right) = 2$, so the inequality holds. Instead, if $y\neq x$ but $y=z$, then $d\left(x,y\right) + d\left(y,z\right) = 1$ and the inequality holds; this same logic applies if $y\neq x$ but $y=z$. We cannot have both $y=x$ and $y=z$, since we assumed $x\neq z$. Thus in all cases we have the triangle inequality satisfied. This completes the proof that $d$ is a metric. {\color{red}It is the simplest metric, the discrete metric on $X$.}
 
-A set $A\subset X$ is open {\color{red}in the metric space sense} if every point $x\in A$ has some open ball neighborhood $B_r\left(x\right) = \left\{ y\in X\,|\, d\left(x,y\right)<r\right\}$ with $B_r\left(x\right) \subset A$. Note that for any $x\in X$ we have the ball neighborhood $\left\{x\right\} = B_1\left(x\right)$ which is certainly a subset of and set $A$ containing $x$. Thus every set is open in this metric space. Since any closed set is the complement of some open set, every set is also closed in this metric space.
+Recall that Rudin defines $A\subset X$ in metric space $X$ to be open if every point is surrounded by an open ball neighborhood. What do these balls look like in this space? They are $$ B_r\left(x\right) = \left\{ y \in X \, : \, d\left(x,y\right)<r \right\} $$ Keep in mind that we have $d\left(x,y\right) \in \left\{0,1\right\}$ for all $x,y\in X$. If $r<1$, we have 
+\begin{align*}
+B_r\left(x\right) & = \left\{ y\in X \, : \, d\left(x,y\right) < r \right\} \\
+& = \left\{ y \in X \, : \, d\left(x,y\right) = 0\right\} \\
+& = \left\{ y\in X \, : \, x=y\right\} \\
+& = \left\{ x \right\}
+\end{align*}
+Thus, some of the balls are the singleton sets. On the other hand, if $r>1$, we can show that $$ B_r\left(x\right) = X,$$ i.e., the whole metric space. Given any subset $A\subset X$, and any $x\in A$, we have $x \in \left\{x\right\} \subset A$, so $A$ is open. That is, all sets are open.
 
-For set $K \subset X$, we have the open cover $\left\{ \left\{k\right\}\, | \, k \in K\right\}$ since the singleton sets are open. This open cover clearly has {\color{red}no subcover}, since removing any one of the singletons would remove the corresponding point from $K$. Thus, the open cover of $K$ has a finite open subcover if and only if this cover itself is the finite open subcover, i.e., if $K$ is a finite set. Thus, the finite subsets of $K$ are the only compact sets in this metric.
+For set $K \subset X$, we have the open cover $\left\{ \left\{k\right\}\, | \, k \in K\right\}$ since the singleton sets are open. This open cover clearly has {\color{red}no subcover}, since removing any one of the singletons would remove the corresponding point from $K$. Thus, an open cover of $K$ has a finite open subcover if and only if this cover itself is the finite open subcover, i.e., if $K$ is a finite set. Thus, the finite subsets of $K$ are the only compact sets in this metric. {\color{red}Note that this example of the discrete metric space really emphasizes compactness as ``the topologist's notion of finiteness.''}
 \end{proof}
 
 
@@ -393,7 +436,7 @@ d_5\left(x,y\right) & = \frac{\left|x-y\right|}{1+\left|x-y\right|}.
 \begin{enumerate}
 	\item The function $d_1$ is certainly non-negative and zero only when $x=y$; it is also obviously symmetric; it satisfies the triangle inequality. Thus, $d_1$ is a metric.
 	\item 
-	\item
+	\item The function $d_3$ is not a metric since it does not satisfy the condition about $d=0$ (called the identity of indiscernibles): note that $d\left(1,-1\right)=0$ but $ 1 \neq -1$.
 	\item The function $d_4$ clearly does not satisfy symmetry, so it is not a metric.
 	\item 
 \end{enumerate}
@@ -421,6 +464,9 @@ Let $K\subset \mathbb{R}^1$ consist of $0$ and the numbers $1/n$, for $n=1,2,3,\
 \begin{problem}{2.13}
 Construct a compact set of real numbers whose limit points form a countable set.
 \end{problem}
+\begin{proof}
+{\color{red}I expect that a solution will include the rational numbers or the integers, since these are often used as prototypical countable sets.}
+\end{proof}
 
 
 
@@ -428,6 +474,27 @@ Construct a compact set of real numbers whose limit points form a countable set.
 \begin{problem}{2.14}
 Give an example of an open cover of the segment $\left(0,1\right)$ which has no finite subcover.
 \end{problem}
+\begin{proof}
+Let $$U=\left\{ \left(0,\frac{n}{1+n}\right) \, : \, n\in \mathbb{N} \right\}. $$ This is certainly an open cover of $\left(0,1\right)$, since for any $x\in\left(0,1\right)$ we can find an $n \in \mathbb{N}$ so that $x \in \left(0, \frac{n}{1+n}\right) \subset \left(0,1\right)$. Plus, each of these sets is open as an open interval. However, no finite subcover will cover $\left(0,1\right)$, since any finite subcover $V$ of $U$ contains a ``maximal'' covering set: let $$ m = \max \left\{ m\, : \, \left(0,\frac{m}{1+m}\right)\in V \right\}. $$ Then let $m' = \frac{\left(m+1\right)}{1+\left(m+1\right)}$ is in $\left(0,1\right)$ but not in any of the covering sets in $V$. Hence, no finite subset of $U$ truly covers $\left(0,1\right)$.
+
+We have proven that $\left(0,1\right)\subset \mathbb{R}^1$ is not compact.
+\end{proof}
+
+
+\begin{problem}{2.15}
+Show that Theorem 2.36 and its Corollary become false (in $\mathbb{R}^1$, for example) if the word ``compact'' is replaced by ``closed'' or by ``bounded.''
+\end{problem}
+{\color{red}Theorem 2.36 states that given a collection $K$ of compact subsets of a metric space, arbitrary finite intersections of the elements of which are nonempty, we have a nonempty intersection of all elements of $K$. The corollary applies this to a countable sequence of ``decreasing'' sets. This problem aims to show that closedness and boundedness, by themselves, are not enough to make the same conclusion.}
+\begin{proof}
+The hint suggests that we consider $\mathbb{R}^1$. We first consider a collection of closed subsets; note that we need them to be unbounded, otherwise they will be compact and Theorem 2.36 would apply. Let $$ K = \left\{ \left[n, \infty\right) \, : \, n\in \mathbb{N}\right\}. $$ Then each set is closed, and arbitrary finite intersections of these sets are nonempty. However, the intersection is certainly empty: if $x \in \cap_{n\in \mathbb{N}} \left[n,\infty\right)$, then $x \in \left[n,\infty\right)$ for all $n\in \mathbb{N}$. Hence, $x\geq n$ for all $n$. This is clearly impossible, since we can always find some (infinitely many) natural numbers greater than any arbitrary real number. Thus, we can have no $x$ in this intersection, and so it is empty. Note that this is also a counterexample for the corollary, since the subsets are decreasing.
+
+In the second case, we must look at bounded by non-closed subsets of $\mathbb{R}^1$. The counterexample we provide here is similar to the previous one: $$K = \left\{ \left[\frac{n}{n+1},1\right) \, : \, n\in \mathbb{N}\right\}.$$ Each of these is not closed, since $1$ is a limit point of each and is contained in none, but the intersection is empty, for reasons similar to the previous case. Again, it is also a counterexample to the corollary since the sets are decreasing.
+\end{proof}
+
+
+
+
+
 
 
 \begin{problem}{2.16}
@@ -454,7 +521,7 @@ Let $E$ be the set of all $x\in\left[0,1\right]$ whose decimal expansion contain
 Is there a nonempty perfect set in $\mathbb{R}^1$ which contains no rational number?
 \end{problem}
 \begin{proof}
-{\color{red}Recall that a perfect set is one which is closed every point is a limit point.} 
+{\color{red}Recall that a perfect set is one which is closed and in which every point is a limit point.} 
 \end{proof}
 
 
@@ -475,11 +542,126 @@ Is there a nonempty perfect set in $\mathbb{R}^1$ which contains no rational num
 	\item Let $A$ and $B$ be disjoint and closed. By definition of closed, $A$ contains all of its limit points and $B$ contains all of its limit points. Thus, $A=\overline{A}$ and $B=\overline{B}$. Since $A$ and $B$ are disjoint, we have $A\cap \overline{B} = A\cap B = \varnothing$ and $\overline{A}\cap B = A\cap B = \varnothing$. That is, disjoint closed sets in a metric space are separated.
 	\item {\color{red}For disjoint open sets, we cannot use the same trick with the limit points, since open sets do not necessarily contain their limit points.} Assume by way of contradiction that $B$ contains some limit point of $A$, say $x$. Then since $B$ open, there is some open neighborhood $U_x$ of $x$ with $U_x \subset B$. But since $x$ is a limit point of $A$, the neighborhood $U_x$ contains some point $y$ of $A$. But then we have $y \in U_x \subset B$, and $A$ and $B$ are assumed to be disjoint $\bot$. Thus, neither $A$ nor $B$ may contain a limit point of the other, and so $A$ and $B$ are separated.
 	\item Let $A= \left\{ q\in X\, | \, d\left(p,q\right) < \delta \right\}${\color{red}; this is an open ball about $p$ in the $d$ metric, and it is certainly open (in that metric)}. Similarly, $B$ is the open complement of $A$, and is easily also open. Then $A$ and $B$ are disjoint open sets in metric space $X$, and so by (b) the two are separated.
-	\item Let $X$ be a connected metric space containing two distinct points $x$ and $y$. Let $\delta = \frac{1}{2}d\left(x,y\right)$ and define $A$ and $B$ as in (c) but with this $\delta >0$. Then $A$ and $B$ separate $X$ unless there is some $z$ with $d\left(x,z\right) = \delta$. Since $X$ connected, this $z$ must exist. We picked $\delta = d\left(x,y\right)/2$ arbitrarily; we might just as easily have chosen $0<\delta <d\left(x,y\right)$ and for each choice of $\delta$ we obtain some $z\in X$. Thus, we have a bijection from $\left(0,1\right)$ to a subset of $X$ (the $z$), and so this subset is uncountable. Thus, $X$ itself must be uncountable.
+	\item Let $X$ be a connected metric space containing two distinct points $x$ and $y$. Let $\delta = \frac{1}{2}d\left(x,y\right)$ and define $A$ and $B$ as in (c) but with this $\delta >0$. Then $A$ and $B$ separate $X$ unless there is some $z$ with $d\left(x,z\right) = \delta$. Since $X$ connected, this $z$ must exist. We picked $\delta = d\left(x,y\right)/2$ arbitrarily; we might just as easily have chosen $0<\delta <d\left(x,y\right)$ and for each choice of $\delta$ we obtain some $z\in X$. Thus, we have a bijection from $\left(0,d\left(x,y\right)\right)$ to a subset of $X$ (the $z$), and so this subset is uncountable. Thus, $X$ itself must be uncountable.
 \end{enumerate}
 \end{proof}
 
 
+
+\begin{problem}{2.20}
+Are closures and interiors of connected sets always connected? (Look at subsets of $\mathbb{R}^2$.)
+\end{problem}
+\begin{proof}
+
+\end{proof}
+
+
+
+
+
+\begin{problem}{2.21}
+Let $A$ and $B$ be separated subsets of some $\mathbb{R}^k$, suppose $a\in A$, $b \in B$, and define $$ p\left(t\right) = \left(1-t\right)a + tb$$ for $t \in \mathbb{R}^1$. Put $A_0 = p^{-1}\left(A\right)$, $B_0 = p^{-1}\left(B\right)$. Thus $t\in A_0$ if and only if $p\left(t\right) \in A$.
+\begin{enumerate}[label=(\alph*)]
+	\item Prove that $A_0$ and $B_0$ are separated subsets of $\mathbb{R}^1$. \\
+	\item Prove that there exists $t_0 \in \left(0,1\right)$ such that $p\left(t_0\right) \notin A\cup B$. \\
+	\item Prove that every convex subset of $\mathbb{R}^k$ is connected.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item Note that $p$ is a parametrization of the line in $\mathbb{R}^k$ through both $a\in A$ and $b\in B$. The sets $A_0, B_0 \in \mathbb{R}^1$ are the preimage of the sets $A$ and $B$ in $\mathbb{R}^k$, respectively. Assume by way of contradiction that $A_0$ and $B_0$ are not separated, that is, that there is some point $t'$ in either $A_0 \cap \overline{B_0}$ or $\overline{A_0}\cap B_0$. Without loss of generality, take $t' \in A_0 \cap \overline{B_0}$. Then $p\left(t'\right) \in A$, and $t'$ is a limit point of $B_0$.  The trick is to show that $p\left(t'\right)$ is a limit point of $B$.
+	
+	Let $V\subset \mathbb{R}^k$ be an arbitrary open neighborhood of $p\left(t'\right)$. Then we have some open ball about $p\left(t'\right)$ and within $V$. This ball must be intersected by the line parametrized as $p\left(t\right)$; that is, there is some $p\left(t\right)$ within this 
+\end{enumerate}
+\end{proof}
+
+
+
+
+
+\begin{problem}{2.22}
+A metric space is called \textit{separable} if it contains a countable dense subset. Show that $\mathbb{R}^k$ is separable. \textit{Hint}: Consider the set of points which have only rational coordinates.
+\end{problem}
+\begin{proof}
+We know that $\mathbb{R}^1$ is separable: the rationals $\mathbb{Q}$ are a countable dense subset. We want to generalize this to $\mathbb{R}^k$. Note by Theorem 2.13 that the set of all $k$-tuples of rational numbers are rational. (There is an obvious bijection between $k$-tuples and points in $\mathbb{R}^k$.) Thus, the subset of $\mathbb{R}^k$ of points with rational coordinates, written $\mathbb{Q}^k$, is countable.
+
+It remains to show that this set $\mathbb{Q}^k$ is dense in $\mathbb{R}^k$, i.e., that $\overline{\mathbb{Q}^k} = \mathbb{R}^k$. We expect that this will be inherited from the case where $k=1$. Let $V$ be an arbitrary open set containing the point $x \in \mathbb{R}^k$; we must show that $V$ contains a point of $\mathbb{Q}^k$. Since $V$ open, there is some open ball neighborhood $B_r\left(x\right) \subset V$ of $x$. Note that, for each $i=1,\ldots,k$, we have some rational number $y^i$ so that $$ x^i - r/\sqrt{k} < y^i < x^i + r/\sqrt{k} $$ thanks to the denseness of the rationals in the reals. Then we have $$ \left| x^i - y^i \right| < \frac{r}{\sqrt{k}}. $$ With this in hand, we have $$ \left|y-x\right|^2 = \sum_{i=1}^k \left|y^i - x^i\right|^2 < \sum_{i=1}^k \left(\frac{r}{\sqrt{k}}\right)^2 = r^2 $$ so that $y \in B_r\left(x\right) \subset V$ and $y \in \mathbb{Q}^k$. Thus, we have a point of $\mathbb{Q}^k$ distinct from $x$ in every open set $V$ about $x$; in other worse, $\mathbb{Q}^k$ is dense in $\mathbb{R}^k$.
+
+Together, we have shown that $\mathbb{Q}^k$ is a countable, dense subset of $\mathbb{R}^k$, and so $\mathbb{R}^k$ is separable.
+\end{proof}
+
+
+
+
+\begin{problem}{2.23}
+A collection $\left\{V_{\alpha}\right\}$ of open subsets of $X$ is said to be a \textit{base} for $X$ if the following is true: For every $x\in X$ and every open set $G \subset X$ such that $x \in G$, we have $x \in V_{\alpha} \subset G$ for some $\alpha$. In other words, every open set in $X$ is the union of a subcollection of $\left\{V_{\alpha}\right\}$.
+
+Prove that every separable metric space has a \textit{countable} base. \textit{Hint}: Take all neighborhoods with rational radius and center in some countable dense subset of $X$.
+\end{problem}
+{\color{red}The hint really gives away the difficult part of the proof. The existence of a countable base (AKA basis) is referred to by saying that $X$ is second-countable, or that it is a completely separable space. In this case, the countable stuff is provided by the separability assumption. Also notice that though this is an abstract metric space, the rationals (and reals) come in by way of the metric. Thus, we are able to make use to things like ``rational radii.''}\\
+
+\begin{proof}
+	Let $\left(X,d\right)$ be a metric space which is separable, and denote the countable dense subset by $K = \left\{x_1,x_2,\ldots\right\}$. Then about each $x_j \in K$ we have a countable set of ball neighborhoods $B_r\left(x_j\right)$ where $r\in \mathbb{Q}$, since $\mathbb{Q}$ is countable. It remains to show that this collection $$ \mathcal{B} = \left\{ B_r\left(x_j\right) \, : \, x_j \in K, r\in \mathbb{Q}\right\}$$ is actually a base for the metric space $X$.
+	
+	Let $G\subset X$ be open and let $x\in G$. We want to show that $x \in B_r\left(x_j\right)\subset G$ for some $B_r\left(x_j\right) \in \mathcal{B}$. Since $G$ is open, there is a ball neighborhood of $x$, $B_{\delta}\left(x\right) \subset G$, $\delta > 0$. Since the set $K$ is dense in $X$, we have some element $x_j \in B_{\delta/n}\left(x\right)$ for any $n>2$ (pick one). That is, $$ d\left(x,x_j\right) < \frac{\delta}{n}. $$ 
+	
+	We want to show that $B_{\delta/n}\left(x_j\right) \subset B_{\delta}\left(x\right)$. Let $y \in B_{\delta/n} \left(x_j\right)$. Then
+	\begin{align*}
+		d\left(y,x\right) & \leq d\left(y,x_j\right) + d\left(x_j,x\right) \\
+		& < \frac{\delta}{n} + \frac{\delta}{n} \\
+		& < \frac{2}{n}\delta \\
+		& < \delta
+	\end{align*}
+	since we chose $n>2$. Thus, we have the ball inclusion $B_{\delta/n}\left(x_j\right) \subset B_{\delta}\left(x\right) \subset G$.
+	
+	We are nearly done. Note that the ball $B_{\delta/n}\left(x_j\right)$ is not necessarily in our proposed base since $\delta/n \notin \mathbb{Q}$, in general. By the denseness of the rationals in the reals, we can find some rational $r$ with $$d\left(x,x_j\right)<r<\delta/n.$$ Then $B_r\left(x_j\right) \subset B_{\delta/n}\left(x_j\right) \subset B_{\delta}\left(x\right) \subset G$, and clearly $B_r\left(x_j\right) \in \mathcal{B}$. Hence, this is a countable base for $\left(X,d\right)$.
+\end{proof}
+
+
+
+
+
+\begin{problem}{2.25}
+Prove that every compact metric space $K$ has a countable base, and that $K$ is therefore separable. \textit{Hint}: For every positive integer $n$, there are finitely many neighborhoods of radius $1/n$ whose union covers $K$.
+\end{problem}
+\begin{proof}
+Let $K$ be a compact metric space. As the hint suggests, for each $n\in \mathbb{N}$ we have an open cover of $K$ by the collection $$\mathcal{B}^n = \left\{ B_{1/n}\left(x\right)\, : \, x\in K \right\}.$$ Since $K$ is compact, a finite subcollection of each $\mathcal{B}^n$, say $\mathcal{C}^n$, covers $K$: note that this amounts to a finite subset $K^n \subset K$ at which the covering balls are centered. Hence, we have a countable collection of finite open subcovers of $K$, the $\mathcal{C}^n$, the union of which is a cover of $K$. Precisely, we have 
+\begin{align*}
+	\mathcal{C}^1 & = \left\{  B_{1/1}\left(x^1_j\right) \, : \, x^1_j \in K^1 \right\} \\
+	\mathcal{C}^2 & = \left\{  B_{1/2}\left(x^2_j\right) \, : \, x^2_j \in K^2 \right\} \\
+	 & \vdots \\
+		\mathcal{C}^n & = \left\{  B_{1/n}\left(x^n_j\right) \, : \, x^n_j \in K^n \right\} \\
+		 & \vdots  \\
+\end{align*}
+and each $\mathcal{C}^i$ covers $K$; hence, $$ \mathcal{C} = \cup_{i=1}^{\infty} \mathcal{C}^i$$ covers $K$, and is certainly countable. (Note: without compactness, we would not be able to take the finite subcollections $\mathcal{C}^i$, and there is no guarantee that such a countable subcollection would exist.)
+
+It remains to show that $\mathcal{C}$ is a base for $K$. Let $G\subset K$ be open, and let $x\in G$. Then there is some ball neighborhood $B_r\left(x\right)\subset G$ since $G$ is open. Pick $n\in \mathbb{N}$ so that $0 < \frac{1}{n} < \frac{r}{2}$. Then since $\mathcal{C}^n$ covers $K$, there is some $B_{1/n}\left(x_j^n\right)$ containing $x$. We can show that our judicious choice of this $n$ forces this cover element to lie within $G$ and, specifically, within the ball $B_r\left(x\right)$. Consider $y\in B_{1/n}\left(x_j^n\right)$. Then
+\begin{align*}
+	\left|y-x\right| & \leq \left|y-x_j^n\right| + \left|x_j^n-x\right| \\
+	& < \frac{1}{n} + \frac{1}{n} \\
+	& < 2 \cdot \frac{r}{2} \\
+	& = r
+\end{align*}
+so that $y \in B_r\left(x\right)$. Thus, we have shown that $B_{1/n}\left(x_j^n\right)\subset B_r\left(x\right) \subset G$. Hence, $\mathcal{C}$ is a base. We have demonstrated the existence of a countable base for $K$.
+
+That $K$ is separable is easily seen if we take the countable dense subset $X$ to be comprised of an element from within each of these countable basis elements. The set $X$ is then certainly countable, and it is dense since it has an element within every basis element (which necessarily surround every point of $K$).
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+\begin{problem}{2.29}
+	Prove that every open set in $\mathbb{R}^1$ is the union of an at most countable collection of disjoint segments. \textit{Hint}: Use Exercises 22.
+\end{problem}
+\begin{proof}
+	We know that $\mathbb{R}^1$ is separable since it contains $\mathbb{Q}$ as a countable dense subset. 
+\end{proof}
 
 
 
@@ -519,7 +701,7 @@ If $s_1=\sqrt{2}$, and $$s_{n+1}=\sqrt{2+\sqrt{s_n}} \hspace{10mm} \left(n=1,2,3
 \end{problem}
 \begin{proof}
 
-To see that $s_n < 2$ always, we can use induction. First, we certainly have $s_1 = \sqrt{2} < 2$ since $s_1^2 = 2 < 2^2$. Next, assume that $s_n < 2$. Then $$s_{n+1} = \sqrt{2 + \sqrt{s_n}} < \sqrt{2 + \sqrt{2}} < \sqrt{2+2} = 2 .$$ By induction, then, $s_n < 2$ for all $n$.
+To see that $s_n < 2$ always, we can use induction. First, we certainly have $s_1 = \sqrt{2} < 2$ since $s_1^2 = 2 < 2^2$. Next, assume that $s_n < 2$. Then $$s_{n+1} = \sqrt{2 + \sqrt{s_n}} < \sqrt{2 + \sqrt{2}} < \sqrt{2+2} = 2 .$$ By induction, then, $s_n < 2$ for all $n$. It is clearly a monotonic sequence, and so it converges by the monotonic convergence theorem.
 \end{proof}
 
 
@@ -538,12 +720,21 @@ To get some intuition, it helps to write out (or, even better, plot) some points
 For any two real sequences $\left\{a_n\right\}$, $\left\{b_n\right\}$, prove that $$ \limsup_{n\rightarrow \infty} \left(a_n + b_n\right) \leq \limsup_{n\rightarrow \infty} a_n + \limsup_{n\rightarrow \infty} b_n, $$ provided the sum on the right is not of the form $\infty - \infty$.
 \end{problem}
 \begin{proof}
-Recall that the $\limsup$ of a sequence is defined as the supremum of the set of all subsequential limits of the sequence. Thus, consider two sequences $\left(a_n\right)$ and $\left(b_n\right)$ which do not have $\limsup$s equal to $\infty$ (if either does, both sides of the inequality are infinity).
+Recall that the $\limsup$ of a sequence is defined as the supremum of the set of all subsequential limits of the sequence. Thus, consider two sequences $\left(a_n\right)$ and $\left(b_n\right)$ which do not have $\limsup$s equal to $\infty$ (if either does, both sides of the inequality are infinity and the conclusion is trivial).
 
-Consider an arbitrary subsequence $\left(a_{n_k}+b_{n_k}\right)$.
+Assume by way of contradiction that we name $$ \alpha = \limsup_{n\rightarrow \infty} \left(a_n+b_n\right),$$ $$ \beta_1 = \limsup_{n\rightarrow \infty} a_n, $$ and $$\beta_2 = \limsup_{n\rightarrow \infty} b_n; $$ assume that we have $\alpha > \beta_1 + \beta_2 $. Let $x\in \mathbb{R}$ so that $\beta_1 + \beta_2 < x < \alpha$. 
 \end{proof}
 
 
+
+
+
+\begin{problem}{3.7}
+Prove that the convergence of $\sum a_n$ implies the convergence of $$ \sum \frac{\sqrt{a_n}}{n}, $$ if $a_n \geq 0$.
+\end{problem}
+\begin{proof}
+	Assume $\sum a_n$ converges and that $a_n \geq 0$. Then we know that $a_n \rightarrow 0$.
+\end{proof}
 
 
 
@@ -553,11 +744,132 @@ Consider an arbitrary subsequence $\left(a_{n_k}+b_{n_k}\right)$.
 if $\sum a_n$ converges, and if $\left\{b_n\right\}$ is monotonic and bounded, prove that $\sum a_n b_n$ converges.
 \end{problem}
 \begin{proof}
-Since $\sum a_n$ converges, we know that $a_n \rightarrow 0$. We also know that since $\left(b_n\right)$ is monotonic and bounded, it must converge as well to some $b$ (the supremum of the set $\left\{b_n\right\}_{n=1}^{\infty}$).
+
 \end{proof}
 
 
 
+\begin{problem}{3.9}
+Find the radius of convergence of each of the following power series:
+	\begin{enumerate}[label=(\alph*)]
+		\item $\sum n^3 z^n $, 
+		\item $\sum \frac{2^n}{n!}z^n$,
+		\item $\sum \frac{2^n}{n^2}z^n$,
+		\item $\sum \frac{n^3}{3^n}z^n$.
+	\end{enumerate}
+\end{problem}
+{\color{red} Note that the ratio test involves lim sups. In these problems, since the sequences easily converge, we know that the limit of the each sequence is the same as the lim sup (and lim inf) of that sequence.}
+\begin{proof}
+	\begin{enumerate}[label=(\alph*)]
+		\item The ratio test applies here: \begin{align*}
+			\left| \frac{\left(n+1\right)^3 z^{n+1}}{n^3 z^n} \right| & = \left(1+\frac{1}{n}\right)^3 \left|z\right| \rightarrow \left|z\right| \\
+		\end{align*} 
+		Thus, by the ratio test, this series converges for $\left|z\right|<1$.
+		
+		\item The ratio test applies again: \begin{align*}
+		\left| \frac{2^{n+1}}{\left(n+1\right)!}\frac{z^{n+1}}{z^n} \frac{n!}{2^n}\right| & = \frac{2}{n+1} \left| z\right| \rightarrow 0 
+		\end{align*} and so this series converges for all $z$.
+		
+		\item Let's try the ratio test again: \begin{align*}
+		\left| \frac{2^{n+1}}{\left(n+1\right)^2}\frac{z^{n+1}}{z^n}\frac{n^2}{2^n} \right| & = \frac{2}{\left(1 + 1/n\right)^2} \left|z\right| \rightarrow 2\left|z\right|
+		\end{align*} so this series converges for $\left|z\right| < \frac{1}{2}$.
+		
+		\item Once again:\begin{align*}
+		\left| \frac{\left(n+1\right)^3}{3^{n+1}} \frac{z^{n+1}}{z^n} \frac{3^n}{n^3}\right| & = \frac{\left(1+1/n\right)^3}{3}\left|z\right| \rightarrow \frac{1}{3}\left|z\right|
+		\end{align*} so the series converges for $\left|z\right|<3$.
+	\end{enumerate}
+\end{proof}
+
+
+\begin{problem}{3.20}
+Suppose $\left\{p_n\right\}$ is a Cauchy sequence in a metric space $X$, and some subsequence $\left\{p_{n_i}\right\}$ converges to a point $p\in X$. Prove that the full sequence $\left\{p_n\right\}$ converges to $p$.
+\end{problem}
+{\color{red}Since the sequence is Cauchy, \textit{all} elements must get arbitrarily close together. Since we have a subsequence converging toward a specific point, we must have \textit{all} elements converging toward that point.}\\
+
+\begin{proof}
+Let $\left\{p_n\right\}$ be a Cauchy sequence in $X$ with convergent subsequence $p_{n_i}\rightarrow p \in X$. Since the sequence is Cauchy, we have for any $\epsilon>0$ an $N'\in \mathbb{N}$ so that $$ n,m > N' \implies d\left(p_n,p_m\right) < \epsilon/2.$$ By the definition of convergent (sub)sequence, we have an $N''\in \mathbb{N}$ so that $$n_i > N'' \implies d\left(p_{n_i}, p\right)<\epsilon/2.$$ Take $N = \max \left\{N',N''\right\}$; then fix $n_i > N$ and we have, for $n>N$,
+\begin{align*}
+	d\left(p_n, p\right) & \leq d\left(p_n, p_{n_i}\right) + d\left(p_{n_i}, p\right) \\
+	& < \frac{\epsilon}{2} + \frac{\epsilon}{2} \\
+	& = \epsilon
+\end{align*}
+Note that we needed Cauchy-ness of $\left\{p_n\right\}$ in order to bound the term ``$d\left(p_n,p_{n_i}\right)$.''
+\end{proof}
+
+
+
+\begin{problem}{3.21}
+Prove the following analogue of Theorem 3.10(\textit{b}): If $\left\{E_n\right\}$ is a sequence of closed nonempty and bounded sets in a \textit{complete} metric space $X$, if $E_n \supset E_{n+1}$, and if $$\lim_{n\rightarrow \infty} \text{diam} \, E_n = 0,$$ then $\cap_1^{\infty} E_n$ consists of exactly one point.
+\end{problem}
+{\color{red}The Theorem 3.10(\textit{b}) is the same statement but for a sequence of compact sets in an arbitrary --- not necessarily complete --- metric space. In this exercise, we want to show that it holds for closed and bounded subsets when the space is complete; somehow, completeness is required to make this hold. This helps to illuminate the differences between closed-and-bounded and compact sets in an arbitrary metric space (in Euclidean spaces they are the same by the Heine-Borel theorem).}\\
+
+\begin{proof}
+We first show that the intersection $E = \cap_1^{\infty} E_n$ cannot be empty. Note that since each $E_n$ is nonempty, we have some element $x_n \in E_n$ for every $n\in \mathbb{N}$. We want to show that this sequence is Cauchy. Let $\epsilon>0$. Then since $\lim_n \text{diam} \, E_n=0$, we have some $N\in \mathbb{N}$ so that $n>N \implies \text{diam} \, E_n<\epsilon$. Note that by construction of the sequence $\left\{ x_n\right\}$, we have $n>N \implies x_n \in E_{N+1}$. Thus, if $n,m > N$, we have $x_n, x_m \in E_{N+1}$, and so $d\left(x_n,x_m\right) \leq \text{diam}\, E_{N+1} < \epsilon$. We have shown that the sequence $\left\{x_n\right\}$ is Cauchy. Since $X$ is complete, this sequence converges in $X$. Since each sequence set $E_n$ is closed, this limiting point is in the intersection, and so the intersection is nonempty.
+
+Next, we assume that there are at least two points in $E$. For the same reasons as in the proof of Theorem 3.10(\textit{b}), this raises a contradiction: with two distinct points, $\text{diam}\, E > 0$, but $E \subset E_n$ and so $\text{diam}\, E \leq \text{diam}\, E_n$. But we assumed $\text{diam}\, E_n \rightarrow 0$.
+\end{proof}
+
+
+
+
+\begin{problem}{3.22}
+Suppose $X$ is a nonempty complete metric space, and $\left\{G_n\right\}$ is a sequence of dense open subsets of $X$. Prove Baire's theorem, namely, that $\cap_1^{\infty} G_n$ is not empty. (In fact, it is dense in $X$.) \textit{Hint}: Find a shrinking sequence of neighborhoods $E_n$ such that $\overline{E_n}\subset G_n$, and apply Exercise 21.
+\end{problem}
+{\color{red}A topological space is called a \textbf{Baire space} if the intersection of every countable collection of open dense subsets is itself dense.}\\
+
+\begin{proof}
+By the previous problem, we know that a sequence of closed, nonempty, and bounded  sets with diameters limiting to $0$ have a nonempty intersection.
+\end{proof}
+
+
+
+
+\begin{problem}{3.23}
+Suppose $\left\{p_n\right\}$ and $\left\{q_n\right\}$ are Cauchy sequences in a metric space $X$. Show that the sequence $\left\{d\left(p_n,q_n\right)\right\}$ converges. \textit{Hint}: for any $m,n$, $$ d\left(p_n,q_n\right) \leq d\left(p_n,p_m\right) + d\left(p_m,q_m\right) + d\left(q_m,q_n\right);$$ it follows that $$ \left| d\left(p_n,q_n\right) - d\left(p_m,q_m\right)\right|$$ is small if $m$ and $n$ are large.
+\end{problem}
+\begin{proof}
+The hint really gives away the main difficulty of the problem. Consider the Cauchy sequences $\left\{p_n\right\}$ and $\left\{q_n\right\}$. Then we can prove the hint: let $\epsilon>0$ be given, and let $M,N\in \mathbb{N}$ so that $$ n,m>N \implies d\left(p_n,p_m\right) < \epsilon/2 $$ and $$ n,m>M \implies d\left(q_n,q_m\right) < \epsilon/2 $$ (these exist since the sequences are Cauchy). By the triangle inequality, we have for any $n,m\in \mathbb{N}$ $$ d\left(p_n,q_n\right) \leq d\left(p_n,p_m\right) + d\left(p_m, q_m\right) + d\left(q_m,q_n\right) $$ so that $$ \left| d\left(p_n,q_n\right)-d\left(p_m, q_m\right) \right| \leq d\left(p_n,p_m\right) + d\left(q_m,q_n\right).$$ Then if we take $n,m > \max \left\{N,M\right\}$, we have \begin{align*}
+\left|d\left(p_n,q_n\right) - d\left(p_m,q_m\right) \right| & \leq d\left(p_n,p_m\right) + d\left(q_m,q_n\right) \\
+& < \epsilon/2  + \epsilon/2 \\
+& = \epsilon\\
+\end{align*} 
+We have shown that the sequence $\left\{d\left(p_n,q_n\right)\right\}$ is a Cauchy sequence. Moreover, it is a Cauchy sequence in $\mathbb{R}^1$, which is a complete metric space, and so it converges.
+\end{proof}
+
+
+
+\begin{problem}{3.24}
+Let $X$ be a metric space.
+\begin{enumerate}[label=(\alph*)]
+	\item Call two Cauchy sequences $\left\{p_n\right\}, \left\{q_n\right\}$ in $X$ \textit{equivalent} if $$ \lim_{n\rightarrow \infty} d\left(p_n,q_n\right)=0.$$ Prove that this is an equivalence relation.
+	\item Let $X^*$ be the set of all equivalence classes so obtained. If $P\in X^*$, $Q\in X^*$, $\left\{p_n\right\}\in P, \left\{q_n\right\}\in Q$, define $$ \Delta \left(P,Q\right) = \lim_{n\rightarrow \infty} d\left(p_n,q_n\right);$$ by Exercise 23, this limit exists. Show that the number $\Delta \left(P,Q\right)$ is unchanged if $\left\{p_n\right\}$ and $\left\{q_n\right\}$ are replaced by equivalent sequences, and hence that $\Delta$ is a distance function in $X^*$.
+	\item Prove that the resulting metric space $X^*$ is complete.
+	\item For each $p\in X$, there is a Cauchy sequence all of whose terms are $p$; let $P_p$ be the element of $X^*$ which contains this sequence. Prove that $$ \Delta\left(P_p,P_q\right) = d\left(p,q\right)$$ for all $p,q\in X$. In other words, the mapping $\varphi$ defined by $\varphi\left(p\right) = P_p$ is an isometry (i.e., a distance-preserving mapping) of $X$ into $X^*$.
+	\item Prove that $\varphi\left(X\right)$ is dense in $X^*$, and that $\varphi\left(X\right)=X^*$ is $X$ is complete. By (\textit{d}), we may identify $X$ and $\varphi\left(X\right)$ and thus regard $X$ as embedded in the complete metric space $X^*$. We call $X^*$ the \textit{completion} of $X$.
+\end{enumerate}
+\end{problem}
+
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item It is fairly easy to see that this is an equivalence relation. That it is reflexive and symmetric follows from the definition of metric: $$ \lim_{n\rightarrow \infty} d\left(p_n,p_n\right) = \lim_{n\rightarrow \infty} 0 = 0 $$ and $$ 0 = \lim_{n\rightarrow \infty} d\left(p_n,q_n\right) = \lim_{n\rightarrow \infty} d\left(q_n,p_n\right),$$ the second by symmetry of the metric. Lastly, let $\left\{ p_n \right\}$ be equivalent to $\left\{ q_n\right\}$ and let $\left\{q_n \right\}$ be equivalent to $\left\{ s_n\right\}$. Then by the triangle inequality we have $$ d\left(p_n,s_n\right) \leq d\left(p_n,q_n\right) + d\left(q_n,s_n\right). $$ The right-hand side tends to $0$ as $n\rightarrow \infty$, and thus so does the left-hand side. Hence, Cauchy sequence equivalence is an equivalence relation.
+	
+	\item Assume $P,Q\in X^*$ are two equivalence classes with representative elements $\left\{p_n\right\}, \left\{q_n\right\}$, respectively. Let $\Delta = \lim_{n\rightarrow \infty} d\left(p_n,q_n\right)$; the goal is to show that $\Delta$ is well-defined as a function on the equivalence classes. Let $\left\{p_n'\right\}$ and $\left\{q_n'\right\}$ be any two other representative sequences of $P$ and $Q$, respectively. Then
+	\begin{align*}
+		d\left(p_n',q_n'\right) & \leq d\left(p_n',q_n\right) + d\left(q_n,q_n'\right)  \\
+		& \leq d\left(p_n',p_n\right) + d\left(p_n,q_n\right) +  d\left(q_n,q_n'\right) 
+	\end{align*}
+	by two successive applications of the triangle inequality. We take the limit of both sides as $n\rightarrow \infty$ to obtain $$ \lim_{n\rightarrow \infty} d\left(p_n',q_n'\right) \leq  \lim_{n\rightarrow \infty} d\left(p_n,q_n\right) = \Delta. $$ Conversely, we can similarly apply the triangle inequality again: 
+	\begin{align*}
+		d\left(p_n,q_n\right) & \leq d\left(p_n,q_n'\right) + d\left(q_n',q_n\right)  \\
+		& \leq d\left(p_n,p_n'\right) + d\left(p_n',q_n'\right) +  d\left(q_n',q_n\right) 
+	\end{align*}
+	and after taking limits we obtain
+	$$ \Delta \leq \lim_{n\rightarrow \infty} d\left(p_n',q_n'\right). $$ Taken together, we have shown that $\lim_{n\rightarrow \infty} d\left(p_n',q_n'\right) = \Delta$, so that we can uniquely define the metric $\Delta$ on the equivalence classes.
+	
+	\item To show that this metric space is complete, we must show that all Cauchy sequences converge. Let $\left\{P_n\right\}$ be a Cauchy sequence in $X^*$ (it is a sequence of equivalence classes). Presumably it will inherit its Cauchy-ness from the Cauchy-ness of its representative elements in $X$.
+	
+\end{enumerate}
+\end{proof}
 
 
 
@@ -586,46 +898,80 @@ What the condition is showing is that $f$ approaches the same value from the rig
 \begin{problem}{4.2}
 If $f$ is a continuous mapping of a metric space $X$ into a metric space $Y$, prove that $$ f\left(\overline{E}\right) \subset \overline{f\left(E\right)} $$ for every set $E\subset X$. ($\overline{E}$ denotes the closure of $E$.) Show, by an example, that $f\left(\overline{E}\right)$ can be a proper subset of $\overline{f\left(E\right)}$.
 \end{problem}
+\begin{proof}
+Let $f:X\rightarrow Y$ on metric spaces $X$ and $Y$. Let $E\subset X$ and consider some $y\in f\left(\overline{E}\right)$ and an arbitrary open set $V$ about $y$. Then we have some (at least one) $x\in \overline{E}$ so that $f\left(x\right) =y$. If $x\in E$, then we are done: $y=f\left(x\right) \in f\left(E\right) \subset \overline{f\left(E\right)}$. On the other hand, assume $x$ is a limit point of $E$. By continuity of $f$, $f^{-1}\left(V\right)$ is an open set containing $x$. Then there is some $x' \in f^{-1}\left(V\right)\cap E$, since $x$ is a limit point of $E$. Then, of course, $f\left(x'\right) \in f\left(f^{-1}\left(V\right)\cap E\right) = V\cap f\left(E\right)$ so that the arbitrary open neighborhood $V$ of $y$ contains a point of $f\left(E\right)$; hence, $y \in \overline{f\left(E\right)}$, and the theorem is proven.
 
+It seems to be becoming a pattern that counterexamples often involve infinity, since non-intuitive things happen there. Since our function must be continuous, I thought to look at function which has an asymptote. Take $$ f\left(x\right) = \frac{x}{1+x}, \; x\in\left(0,\infty\right) \subset \mathbb{R}. $$ Then certainly $E=\left(0,\infty\right)$ and $\overline{E}=\left[0,\infty\right)$, and $f\left(\overline{E}\right)=\left[0,1\right)$, but $\overline{f\left(E\right)} = \overline{\left(0,1\right)}=\left[0,1\right].$
+\end{proof}
 
 
 
 \begin{problem}{4.3}
 Let $f$ be a continuous real function on a metric space $X$. Let $Z\left(f\right)$ (the zero set of $f$) be the set of all $p\in X$ at which $f\left(p\right)=0$. Prove that $Z\left(f\right)$ is closed.
 \end{problem}
-{\color{red} Note that this is a very topological proof, and we didn't even need to invoke the $\epsilon$-$\delta$ definitions in these metric spaces. An alternate approach would be to take $p\notin Z\left(f\right)$ and show that it has a neighborhood entirely disjoint from $Z\left(f\right)$, i.e., $Z\left(f\right)$ has an open complement.}
+{\color{red} Note that this is a very topological proof, and we didn't even need to invoke the $\epsilon$-$\delta$ definitions in these metric spaces. An alternate approach would be to take $p\notin Z\left(f\right)$ and show that it has a neighborhood entirely disjoint from $Z\left(f\right)$, i.e., $Z\left(f\right)$ has an open complement.}\\
 \begin{proof}
 We will show that $Z\left(f\right)$ contains all of its limit points, and is thus closed. Let $p\in X$ be a limit point of $Z\left(f\right)$. Assume by way of contradiction that $p \notin Z\left(f\right)$, so that $f\left(p\right) \neq 0$. Assume that $f\left(p\right)>0$. Then since $\mathbb{R}$ is a metric space (and Hausdorff), we have open balls $U$ and $V$ about $0$ and $f\left(p\right)$, respectively, so that $U\cap V = \emptyset$. Then $f^{-1}\left(U\right)$ and $f^{-1}\left(V\right)$ are open by continuity of $f$, and $Z\left(f\right)\subset f^{-1}\left(U\right)$ and $p \in f^{-1}\left(V\right)$, and the two preimages clearly do not intersect. Hence, we have a neighborhood of $p$ which contains no points of $Z\left(f\right)$, thus $p$ cannot be a limit point; this is our contradiction. Thus, $Z\left(f\right)$ must contain its limit points, and is closed.
+\end{proof}
+
+{\color{red}After reading through the book again, I noticed that the concept of ``Hausdorff'' spaces is not introduced by this point (if at all). I will redo this proof below with just the concepts in the chapter.}\\
+\begin{proof}
+Let $f:X\rightarrow \mathbb{R}$ be a continuous function on metric space $X$. Let $p$ be a limit point of $Z\left(f\right)$. Since this is a metric space, we can construct the open balls $B\left(p,1/n\right)$ for every $n\in \mathbb{N}$. Then since $p$ is a limit point, we have some point $x_n \in B\left(p,1/n\right)\cap Z\left(f\right)$ for every $n$. This is a sequence which certainly converges to $p$, and we have $f\left(x_n\right)=0$ for all $x_n$ in the sequence. The function $f$ being continuous (at $p$, in particular) means that $\lim_{x\rightarrow p} f\left(x\right) = f\left(p\right)$. Thus, by Theorem 4.2 we have that $\lim_{n\rightarrow \infty} f\left(x_n\right) = f\left(p\right)$ and so $f\left(p\right)=0$, i.e., $p\in Z\left(f\right)$. Thus, $Z\left(f\right)$ contains its limit points and so is closed.
 \end{proof}
 
 
 
 \begin{problem}{4.4}
-
+Let $f$ and $g$ be continuous mappings of a metric space $X$ into a metric space $Y$, and let $E$ be a dense subset of $X$. Prove that $f\left(E\right)$ is dense in $f\left(X\right)$. If $g\left(p\right)=f\left(p\right)$ for all $p\in E$, prove that $g\left(p\right)=f\left(p\right)$ for all $p\in X$. (In other words, a continuous mapping is determined by its values on a dense subset of its domain.)
 \end{problem}
 \begin{proof}
-Let $y\in f\left(X\right)$ and $V$ be an arbitrary open set about $y$. Let $x\in X$ be such that $f\left(x\right)=y$. Then $f^{-1}\left(V\right)$ is an open neighborhood of $x$, since $f$ is continuous, and thus it contains some point $z \in E\cap f^{-1}\left(V\right)$ since $E$ is dense in $X$. Thus $f\left(z\right) \in f\left(E\right)\cap V$, so that $V$ contains a point of $f\left(E\right)$. Thus, an arbitrary open neighborhood of a point of $f\left(X\right)$ contains a point of $f\left(E\right)$, so the latter is dense in the former.
+Recall that the definition of $E$ being dense in $X$ is that $\overline{E}=X$. Thus, we want to show that $\overline{f\left(E\right)} = f\left(X\right)$. This was already proven in Exercise 4.2: $f\left(X\right) = f\left(\overline{E}\right) \subseteq \overline{f\left(E\right)}$. Thus, any neighborhood of every point of $f\left(X\right)$ contains a point of $f\left(E\right)$, and so $f\left(E\right)$ is dense in $f\left(X\right)$.
 
-Next, let $g\left(p\right) = f\left(p\right)$, both continuous, for all $p\in E$. Assume by way of contradiction that $g\left(p\right) \neq f\left(p\right)$ for some $p \in X$ (certainly $p\in X\setminus E$). Then since $Y$ is a metric space, there is an open ball $B$ about $f\left(p\right)$ which does not contain $g\left(p\right)$. Since $f\left(E\right)$ is dense in $f\left(X\right)$, there is some $f\left(e\right)\in B$ for an $e\in E$.
+To prove the last assertion, define $h := g-f$, certainly continuous (we can show this by the $\epsilon-\delta$ definition) and consider $Z\left(h\right)$. In this formulation, we want to show that $Z\left(h\right) = X$. By our assumption, $E\subset Z\left(h\right)$ and so $Z\left(h\right)$ is also dense in $X$, so $\overline{Z\left(h\right)}=X$. We also know from Exercise 4.3 that $Z\left(h\right)$ is closed, i.e., that $\overline{Z\left(h\right)} = Z\left(h\right)$. Taken together, we have $Z\left(h\right)=\overline{Z\left(h\right)} = X$, and we are done.
 \end{proof}
+
+
+
+\begin{problem}{4.5}
+If $f$ is a real continuous function defined on a closed set $E\subset \mathbb{R}^1$, prove that there exist continuous real functions $g$ on $\mathbb{R}^1$ such that $g\left(x\right)=f\left(x\right)$ for all $x\in E$. (Such functions $g$ are called \textit{continuous extensions} of $f$ from $E$ to $\mathbb{R}^1$.) Show that the result becomes false if the word ``closed'' is omitted. Extend the result to vector-valued functions. \textit{Hint}: Let the graph of $g$ be a straight line on each of the segments which constitute the complement of $E$ (compare Exercise 29, Chap. 2). The result remains true if $\mathbb{R}^1$ is replaced by any metric space, but the proof is not so simple.
+\end{problem}
+\begin{proof}
+
+\end{proof}
+
+
+
+
+
+
+
+
 
 
 
 \begin{problem}{4.6}
-If $f$ is defined on $E$, the graph of $f$ is the set of points $\left(x,f\left(\right)\right)$, for $x\in E$. In particular, if $E$ is a set of real numbers, and $f$ is real-valued, the graph of $f$ is a subset of the plane.
+If $f$ is defined on $E$, the graph of $f$ is the set of points $\left(x,f\left(x\right)\right)$, for $x\in E$. In particular, if $E$ is a set of real numbers, and $f$ is real-valued, the graph of $f$ is a subset of the plane.
 
 Suppose $E$ is compact, and prove that $f$ is continuous on $E$ if and only if its graph is compact.
 \end{problem}
 \begin{proof}
+First, assume $f$ continuous. Then let $$\varphi: E\subset \mathbb{R}^1 \rightarrow \mathbb{R}^1 \times \mathbb{R}^1 $$ be the function mapping $E$ to its graph, $\varphi\left(x\right)=\left(x,f\left(x\right)\right)$. Then by Theorem 4.10, $\varphi$ is continuous if and only if the component functions of $\varphi$ are. These component functions are the identity map and $f$, both of which are continuous, hence $\varphi$ is continuous. Thus, the graph is a continuous image of the compact set $E$, and so is itself compact by Theorem 4.14.
 
+Conversely, assume that the graph of $f$ is compact but that $f$ is not continuous at some point $p\in E$. That is, we have some sequence of points $p_n \rightarrow p$ but $\lim_{n\rightarrow \infty} f\left(p_n\right) \neq f\left(p\right)$. However, since the graph is compact, there is some convergent subsequence, say $\left(p_{n_k}, f\left(p_{n_k}\right)\right)\rightarrow \left(p', f'\right)$ where $f' \neq f\left(p\right)$. Since $\left\{p_n\right\}$ converges to $p$ and $\left\{p_{n_k}\right\}$ is a subsequence, we must have $p'=p$. But then we have $f'=f\left(p\right)$ since $\left(p',f'\right)$ is in the graph of $f$. This shows that the convergent subsequence actually converges to the expected value of the graph at $p$. But we assumed $f$ was not continuous, and so this is not possible. Hence we have a contradiction, and so $f$ must be continuous.
 \end{proof}
 
 
 
 
 
-
-
+\begin{problem}{4.8}
+	Let $f$ be a real uniformly continuous function on the bounded set $E$ in $\mathbb{R}^1$. Prove that $f$ is bounded on $E$. Show that the conclusion is false if boundedness of $E$ is omitted from the hypothesis.
+\end{problem}
+\begin{proof}
+	Let $f$ be as specified in the hypotheses. (If $f$ were defined on $\overline{E}$, we could apply the (Weierstrass) extreme value theorem to claim that $f$ attains its maximum and minimum values on $\overline{E}$, and we would be done.) 
+	
+	An easy counterexample if we remove boundedness of $E$ is the identity function $f\left(x\right)=x$ on $E=\left[0,\infty\right)$. It is almost trivially uniformly continuous, but is unbounded as we move toward $\infty$.
+\end{proof}
 
 
 
